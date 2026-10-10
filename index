@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0e0e0e" />
+  <title>Meikai Digital — Uygulama, Oyun, Reklam ve Tasarım Stüdyosu</title>
+  <meta name="description" content="Meikai Digital; mobil uygulamalar, oyunlar, reklam kampanyaları ve marka kimlikleri tasarlayıp geliştiren çok yönlü bir dijital stüdyodur." />
+  <link rel="icon" href="images/meikai-logo.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0e0e0e;
+      --fg: #ededed;
+      --card: #161616;
+      --primary: #b3212b;
+      --muted: #8f8f8f;
+      --border: rgb(255 255 255 / 0.08);
+      --sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      --mono: 'Geist Mono', ui-monospace, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--fg); font-family: var(--sans); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+    svg { flex-shrink: 0; }
+    .icon { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .container { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
+    .eyebrow { font-family: var(--mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .3em; color: var(--primary); }
+    .section { border-top: 1px solid var(--border); scroll-margin-top: 4rem; }
+    .section-inner { padding: 6rem 0; }
+    .section h2 { margin-top: .75rem; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; text-wrap: balance; }
+    .muted { color: var(--muted); }
+
+    /* Logo amblemi */
+    .logo-mark {
+      --s: 28px;
+      display: inline-block; width: var(--s); height: var(--s); border-radius: 22%;
+      background: url('images/meikai-logo.jpeg') no-repeat;
+      background-size: calc(var(--s) * 1024 / 364);
+      background-position: calc(var(--s) * -330 / 364) calc(var(--s) * -202 / 364);
+      flex-shrink: 0;
+    }
+
+    /* Header */
+    header { position: fixed; inset: 0 0 auto 0; z-index: 50; border-bottom: 1px solid var(--border); background: rgb(14 14 14 / .7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    header .container { display: flex; height: 4rem; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: .75rem; font-size: .875rem; font-weight: 600; letter-spacing: .25em; }
+    .brand small { font-size: inherit; font-weight: 400; color: var(--muted); }
+    nav ul { display: flex; gap: 1.5rem; font-size: .875rem; color: var(--muted); }
+    nav a { transition: color .2s; }
+    nav a:hover { color: var(--fg); }
+    .nav-desktop { display: none; }
+
+    /* Hero */
+    .hero { position: relative; display: flex; min-height: 100vh; min-height: 100svh; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 4rem 1.5rem 0; text-align: center; }
+    .hero-glow { position: absolute; left: 50%; top: 50%; width: 640px; height: 640px; transform: translate(-50%, -50%); border-radius: 50%; background: rgb(179 33 43 / .1); filter: blur(140px); pointer-events: none; }
+    .hero-content { position: relative; display: flex; flex-direction: column; align-items: center; }
+    .hero-logo { width: 11rem; height: 11rem; margin: -1rem 0; -webkit-mask-image: radial-gradient(circle, #000 55%, transparent 72%); mask-image: radial-gradient(circle, #000 55%, transparent 72%); }
+    .hero-tags { margin-top: .5rem; font-family: var(--mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .4em; color: var(--muted); }
+    .hero h1 { margin-top: 1.5rem; max-width: 42rem; font-size: 1.875rem; font-weight: 600; line-height: 1.25; letter-spacing: -0.02em; text-wrap: balance; }
+    .hero-lead { margin-top: 1.25rem; max-width: 32rem; line-height: 1.7; color: var(--muted); text-wrap: pretty; }
+    .cta {
+      margin-top: 2.5rem; display: inline-flex; align-items: center; gap: .75rem;
+      border-radius: 999px; background: var(--primary); color: #fff;
+      padding: 1.25rem 2.5rem; font-size: 1rem; font-weight: 500;
+      box-shadow: 0 0 40px -8px rgb(179 33 43 / .6);
+      transition: transform .2s, background-color .2s;
+    }
+    .cta:hover { transform: scale(1.03); background: rgb(179 33 43 / .9); }
+    .cta:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+    .cta .icon { width: 20px; height: 20px; transition: transform .2s; }
+    .cta:hover .icon { transform: translateY(2px); }
+
+    /* Hizmetler */
+    .services { margin-top: 3rem; display: grid; gap: 1px; overflow: hidden; border-radius: .5rem; border: 1px solid var(--border); background: var(--border); }
+    .services li { background: var(--bg); padding: 2rem; transition: background-color .2s; }
+    .services li:hover { background: var(--card); }
+    .services .icon { color: var(--primary); }
+    .services h3 { margin-top: 1.5rem; font-size: 1rem; font-weight: 500; }
+    .services p { margin-top: .5rem; font-size: .875rem; line-height: 1.7; color: var(--muted); }
+
+    /* Projeler */
+    .projects { margin-top: 3rem; display: grid; gap: 1.5rem; }
+    .project { display: flex; height: 100%; flex-direction: column; overflow: hidden; border-radius: .5rem; border: 1px solid var(--border); background: var(--card); transition: border-color .2s; }
+    .project:hover { border-color: rgb(179 33 43 / .4); }
+    .project-media { aspect-ratio: 16 / 10; overflow: hidden; }
+    .project-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .project:hover .project-media img { transform: scale(1.05); }
+    .project-body { display: flex; flex: 1; flex-direction: column; padding: 1.5rem; }
+    .project-meta { display: flex; justify-content: space-between; font-family: var(--mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+    .project h3 { margin-top: 1rem; display: flex; align-items: center; justify-content: space-between; font-size: 1.125rem; font-weight: 500; }
+    .project h3 .icon { width: 16px; height: 16px; color: var(--muted); transition: color .2s; }
+    .project:hover h3 .icon { color: var(--primary); }
+    .project p { margin-top: .5rem; font-size: .875rem; line-height: 1.7; color: var(--muted); }
+
+    /* İletişim */
+    .contact { display: flex; flex-direction: column; align-items: center; padding: 7rem 0; text-align: center; }
+    .contact h2 { max-width: 36rem; }
+    .email { margin-top: 2.5rem; display: inline-flex; align-items: center; gap: .75rem; border-bottom: 1px solid var(--border); padding-bottom: .5rem; font-size: 1.25rem; font-weight: 500; transition: color .2s, border-color .2s; word-break: break-all; }
+    .email:hover { color: var(--primary); border-color: var(--primary); }
+    .email .icon { color: var(--primary); }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); }
+    footer .container { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 2rem; padding-bottom: 2rem; font-size: .875rem; color: var(--muted); }
+    footer .left { display: flex; align-items: center; gap: .75rem; }
+    footer .logo-mark { --s: 22px; }
+    footer a { transition: color .2s; }
+    footer a:hover { color: var(--fg); }
+
+    @media (min-width: 640px) {
+      .nav-desktop { display: block; }
+      .nav-mobile { display: none; }
+      .hero-logo { width: 14rem; height: 14rem; }
+      .hero h1 { font-size: 3rem; }
+      .cta { padding: 1.25rem 3rem; font-size: 1.125rem; }
+      .section h2 { font-size: 2.25rem; }
+      .services { grid-template-columns: repeat(2, 1fr); }
+      .email { font-size: 1.875rem; }
+      footer .container { flex-direction: row; }
+    }
+    @media (min-width: 768px) { .projects { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1024px) { .services { grid-template-columns: repeat(4, 1fr); } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="#" class="brand" aria-label="Meikai Digital ana sayfa">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span>MEIKAI <small>DIGITAL</small></span>
+      </a>
+      <nav aria-label="Ana menü">
+        <ul>
+          <li class="nav-desktop"><a href="#hizmetler">Hizmetler</a></li>
+          <li class="nav-desktop"><a href="#projeler">Projeler</a></li>
+          <li class="nav-desktop"><a href="#iletisim">İletişim</a></li>
+          <li class="nav-mobile"><a href="#iletisim">İletişim</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-content">
+        <img class="hero-logo" src="images/meikai-logo.jpeg" alt="Meikai logosu" width="1024" height="1024" />
+        <p class="hero-tags">Uygulama · Oyun · Reklam · Tasarım</p>
+        <h1>Fikirleri dijital deneyimlere dönüştüren çok yönlü stüdyo.</h1>
+        <p class="hero-lead">Meikai Digital; mobil uygulamalar, oyunlar, reklam kampanyaları ve marka kimlikleri tasarlayıp geliştirir.</p>
+        <a href="#projeler" class="cta">
+          Yeni projelerimizi keşfedin
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <section id="hizmetler" class="section">
+      <div class="container section-inner">
+        <p class="eyebrow">01 — Hizmetler</p>
+        <h2>Tek stüdyo, dört disiplin.</h2>
+        <ul class="services">
+          <li>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+            <h3>Uygulama Geliştirme</h3>
+            <p>iOS, Android ve web için hızlı, sade ve ölçeklenebilir ürünler.</p>
+          </li>
+          <li>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>
+            <h3>Oyun Stüdyosu</h3>
+            <p>Mobil ve PC için özgün dünyalar, akıcı oynanış ve güçlü atmosfer.</p>
+          </li>
+          <li>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+            <h3>Reklamcılık</h3>
+            <p>Veriyle beslenen, akılda kalan dijital kampanyalar ve içerikler.</p>
+          </li>
+          <li>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z"/><path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18"/><path d="m2.3 2.3 7.286 7.286"/><circle cx="11" cy="11" r="2"/></svg>
+            <h3>Tasarım</h3>
+            <p>Marka kimliği, arayüz tasarımı ve görsel iletişim çözümleri.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projeler" class="section">
+      <div class="container section-inner">
+        <p class="eyebrow">02 — Projelerimiz</p>
+        <h2>Son çalışmalarımız.</h2>
+        <ul class="projects">
+          <li>
+            <article class="project">
+              <div class="project-media"><img src="images/project-game.png" alt="Kage: Gölge Yolu projesinden görsel" loading="lazy" /></div>
+              <div class="project-body">
+                <div class="project-meta"><span>Oyun</span><span>2026</span></div>
+                <h3>Kage: Gölge Yolu <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></h3>
+                <p>Gece ormanında geçen, atmosfer odaklı aksiyon-macera oyunu.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="project">
+              <div class="project-media"><img src="images/project-app.png" alt="Nami projesinden görsel" loading="lazy" /></div>
+              <div class="project-body">
+                <div class="project-meta"><span>Mobil Uygulama</span><span>2026</span></div>
+                <h3>Nami <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></h3>
+                <p>Odaklanma ve günlük rutinler için minimalist üretkenlik uygulaması.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="project">
+              <div class="project-media"><img src="images/project-brand.png" alt="Akai Kampanyası projesinden görsel" loading="lazy" /></div>
+              <div class="project-body">
+                <div class="project-meta"><span>Reklam &amp; Marka</span><span>2025</span></div>
+                <h3>Akai Kampanyası <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></h3>
+                <p>Yeni nesil bir marka için uçtan uca kimlik ve dijital kampanya.</p>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="iletisim" class="section">
+      <div class="container contact">
+        <p class="eyebrow">03 — İletişim</p>
+        <h2>Bir projeniz mi var? Birlikte üretelim.</h2>
+        <a href="mailto:hello@meikaidigital.com" class="email">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          hello@meikaidigital.com
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="left">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span>© 2026 Meikai Digital. Tüm hakları saklıdır.</span>
+      </div>
+      <a href="mailto:hello@meikaidigital.com">hello@meikaidigital.com</a>
+    </div>
+  </footer>
+</body>
+</html>
