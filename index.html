@@ -128,6 +128,9 @@
     @media (min-width: 768px) { .projects { grid-template-columns: repeat(3, 1fr); } }
     @media (min-width: 1024px) { .services { grid-template-columns: repeat(4, 1fr); } }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+    .instagram { margin-top: 1.5rem; display: inline-flex; align-items: center; gap: .5rem; font-size: .875rem; color: var(--muted); transition: color .2s; }
+.instagram:hover { color: var(--fg); }
+.instagram .icon { width: 20px; height: 20px; color: var(--primary); }
   </style>
 </head>
 <body>
@@ -239,6 +242,10 @@
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           hello@meikai.com
         </a>
+        <a href="https://instagram.com/themeikai" target="_blank" rel="noopener noreferrer" class="instagram">
+  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+  @themeikai
+</a>
       </div>
     </section>
   </main>
@@ -249,7 +256,7 @@
         <span class="logo-mark" aria-hidden="true"></span>
         <span>© 2026 Meikai Digital. Tüm hakları saklıdır.</span>
       </div>
-      <a href="mailto:hello@meikaidigital.com">hello@meikaidigital.com</a>
+      <a href="mailto:hello@meikaidigital.com">hello@meikai.com</a>
     </div>
   </footer>
 </body>
