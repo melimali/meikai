@@ -364,10 +364,10 @@
     var CURRENCY = 'TRY';
 
     // Sepetin altında görünen not (boşsa görünmez). Örn: 'Ödeme ve teslimat bilgisi mesajla paylaşılır.'
-    var ORDER_NOTE = '';
+    var ORDER_NOTE = 'Ödeme ve teslimat bilgisi mesajla paylaşılır.';
 
     // Hero altında küçük not. Örn: 'Fiyatlara KDV dahildir. Kargo ücreti ayrıdır.'
-    var PRICE_NOTE = '';
+    var PRICE_NOTE = 'Fiyatlara KDV dahildir. Kargo ücreti ayrıdır';
 
     // Beden tablosu (boş bırakırsan görünmez). Örnek:
     // var SIZE_CHART = {
@@ -375,7 +375,16 @@
     //   rows: [['S', '..', '..'], ['M', '..', '..']],
     //   note: ''
     // };
-    var SIZE_CHART = null;
+    var SIZE_CHART = var SIZE_CHART = {
+  head: ['Beden', 'Göğüs (cm)', 'Boy (cm)', 'Omuz (cm)'],
+  rows: [
+    ['S',  '50', '70', '44'],
+    ['M',  '52', '72', '46'],
+    ['L',  '54', '74', '48'],
+    ['XL', '56', '76', '50']
+  ],
+  note: 'Ölçüler düz yüzeyde alınmıştır, 1-2 cm sapma olabilir.'
+};
 
     // Kargo, iade ve kumaş bilgileri. Dolu olanlar "Alışveriş bilgileri" bölümünde görünür.
     var INFO = {
@@ -423,23 +432,23 @@
         desc: 'Hiçbir tarza bağlı kalmayan, tamamen özgün ve yenilikçi tasarımlar. Kuralları değil, kendi imzamızı izliyoruz.',
         products: [
           product('signature', 1, {
-            name:  'Ürün 1',
-            price: '',
-            desc:  '',
+            name:  'Angels May Cry',
+            price: '₺800',
+            desc:  'Unutma, melekler de ağlar.',
             sizes: ['S', 'M', 'L', 'XL'],
             link:  ''
           }),
           product('signature', 2, {
-            name:  'Ürün 2',
-            price: '',
-            desc:  '',
+            name:  'The Oni',
+            price: '₺800',
+            desc:  'Maskenin hiddeti.',
             sizes: ['S', 'M', 'L', 'XL'],
             link:  ''
           }),
           product('signature', 3, {
-            name:  'Ürün 3',
-            price: '',
-            desc:  '',
+            name:  'Meöw Göd',
+            price: '₺800',
+            desc:  'Şeytan lordu tahtında meowlıyor :3',
             sizes: ['S', 'M', 'L', 'XL'],
             link:  ''
           })
@@ -452,21 +461,21 @@
         desc: 'Sokak kültürü için yapılan tasarımlar. Sokağın enerjisi, ritmi ve dili tişörtlerin üzerinde.',
         products: [
           product('streetwear', 1, {
-            name:  'Ürün 1',
-            price: '',
-            desc:  '',
+            name:  'Urban',
+            price: '₺800',
+            desc:  'Duvardaki meikai yazısı mı?',
             sizes: ['S', 'M', 'L', 'XL'],
             link:  ''
           }),
           product('streetwear', 2, {
-            name:  'Ürün 2',
+            name:  'Streetwear Collection',
             price: '',
             desc:  '',
             sizes: ['S', 'M', 'L', 'XL'],
             link:  ''
           }),
           product('streetwear', 3, {
-            name:  'Ürün 3',
+            name:  'Streetwear Collection',
             price: '',
             desc:  '',
             sizes: ['S', 'M', 'L', 'XL'],
@@ -481,21 +490,21 @@
         desc: 'Animeseverler için tasarımlar. Sevdiğin dünyalara duyduğun tutkuyu üzerinde taşı.',
         products: [
           product('anime', 1, {
-            name:  'Ürün 1',
-            price: '',
-            desc:  '',
+            name:  'Aka suki',
+            price: '₺800',
+            desc:  'Sharingan in my eyes.',
             sizes: ['S', 'M', 'L', 'XL'],
             link:  ''
           }),
           product('anime', 2, {
-            name:  'Ürün 2',
+            name:  'Anime Collection',
             price: '',
             desc:  '',
             sizes: ['S', 'M', 'L', 'XL'],
             link:  ''
           }),
           product('anime', 3, {
-            name:  'Ürün 3',
+            name:  'Anime Collection',
             price: '',
             desc:  '',
             sizes: ['S', 'M', 'L', 'XL'],
