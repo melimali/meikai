@@ -12,12 +12,16 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Meikai Digital" />
   <meta property="og:title" content="Mağaza — Meikai T-brand | Meikai Digital" />
-  <meta property="og:description" content="Meikai T-brand tişört koleksiyonu. Karanlık ve özgün, yeraltından gelen tasarımlar." />
+  <meta property="og:description" content="Meikai T-brand tişört koleksiyonu. Signature, Streetwear ve Anime Collection." />
   <meta property="og:url" content="https://themeikai.com/magaza.html" />
-  <meta property="og:image" content="https://themeikai.com/images/meikai-logo.jpeg" />
+  <meta property="og:image" content="https://themeikai.com/images/og-magaza.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="tr_TR" />
-  <meta property="og:locale:alternate" content="en_US" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mağaza — Meikai T-brand" />
+  <meta name="twitter:description" content="Signature, Streetwear ve Anime Collection." />
+  <meta name="twitter:image" content="https://themeikai.com/images/og-magaza.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet" />
@@ -32,20 +36,26 @@
       --border: rgb(255 255 255 / 0.08);
       --sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
       --mono: 'Geist Mono', ui-monospace, monospace;
+      --hdr: calc(4rem + env(safe-area-inset-top, 0px));
+      --bar: 3.4rem;
     }
+    html.closed { --bar: 5.7rem; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    html.lock { overflow: hidden; }
     body { background: var(--bg); color: var(--fg); font-family: var(--sans); line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     a { color: inherit; text-decoration: none; }
     ul { list-style: none; }
     img { display: block; max-width: 100%; }
     button { font: inherit; color: inherit; }
     svg { flex-shrink: 0; }
+    [hidden] { display: none !important; }
     .icon { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     .container { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
     .eyebrow { font-family: var(--mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .3em; color: var(--primary); }
-    a:focus-visible, button:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
-    .skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 200; background: var(--primary); color: #fff; padding: .6rem 1rem; border-radius: .5rem; font-size: .875rem; transition: top .2s; }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 500; background: var(--primary); color: #fff; padding: .6rem 1rem; border-radius: .5rem; font-size: .875rem; transition: top .2s; }
     .skip-link:focus { top: 1rem; }
 
     .logo-mark {
@@ -65,41 +75,58 @@
     nav ul { display: flex; align-items: center; gap: 1.5rem; font-size: .875rem; color: var(--muted); }
     nav a { transition: color .2s; }
     nav a:hover, nav a[aria-current="page"] { color: var(--fg); }
-    .lang-btn { font-family: var(--mono); font-size: .75rem; letter-spacing: .15em; color: var(--fg); background: transparent; border: 1px solid var(--border); border-radius: 999px; padding: .35rem .8rem; cursor: pointer; transition: border-color .2s, background-color .2s; }
-    .lang-btn:hover { border-color: var(--primary); background: rgb(179 33 43 / .15); }
+    .cart-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; border-radius: 999px; border: 1px solid var(--border); background: transparent; color: var(--fg); cursor: pointer; transition: border-color .2s, background-color .2s; }
+    .cart-btn:hover { border-color: var(--primary); background: rgb(179 33 43 / .15); }
+    .cart-btn .icon { width: 18px; height: 18px; }
+    .cart-count { position: absolute; top: -.35rem; right: -.35rem; min-width: 1.1rem; height: 1.1rem; padding: 0 .3rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: var(--primary); color: #fff; font-family: var(--mono); font-size: .65rem; }
+    .cart-btn.bump { animation: bump .45s; }
+    @keyframes bump { 30% { transform: scale(1.25); } 100% { transform: none; } }
 
     /* Üst bölüm */
-    .shop-hero { position: relative; overflow: hidden; padding: 9rem 0 3rem; text-align: center; }
+    .shop-hero { position: relative; overflow: hidden; padding: 9rem 0 3.5rem; text-align: center; }
     .shop-hero .glow { position: absolute; left: 50%; top: 40%; width: 560px; height: 560px; transform: translate(-50%, -50%); border-radius: 50%; background: rgb(179 33 43 / .14); filter: blur(140px); pointer-events: none; }
     .shop-hero .container { position: relative; display: flex; flex-direction: column; align-items: center; }
     .shop-hero h1 { margin-top: 1rem; max-width: 40rem; font-size: 2.25rem; font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; text-wrap: balance; }
-    .shop-hero p { margin-top: 1rem; max-width: 30rem; color: var(--muted); line-height: 1.7; }
-    .shop-hero .line { margin-top: 2rem; height: 1px; width: 160px; background: linear-gradient(90deg, transparent, var(--primary), transparent); }
+    .shop-hero p.lead { margin-top: 1rem; max-width: 30rem; color: var(--muted); line-height: 1.7; }
+    .price-note { margin-top: .75rem; max-width: 30rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .05em; color: var(--muted); }
 
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-
-    /* Koleksiyon bağlantıları */
-    .chips { margin-top: 2rem; display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; }
-    .chip { padding: .5rem 1.1rem; border-radius: 999px; border: 1px solid var(--border); font-size: .8rem; color: var(--muted); transition: color .2s, border-color .2s, background-color .2s; }
-    .chip:hover { color: var(--fg); border-color: var(--primary); background: rgb(179 33 43 / .12); }
+    /* Yapışkan koleksiyon çubuğu */
+    .collbar { position: sticky; top: var(--hdr); z-index: 40; border-block: 1px solid var(--border); background: rgb(14 14 14 / .82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .closed-note { display: flex; align-items: center; justify-content: center; gap: .6rem; padding: .5rem 1rem; background: rgb(179 33 43 / .2); border-bottom: 1px solid rgb(179 33 43 / .4); font-size: .75rem; line-height: 1.4; color: #f3cdd0; text-align: center; }
+    .closed-note::before { content: ''; flex-shrink: 0; width: .45rem; height: .45rem; border-radius: 50%; background: var(--primary); box-shadow: 0 0 0 0 rgb(179 33 43 / .7); animation: pulse 2s infinite; }
+    @keyframes pulse { 70% { box-shadow: 0 0 0 .5rem rgb(179 33 43 / 0); } 100% { box-shadow: 0 0 0 0 rgb(179 33 43 / 0); } }
+    .chips { display: flex; gap: .5rem; padding-block: .7rem; overflow-x: auto; justify-content: center; justify-content: safe center; scrollbar-width: none; }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip { flex-shrink: 0; padding: .45rem 1.05rem; border-radius: 999px; border: 1px solid var(--border); font-size: .8rem; color: var(--muted); white-space: nowrap; transition: color .2s, border-color .2s, background-color .2s; }
+    .chip:hover { color: var(--fg); border-color: rgb(179 33 43 / .6); }
+    .chip.on { color: #fff; border-color: var(--primary); background: rgb(179 33 43 / .22); }
 
     /* Koleksiyonlar */
-    .collection { border-top: 1px solid var(--border); padding: 5rem 0; scroll-margin-top: 4rem; }
-    .collection:last-child { padding-bottom: 7rem; }
+    .collection { border-top: 1px solid var(--border); padding: 5rem 0; scroll-margin-top: calc(var(--hdr) + var(--bar)); }
+    .collection:first-child { border-top: 0; }
     .coll-head { display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .coll-logo { width: 11rem; height: 11rem; margin-top: 1.25rem; border-radius: 1rem; border: 1px solid var(--border); object-fit: cover; box-shadow: 0 0 80px -24px rgb(179 33 43 / .55); }
+    .coll-logo { height: 13rem; width: auto; max-width: 80%; margin-top: 1.25rem; object-fit: contain; filter: drop-shadow(0 0 36px rgb(179 33 43 / .28)); }
     .coll-desc { margin-top: 1.75rem; max-width: 34rem; line-height: 1.8; color: var(--muted); text-wrap: pretty; }
     .grid { display: grid; gap: 1.5rem; margin-top: 3rem; }
-    .card { display: flex; flex-direction: column; overflow: hidden; border-radius: .5rem; border: 1px solid var(--border); background: var(--card); transition: border-color .25s, box-shadow .25s; animation: rise .8s cubic-bezier(.16,1,.3,1) both; }
-    .card:nth-child(2) { animation-delay: .1s; }
-    .card:nth-child(3) { animation-delay: .2s; }
+
+    .card { display: flex; flex-direction: column; overflow: hidden; border-radius: .5rem; border: 1px solid var(--border); background: var(--card); transition: border-color .25s, box-shadow .25s; scroll-margin-top: calc(var(--hdr) + var(--bar) + 1rem); }
     .card:hover { border-color: rgb(179 33 43 / .45); box-shadow: 0 0 60px -20px rgb(179 33 43 / .45); }
-    @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+    .card.flash { animation: flash 1.6s ease-out; }
+    @keyframes flash { 0%, 40% { box-shadow: 0 0 0 2px var(--primary), 0 0 60px -10px rgb(179 33 43 / .7); } 100% { box-shadow: none; } }
 
     .stage { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #0b0b0b; }
     .stage .ph, .thumb .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: .7rem; letter-spacing: .35em; text-transform: uppercase; color: rgb(255 255 255 / .22); background: radial-gradient(circle at 50% 40%, rgb(179 33 43 / .14), transparent 65%), #0b0b0b; }
     .stage .main { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
     .card:hover .stage .main { transform: scale(1.04); }
+    .zoom { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; border: 0; background: transparent; cursor: zoom-in; }
+    .zoom-ic { position: absolute; right: .6rem; bottom: .6rem; z-index: 3; display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 999px; background: rgb(14 14 14 / .7); border: 1px solid var(--border); pointer-events: none; opacity: 0; transition: opacity .2s; }
+    .zoom-ic .icon { width: 14px; height: 14px; }
+    .card:hover .zoom-ic, .zoom:focus-visible + .zoom-ic { opacity: 1; }
+    @media (hover: none) { .zoom-ic { opacity: 1; } }
+    .badges { position: absolute; left: .6rem; top: .6rem; z-index: 3; display: flex; gap: .4rem; pointer-events: none; }
+    .badge { padding: .25rem .6rem; border-radius: 999px; background: var(--primary); color: #fff; font-family: var(--mono); font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; }
+    .badge.out { background: #2a2a2a; color: var(--fg); border: 1px solid var(--border); }
+    .card.sold .stage .main { filter: grayscale(.8) brightness(.6); }
 
     .thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; padding: .75rem .75rem 0; }
     .thumb { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: .35rem; border: 1px solid var(--border); background: #0b0b0b; cursor: pointer; padding: 0; opacity: .55; transition: opacity .2s, border-color .2s; }
@@ -108,8 +135,12 @@
     .thumb.on { opacity: 1; border-color: var(--primary); }
 
     .body { display: flex; flex: 1; flex-direction: column; padding: 1.25rem 1.5rem 1.5rem; }
-    .meta { display: flex; justify-content: space-between; font-family: var(--mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+    .meta { display: flex; align-items: center; justify-content: space-between; gap: .5rem; font-family: var(--mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+    .meta-r { display: flex; align-items: center; gap: .6rem; }
     .price { color: var(--fg); }
+    .mini { display: inline-flex; align-items: center; justify-content: center; width: 1.9rem; height: 1.9rem; border-radius: 999px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: color .2s, border-color .2s; }
+    .mini:hover { color: var(--fg); border-color: var(--primary); }
+    .mini .icon { width: 14px; height: 14px; }
     .body h3 { margin-top: .75rem; font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; }
     .desc { margin-top: .5rem; font-size: .875rem; line-height: 1.7; color: var(--muted); white-space: pre-line; flex: 1; }
 
@@ -121,37 +152,108 @@
     .hint { min-height: 1.25rem; margin-top: .6rem; font-size: .8rem; color: #e05a63; }
 
     .buy { margin-top: .4rem; display: inline-flex; align-items: center; justify-content: center; gap: .6rem; width: 100%; border: 0; border-radius: 999px; background: var(--primary); color: #fff; padding: .95rem 1.5rem; font-size: .95rem; font-weight: 500; cursor: pointer; box-shadow: 0 0 36px -10px rgb(179 33 43 / .7); transition: transform .2s, background-color .2s; }
-    .buy:hover { transform: scale(1.02); background: rgb(179 33 43 / .9); }
+    .buy:hover:not(:disabled) { transform: scale(1.02); background: rgb(179 33 43 / .9); }
     .buy .icon { width: 18px; height: 18px; }
+    .buy:disabled { background: #242424; color: var(--muted); box-shadow: none; cursor: not-allowed; }
+    .buy.ghost { background: transparent; border: 1px solid var(--border); box-shadow: none; }
+    .buy.ghost:hover { border-color: var(--primary); background: rgb(179 33 43 / .12); }
+
+    /* Bilgi bölümü */
+    .info { border-top: 1px solid var(--border); padding: 5rem 0 6rem; }
+    .info .container { max-width: 48rem; }
+    .info h2 { margin-top: .75rem; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; }
+    .acc-list { margin-top: 2rem; border: 1px solid var(--border); border-radius: .5rem; overflow: hidden; }
+    .acc { border-top: 1px solid var(--border); background: var(--card); }
+    .acc:first-child { border-top: 0; }
+    .acc summary { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.5rem; cursor: pointer; list-style: none; font-weight: 500; }
+    .acc summary::-webkit-details-marker { display: none; }
+    .acc summary .icon { width: 18px; height: 18px; color: var(--muted); transition: transform .2s; }
+    .acc[open] summary .icon { transform: rotate(180deg); }
+    .acc-body { padding: 0 1.5rem 1.5rem; font-size: .9rem; line-height: 1.8; color: var(--muted); white-space: pre-line; }
+    .tbl { overflow-x: auto; white-space: normal; }
+    .tbl table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    .tbl th, .tbl td { padding: .6rem .8rem; text-align: left; border-bottom: 1px solid var(--border); }
+    .tbl th { font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; color: var(--fg); }
+    .info-text { margin-top: 1rem; }
+
+    /* Sepet çekmecesi */
+    .overlay { position: fixed; inset: 0; z-index: 90; background: rgb(0 0 0 / .6); opacity: 0; pointer-events: none; transition: opacity .25s; }
+    .overlay.open { opacity: 1; pointer-events: auto; }
+    .drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 100; width: min(26rem, 100vw); display: flex; flex-direction: column; background: #121212; border-left: 1px solid var(--border); transform: translateX(100%); visibility: hidden; transition: transform .3s cubic-bezier(.16,1,.3,1), visibility .3s; padding-top: env(safe-area-inset-top, 0px); }
+    .drawer.open { transform: none; visibility: visible; }
+    .drawer-head { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.25rem; border-bottom: 1px solid var(--border); }
+    .drawer-head h2 { font-size: 1.05rem; font-weight: 600; }
+    .drawer-body { flex: 1; overflow-y: auto; padding: 1rem 1.25rem; }
+    .empty { margin-top: 2rem; text-align: center; color: var(--muted); font-size: .9rem; }
+    .ci { display: flex; gap: .9rem; padding: .9rem 0; border-bottom: 1px solid var(--border); }
+    .ci-img { position: relative; width: 4.5rem; height: 5.6rem; flex-shrink: 0; overflow: hidden; border-radius: .35rem; background: #0b0b0b; border: 1px solid var(--border); }
+    .ci-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .ci-info { flex: 1; min-width: 0; }
+    .ci-coll { font-family: var(--mono); font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .ci-name { margin-top: .15rem; font-weight: 500; }
+    .ci-meta { margin-top: .15rem; font-size: .8rem; color: var(--muted); }
+    .qty { margin-top: .6rem; display: flex; align-items: center; gap: .5rem; }
+    .qty .mini { width: 1.8rem; height: 1.8rem; }
+    .qty span { min-width: 1.4rem; text-align: center; font-size: .9rem; }
+    .qty .rm { margin-left: auto; }
+    .drawer-foot { padding: 1rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: .6rem; }
+    .total-row { display: flex; justify-content: space-between; align-items: baseline; font-size: .95rem; }
+    .total-row strong { font-size: 1.15rem; }
+    .foot-note { font-size: .75rem; color: var(--muted); line-height: 1.6; }
+    .drawer-foot .buy { margin-top: 0; }
+    .link-btn { align-self: center; border: 0; background: transparent; color: var(--muted); font-size: .8rem; text-decoration: underline; cursor: pointer; }
+    .link-btn:hover { color: var(--fg); }
+
+    /* Görsel görüntüleyici */
+    .lb { position: fixed; inset: 0; z-index: 300; display: none; align-items: center; justify-content: center; background: rgb(5 5 5 / .95); }
+    .lb.open { display: flex; }
+    .lb-stage { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 4rem 1rem 3.5rem; }
+    .lb-stage img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: .35rem; }
+    .lb-ph { position: absolute; font-family: var(--mono); font-size: .8rem; letter-spacing: .3em; color: rgb(255 255 255 / .3); text-transform: uppercase; }
+    .lb-btn { position: absolute; z-index: 2; display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border-radius: 999px; border: 1px solid var(--border); background: rgb(14 14 14 / .75); cursor: pointer; transition: border-color .2s; }
+    .lb-btn:hover { border-color: var(--primary); }
+    .lb-close { top: calc(1rem + env(safe-area-inset-top, 0px)); right: 1rem; }
+    .lb-prev { left: 1rem; top: 50%; transform: translateY(-50%); }
+    .lb-next { right: 1rem; top: 50%; transform: translateY(-50%); }
+    .lb-count { position: absolute; bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px)); left: 0; right: 0; text-align: center; font-family: var(--mono); font-size: .75rem; letter-spacing: .2em; color: var(--muted); }
+
+    /* Bildirim */
+    .toast { position: fixed; left: 50%; bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px)); z-index: 400; display: flex; align-items: center; gap: .9rem; padding: .7rem 1.1rem; border-radius: 999px; background: #1c1c1c; border: 1px solid var(--border); font-size: .85rem; box-shadow: 0 10px 40px -10px #000; transform: translate(-50%, 140%); opacity: 0; transition: transform .35s cubic-bezier(.16,1,.3,1), opacity .35s; pointer-events: none; white-space: nowrap; max-width: calc(100vw - 2rem); }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+    .toast button { border: 0; background: transparent; color: #e05a63; font-size: .85rem; cursor: pointer; text-decoration: underline; }
 
     /* Footer */
     footer { border-top: 1px solid var(--border); }
-    footer .container { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 2rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); font-size: .875rem; color: var(--muted); }
+    footer .container { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 2rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); font-size: .875rem; color: var(--muted); text-align: center; }
     footer .left { display: flex; align-items: center; gap: .75rem; }
     footer .logo-mark { --s: 22px; }
+    footer .legal { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 1.25rem; }
     footer a { transition: color .2s; }
     footer a:hover { color: var(--fg); }
 
     @media (max-width: 479px) {
-      .brand small { display: none; }
-      nav ul { gap: .9rem; font-size: .8rem; }
+      .brand small, .hide-sm { display: none; }
+      .chips { padding-inline: 1rem; gap: .4rem; }
+      .chip { padding: .4rem .8rem; font-size: .75rem; }
+      .closed-note { font-size: .7rem; padding: .45rem .75rem; }
+      nav ul { gap: .75rem; font-size: .8rem; }
+      .lb-prev { left: .4rem; } .lb-next { right: .4rem; }
     }
     @media (min-width: 640px) {
       .shop-hero h1 { font-size: 3.25rem; }
-      .coll-logo { width: 14rem; height: 14rem; }
+      .coll-logo { height: 17rem; }
       .grid { grid-template-columns: repeat(2, 1fr); }
-      footer .container { flex-direction: row; }
+      footer .container { flex-direction: row; text-align: left; }
     }
     @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      * { transition: none !important; }
-      .card { animation: none; }
+      * { transition: none !important; animation: none !important; }
     }
   </style>
 </head>
 <body>
-  <a href="#urunler" class="skip-link" data-i18n="skip">İçeriğe geç</a>
+  <a href="#collections" class="skip-link" data-i18n="skip">İçeriğe geç</a>
 
   <header>
     <div class="container">
@@ -161,29 +263,39 @@
       </a>
       <nav aria-label="Ana menü">
         <ul>
-          <li><a href="index.html" data-i18n="navHome">Ana Sayfa</a></li>
-          <li><a href="magaza.html" aria-current="page" data-i18n="navShop">Mağaza</a></li>
+          <li class="hide-sm"><a href="index.html" data-i18n="navHome">Ana Sayfa</a></li>
+          <li class="hide-sm"><a href="magaza.html" aria-current="page" data-i18n="navShop">Mağaza</a></li>
           <li><a href="index.html#iletisim" data-i18n="navContact">İletişim</a></li>
-          <li><button type="button" class="lang-btn" id="lang-toggle" aria-label="Switch to English">EN</button></li>
+          <li id="cart-li">
+            <button type="button" class="cart-btn" id="cart-btn" aria-label="Sepet" data-i18n-aria="cart">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <span class="cart-count" id="cart-count" hidden>0</span>
+            </button>
+          </li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main id="urunler">
+  <main>
     <section class="shop-hero">
       <div class="glow" aria-hidden="true"></div>
       <div class="container">
         <p class="eyebrow" data-i18n="eyebrow">Mağaza — Meikai T-brand</p>
         <h1 data-i18n="heroTitle">Karanlıkta fark edilenler.</h1>
-        <p data-i18n="heroLead">Karanlık ve özgün, yeraltından gelen tasarımlar.</p>
-        <nav class="chips" aria-label="Koleksiyonlar" id="chips">
-          <a class="chip" href="#signature">Signature</a>
-          <a class="chip" href="#streetwear">Streetwear</a>
-          <a class="chip" href="#anime">Anime Collection</a>
-        </nav>
+        <p class="lead" data-i18n="heroLead">Üç koleksiyon, tek marka. Kendi tarzını seç.</p>
+        <p class="price-note" id="price-note" hidden></p>
       </div>
     </section>
+
+    <div class="collbar" id="collbar">
+      <p class="closed-note" id="closed-note" hidden></p>
+      <nav class="container chips" aria-label="Koleksiyonlar" id="chips">
+        <a class="chip" href="#signature" data-sec="signature">Signature</a>
+        <a class="chip" href="#streetwear" data-sec="streetwear">Streetwear</a>
+        <a class="chip" href="#anime" data-sec="anime">Anime Collection</a>
+      </nav>
+    </div>
 
     <div id="collections"></div>
   </main>
@@ -194,38 +306,107 @@
         <span class="logo-mark" aria-hidden="true"></span>
         <span data-i18n="footer">© 2026 Meikai Digital. Tüm hakları saklıdır.</span>
       </div>
+      <nav class="legal" id="legal" aria-label="Yasal"></nav>
       <a href="index.html" data-i18n="back">Ana sayfaya dön</a>
     </div>
   </footer>
 
+  <!-- Sepet -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+    <div class="drawer-head">
+      <h2 id="drawer-title" data-i18n="cart">Sepet</h2>
+      <button type="button" class="mini" id="drawer-close" aria-label="Kapat" data-i18n-aria="close">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="cart-items"></div>
+    <div class="drawer-foot" id="cart-foot"></div>
+  </aside>
+
+  <!-- Görsel görüntüleyici -->
+  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Görsel görüntüleyici" data-i18n-aria="viewer">
+    <button type="button" class="lb-btn lb-close" id="lb-close" aria-label="Kapat" data-i18n-aria="close">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <button type="button" class="lb-btn lb-prev" id="lb-prev" aria-label="Önceki" data-i18n-aria="prev">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <div class="lb-stage" id="lb-stage">
+      <span class="lb-ph" id="lb-ph"></span>
+      <img id="lb-img" alt="" />
+    </div>
+    <button type="button" class="lb-btn lb-next" id="lb-next" aria-label="Sonraki" data-i18n-aria="next">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+    <p class="lb-count" id="lb-count"></p>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
   <script>
   (function () {
     /* =====================================================================
-       ÜRÜNLERİ BURADAN DÜZENLE
-       - Her ürün product('koleksiyon', no) ile üretilir. Bilgi eklemek için
-         üçüncü parametre yaz, örneğin:
-         product('signature', 1, {
-           name:  { tr: 'Gece Yarısı Tee', en: 'Midnight Tee' },
-           price: '₺499',
-           desc:  { tr: 'Açıklama...', en: 'Description...' }
-         })
-       - name / desc : Türkçe (tr) ve İngilizce (en) yaz.
-       - price       : örn. '₺499'. Boş bırakırsan fiyat gösterilmez.
-       - images      : ürün başına görsel yolları (istediğin kadar ekleyebilirsin).
-       - sizes       : bedenler. Beden istemiyorsan [] yaz.
-       - link        : ödeme / WhatsApp linki. Boş bırakırsan sipariş, aşağıdaki
-                       e-posta adresine mail olarak gider.
-                       WhatsApp için örnek: 'https://wa.me/90XXXXXXXXXX?text={text}'
-                       ({text} yerine ürün adı ve beden otomatik yazılır)
+       AYARLAR VE ÜRÜNLER — SADECE BU BÖLÜMÜ DÜZENLEMEN YETERLİ
        ===================================================================== */
+
+    // Mağaza şu an kapalıysa false, satışa açınca true yap.
+    // Kapalıyken: sayfada "geçici olarak kapalı" bandı görünür, sepet gizlenir, sipariş butonları kapanır.
+    var SHOP_OPEN = false;
+    var CLOSED_NOTE = 'Mağaza geçici olarak kapalı — sadece göz atabilirsin';
+
     var SHOP_EMAIL = 'hello@themeikai.com';
 
-    // Her koleksiyonda 3 ürün var. Görsel adları: <koleksiyon>-urun1-gorsel1.jpg gibi.
+    // Sepetten WhatsApp ile sipariş için numaran: ülke koduyla, + ve boşluk olmadan.
+    // Örnek: '905XXXXXXXXX'. Boş bırakırsan sadece e-posta ile sipariş görünür.
+    var WHATSAPP = '';
+
+    var CURRENCY = 'TRY';
+
+    // Sepetin altında görünen not (boşsa görünmez). Örn: 'Ödeme ve teslimat bilgisi mesajla paylaşılır.'
+    var ORDER_NOTE = '';
+
+    // Hero altında küçük not. Örn: 'Fiyatlara KDV dahildir. Kargo ücreti ayrıdır.'
+    var PRICE_NOTE = '';
+
+    // Beden tablosu (boş bırakırsan görünmez). Örnek:
+    // var SIZE_CHART = {
+    //   head: ['Beden', 'Göğüs (cm)', 'Boy (cm)'],
+    //   rows: [['S', '..', '..'], ['M', '..', '..']],
+    //   note: ''
+    // };
+    var SIZE_CHART = null;
+
+    // Kargo, iade ve kumaş bilgileri. Dolu olanlar "Alışveriş bilgileri" bölümünde görünür.
+    var INFO = {
+      shipping: '',
+      returns:  '',
+      fabric:   ''
+    };
+
+    // Footer'daki yasal bağlantılar. Örnek:
+    // [{ title: 'Mesafeli Satış Sözleşmesi', href: 'mesafeli-satis.html' }]
+    var LEGAL_LINKS = [];
+
+    /* ---------------------------------------------------------------------
+       ÜRÜNLER
+       Her ürün product('koleksiyon', no, { ... }) ile yazılır. Ayarlanabilir alanlar:
+         name   : 'Gece Tişört'     ürün adı
+         price  : '₺499'            fiyat (boşsa görünmez; sepet toplamı için rakam içermeli)
+         amount : 499               fiyat garip biçimdeyse sayıyı buraya yaz (isteğe bağlı)
+         desc   : '...'             açıklama (yeni satır için \n)
+         sizes  : ['S','M','L']     bedenler ([] yazarsan beden seçimi çıkmaz)
+         isNew  : true              "Yeni" rozeti
+         soldOut: true              "Tükendi" rozeti, sipariş kapanır
+         link   : 'https://...'     ödeme linki. Doluysa sepet yerine "Satın al" butonu çıkar.
+                                    WhatsApp için: 'https://wa.me/90XXXXXXXXXX?text={text}'
+         images : ['images/a.jpg', 'images/b.jpg', 'images/c.jpg']   (otomatik adlar yerine)
+       --------------------------------------------------------------------- */
     function product(prefix, n, extra) {
       var p = {
-        name:  { tr: 'Meöw Göd ' + n, en: 'Meöw Göd ' + n },
-        price: '₺1000',
-        desc:  { tr: '', en: '' },
+        name:  'Ürün ' + n,
+        price: '',
+        desc:  '',
         images: [1, 2, 3].map(function (k) { return 'images/' + prefix + '-urun' + n + '-gorsel' + k + '.jpg'; }),
         sizes: ['S', 'M', 'L', 'XL'],
         link: ''
@@ -238,34 +419,95 @@
       {
         id: 'signature',
         title: 'Meikai Signature',
-        logo: 'images/koleksiyon-signature.jpg',
-        desc: {
-          tr: 'Hiçbir tarza bağlı kalmayan, tamamen özgün ve yenilikçi tasarımlar. Kuralları değil, kendi imzamızı izliyoruz.',
-          en: 'Fully original and innovative designs that don’t stick to any one style. We don’t follow rules, we follow our own signature.'
-        },
-        products: [product('signature', 1), product('signature', 2), product('signature', 3)]
+        logo: 'images/koleksiyon-signature.png',
+        desc: 'Hiçbir tarza bağlı kalmayan, tamamen özgün ve yenilikçi tasarımlar. Kuralları değil, kendi imzamızı izliyoruz.',
+        products: [
+          product('signature', 1, {
+            name:  'Ürün 1',
+            price: '',
+            desc:  '',
+            sizes: ['S', 'M', 'L', 'XL'],
+            link:  ''
+          }),
+          product('signature', 2, {
+            name:  'Ürün 2',
+            price: '',
+            desc:  '',
+            sizes: ['S', 'M', 'L', 'XL'],
+            link:  ''
+          }),
+          product('signature', 3, {
+            name:  'Ürün 3',
+            price: '',
+            desc:  '',
+            sizes: ['S', 'M', 'L', 'XL'],
+            link:  ''
+          })
+        ]
       },
       {
         id: 'streetwear',
         title: 'Meikai Streetwear',
-        logo: 'images/koleksiyon-streetwear.jpg',
-        desc: {
-          tr: 'Sokak kültürü için yapılan tasarımlar. Sokağın enerjisi, ritmi ve dili tişörtlerin üzerinde.',
-          en: 'Designs made for street culture. The energy, rhythm and language of the street, on a tee.'
-        },
-        products: [product('streetwear', 1), product('streetwear', 2), product('streetwear', 3)]
+        logo: 'images/koleksiyon-streetwear.png',
+        desc: 'Sokak kültürü için yapılan tasarımlar. Sokağın enerjisi, ritmi ve dili tişörtlerin üzerinde.',
+        products: [
+          product('streetwear', 1, {
+            name:  'Ürün 1',
+            price: '',
+            desc:  '',
+            sizes: ['S', 'M', 'L', 'XL'],
+            link:  ''
+          }),
+          product('streetwear', 2, {
+            name:  'Ürün 2',
+            price: '',
+            desc:  '',
+            sizes: ['S', 'M', 'L', 'XL'],
+            link:  ''
+          }),
+          product('streetwear', 3, {
+            name:  'Ürün 3',
+            price: '',
+            desc:  '',
+            sizes: ['S', 'M', 'L', 'XL'],
+            link:  ''
+          })
+        ]
       },
       {
         id: 'anime',
         title: 'Meikai Anime Collection',
-        logo: 'images/koleksiyon-anime.jpg',
-        desc: {
-          tr: 'Animeseverler için tasarımlar. Sevdiğin dünyalara duyduğun tutkuyu üzerinde taşı.',
-          en: 'Designs for anime lovers. Wear your passion for the worlds you love.'
-        },
-        products: [product('anime', 1), product('anime', 2), product('anime', 3)]
+        logo: 'images/koleksiyon-anime.png',
+        desc: 'Animeseverler için tasarımlar. Sevdiğin dünyalara duyduğun tutkuyu üzerinde taşı.',
+        products: [
+          product('anime', 1, {
+            name:  'Ürün 1',
+            price: '',
+            desc:  '',
+            sizes: ['S', 'M', 'L', 'XL'],
+            link:  ''
+          }),
+          product('anime', 2, {
+            name:  'Ürün 2',
+            price: '',
+            desc:  '',
+            sizes: ['S', 'M', 'L', 'XL'],
+            link:  ''
+          }),
+          product('anime', 3, {
+            name:  'Ürün 3',
+            price: '',
+            desc:  '',
+            sizes: ['S', 'M', 'L', 'XL'],
+            link:  ''
+          })
+        ]
       }
     ];
+
+    /* =====================================================================
+       BUNDAN SONRASI SAYFANIN KODU — DEĞİŞTİRMEN GEREKMEZ
+       ===================================================================== */
 
     var DICT = {
       tr: {
@@ -275,51 +517,38 @@
         skip: 'İçeriğe geç',
         navHome: 'Ana Sayfa', navShop: 'Mağaza', navContact: 'İletişim',
         eyebrow: 'Mağaza — Meikai T-brand',
-        collection: 'Koleksiyon',
-        collectionsAria: 'Koleksiyonlar',
         heroTitle: 'Karanlıkta fark edilenler.',
         heroLead: 'Üç koleksiyon, tek marka. Kendi tarzını seç.',
+        collection: 'Koleksiyon', collectionsAria: 'Koleksiyonlar',
         descSoon: 'Açıklama yakında.',
-        sizeLabel: 'Beden',
-        pickSize: 'Lütfen bir beden seç.',
-        buy: 'Sipariş ver',
-        imgLabel: 'GÖRSEL',
-        imgSr: 'Görsel',
-        orderSubject: 'Sipariş',
-        footer: '© 2026 Meikai Digital. Tüm hakları saklıdır.',
-        back: 'Ana sayfaya dön',
-        switchLabel: 'Switch to English'
-      },
-      en: {
-        title: 'Shop — Meikai T-brand | Meikai Digital',
-        metaDesc: 'The Meikai T-brand T-shirt collection. Dark and original designs from the underground.',
-        brandAria: 'Meikai Digital home',
-        skip: 'Skip to content',
-        navHome: 'Home', navShop: 'Shop', navContact: 'Contact',
-        eyebrow: 'Shop — Meikai T-brand',
-        collection: 'Collection',
-        collectionsAria: 'Collections',
-        heroTitle: 'Made to be seen in the dark.',
-        heroLead: 'Three collections, one brand. Pick your style.',
-        descSoon: 'Description coming soon.',
-        sizeLabel: 'Size',
-        pickSize: 'Please choose a size.',
-        buy: 'Order now',
-        imgLabel: 'IMAGE',
-        imgSr: 'Image',
-        orderSubject: 'Order',
-        footer: '© 2026 Meikai Digital. All rights reserved.',
-        back: 'Back to home',
-        switchLabel: 'Türkçe’ye geç'
+        sizeLabel: 'Beden', pickSize: 'Lütfen bir beden seç.',
+        addCart: 'Sepete ekle', buyNow: 'Satın al', soldOut: 'Tükendi', newBadge: 'Yeni', closedBtn: 'Şu an kapalı',
+        imgLabel: 'GÖRSEL', imgSr: 'Görsel', zoom: 'Görseli büyüt',
+        copyLink: 'Ürün bağlantısını kopyala', copied: 'Bağlantı kopyalandı', added: 'Sepete eklendi', viewCart: 'Sepeti gör',
+        cart: 'Sepet', cartEmpty: 'Sepetin boş.', total: 'Toplam', remove: 'Kaldır', inc: 'Artır', dec: 'Azalt', clear: 'Sepeti temizle',
+        orderWa: 'WhatsApp ile sipariş ver', orderMail: 'E-posta ile sipariş ver',
+        orderIntro: 'Merhaba, aşağıdaki ürünleri sipariş etmek istiyorum:', orderSubject: 'Sipariş',
+        sizeWord: 'beden',
+        close: 'Kapat', prev: 'Önceki', next: 'Sonraki', viewer: 'Görsel görüntüleyici',
+        infoEyebrow: 'Bilgi', infoTitle: 'Alışveriş bilgileri',
+        sizeChart: 'Beden tablosu', shippingTitle: 'Kargo ve teslimat', returnsTitle: 'İade ve değişim', fabricTitle: 'Kumaş ve bakım',
+        footer: '© 2026 Meikai Digital. Tüm hakları saklıdır.', back: 'Ana sayfaya dön'
       }
     };
 
     var lang = 'tr';
     var state = COLLECTIONS.map(function (c) { return c.products.map(function () { return { img: 0, size: null }; }); });
     var root = document.getElementById('collections');
-    var btn = document.getElementById('lang-toggle');
-    var metaDesc = document.getElementById('meta-desc');
-    var ARROW = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+    var ICON = {
+      arrow: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>',
+      bag: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>',
+      link: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
+      zoom: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg>',
+      plus: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>',
+      minus: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>',
+      trash: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>',
+      chev: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>'
+    };
 
     function t(k) { return DICT[lang][k]; }
     function esc(s) {
@@ -327,10 +556,29 @@
         return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
       });
     }
-    function name(p) { return p.name[lang] || p.name.tr || ''; }
-    function desc(p) { return (p.desc && (p.desc[lang] || p.desc.tr)) || t('descSoon'); }
+    // Metin düz yazı olabilir ya da eski biçimde { tr: '...' } olabilir
+    function L(o) { return typeof o === 'string' ? o : ((o && o.tr) || ''); }
+    function name(p) { return L(p.name); }
+    function desc(p) { return L(p.desc) || t('descSoon'); }
     function imgAlt(p, j) { return name(p) + ' — ' + t('imgSr') + ' ' + (j + 1); }
+    function cardId(c, i) { return c.id + '-urun' + (i + 1); }
 
+    function amountOf(p) {
+      if (typeof p.amount === 'number') return p.amount;
+      if (!p.price) return null;
+      var s = String(p.price).replace(/[^\d.,]/g, '');
+      if (/^\d+$/.test(s)) return +s;
+      if (/^\d{1,3}(\.\d{3})+(,\d{1,2})?$/.test(s)) return parseFloat(s.replace(/\./g, '').replace(',', '.'));
+      if (/^\d+,\d{1,2}$/.test(s)) return parseFloat(s.replace(',', '.'));
+      if (/^\d+\.\d{1,2}$/.test(s)) return parseFloat(s);
+      return null;
+    }
+    function fmt(n) {
+      try { return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: CURRENCY }).format(n); }
+      catch (e) { return n + ' ' + CURRENCY; }
+    }
+
+    /* ---------- Kartlar ---------- */
     function cardHtml(c, ci, p, i) {
       var st = state[ci][i];
       var imgs = p.images || [];
@@ -348,18 +596,55 @@
                  ' data-size="' + esc(sz) + '" aria-pressed="' + (sz === st.size) + '">' + esc(sz) + '</button>';
         }).join('') + '</div>' : '';
 
-      return '<li class="card"' + ids + '>' +
+      var badges = (p.isNew && !p.soldOut ? '<span class="badge">' + t('newBadge') + '</span>' : '') +
+                   (p.soldOut ? '<span class="badge out">' + t('soldOut') + '</span>' : '');
+
+      var action = p.soldOut
+        ? '<button type="button" class="buy" disabled>' + t('soldOut') + '</button>'
+        : !SHOP_OPEN
+        ? '<button type="button" class="buy" disabled>' + t('closedBtn') + '</button>'
+        : (p.link
+            ? '<button type="button" class="buy" data-act="buynow"' + ids + '>' + t('buyNow') + ' ' + ICON.arrow + '</button>'
+            : '<button type="button" class="buy" data-act="addcart"' + ids + '>' + t('addCart') + ' ' + ICON.bag + '</button>');
+
+      return '<li class="card' + (p.soldOut ? ' sold' : '') + '" id="' + cardId(c, i) + '"' + ids + '>' +
         '<div class="stage"><span class="ph">' + t('imgLabel') + ' ' + (st.img + 1) + '</span>' +
         (imgs.length ? '<img class="main" src="' + esc(imgs[st.img]) + '" alt="' + esc(imgAlt(p, st.img)) + '" loading="lazy" decoding="async">' : '') +
+        '<div class="badges">' + badges + '</div>' +
+        '<button type="button" class="zoom" data-act="zoom"' + ids + ' aria-label="' + t('zoom') + ': ' + esc(name(p)) + '"></button>' +
+        '<span class="zoom-ic" aria-hidden="true">' + ICON.zoom + '</span>' +
         '</div>' + thumbs +
         '<div class="body">' +
-          '<div class="meta"><span>0' + (i + 1) + '</span>' + (p.price ? '<span class="price">' + esc(p.price) + '</span>' : '') + '</div>' +
+          '<div class="meta"><span>0' + (i + 1) + '</span><span class="meta-r">' + (p.price ? '<span class="price">' + esc(p.price) + '</span>' : '') +
+          '<button type="button" class="mini" data-act="copy"' + ids + ' aria-label="' + t('copyLink') + '" title="' + t('copyLink') + '">' + ICON.link + '</button></span></div>' +
           '<h3>' + esc(name(p)) + '</h3>' +
           '<p class="desc">' + esc(desc(p)) + '</p>' +
           sizes +
           '<p class="hint" aria-live="polite"></p>' +
-          '<button type="button" class="buy" data-act="buy"' + ids + '>' + t('buy') + ' ' + ARROW + '</button>' +
+          action +
         '</div></li>';
+    }
+
+    function det(title, inner) {
+      return '<details class="acc"><summary>' + esc(title) + ICON.chev + '</summary><div class="acc-body">' + inner + '</div></details>';
+    }
+    function infoHtml() {
+      var parts = [];
+      if (SIZE_CHART && SIZE_CHART.rows && SIZE_CHART.rows.length) {
+        var head = Array.isArray(SIZE_CHART.head) ? SIZE_CHART.head : ((SIZE_CHART.head && SIZE_CHART.head.tr) || []);
+        var tbl = '<div class="tbl"><table>' + (head.length ? '<thead><tr>' + head.map(function (h) { return '<th>' + esc(h) + '</th>'; }).join('') + '</tr></thead>' : '') +
+          '<tbody>' + SIZE_CHART.rows.map(function (r) { return '<tr>' + r.map(function (d) { return '<td>' + esc(d) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+        var note = L(SIZE_CHART.note);
+        if (note) tbl += '<p class="info-text">' + esc(note) + '</p>';
+        parts.push(det(t('sizeChart'), tbl));
+      }
+      [['shipping', 'shippingTitle'], ['returns', 'returnsTitle'], ['fabric', 'fabricTitle']].forEach(function (x) {
+        var txt = L(INFO[x[0]]);
+        if (txt) parts.push(det(t(x[1]), esc(txt)));
+      });
+      if (!parts.length) return '';
+      return '<section class="info" id="bilgi"><div class="container"><p class="eyebrow">' + t('infoEyebrow') + '</p><h2>' + t('infoTitle') + '</h2>' +
+             '<div class="acc-list">' + parts.join('') + '</div></div></section>';
     }
 
     function render() {
@@ -369,42 +654,279 @@
             '<p class="eyebrow">' + t('collection') + ' 0' + (ci + 1) + '</p>' +
             '<img class="coll-logo" src="' + esc(c.logo) + '" alt="" width="224" height="224" loading="lazy" decoding="async">' +
             '<h2 class="sr-only" id="h-' + c.id + '">' + esc(c.title) + '</h2>' +
-            '<p class="coll-desc">' + esc(c.desc[lang] || c.desc.tr) + '</p>' +
+            '<p class="coll-desc">' + esc(L(c.desc)) + '</p>' +
           '</div>' +
           '<ul class="grid">' + c.products.map(function (p, i) { return cardHtml(c, ci, p, i); }).join('') + '</ul>' +
         '</div></section>';
-      }).join('');
+      }).join('') + infoHtml();
+      observeSections();
     }
 
-    // Görsel bulunamazsa gizle (arkada koyu yer tutucu kalır)
+    /* ---------- Aktif koleksiyon vurgusu ---------- */
+    var io = null;
+    function observeSections() {
+      if (!('IntersectionObserver' in window)) return;
+      if (io) io.disconnect();
+      io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) {
+            if (e.target.id === COLLECTIONS[0].id && e.boundingClientRect.top > 0) {
+              document.querySelectorAll('.chip').forEach(function (ch) { ch.classList.remove('on'); });
+            }
+            return;
+          }
+          document.querySelectorAll('.chip').forEach(function (ch) {
+            ch.classList.toggle('on', ch.getAttribute('data-sec') === e.target.id);
+          });
+        });
+      }, { rootMargin: '-35% 0px -60% 0px' });
+      document.querySelectorAll('.collection').forEach(function (s) { io.observe(s); });
+    }
+
+    /* ---------- Görsel değiştirme ---------- */
+    function setImg(card, ci, i, j) {
+      var p = COLLECTIONS[ci].products[i];
+      state[ci][i].img = j;
+      var main = card.querySelector('.main');
+      if (main) {
+        main.style.visibility = '';
+        main.src = p.images[j];
+        main.alt = imgAlt(p, j);
+        if (main.complete && main.naturalWidth === 0) main.style.visibility = 'hidden';
+      }
+      card.querySelector('.ph').textContent = t('imgLabel') + ' ' + (j + 1);
+      card.querySelectorAll('.thumb').forEach(function (b, k) {
+        b.classList.toggle('on', k === j);
+        b.setAttribute('aria-pressed', k === j);
+      });
+    }
+
+    /* ---------- Bildirim ---------- */
+    var toastEl = document.getElementById('toast'), toastTimer = null;
+    function toast(msg, withCart) {
+      toastEl.innerHTML = '<span>' + esc(msg) + '</span>' + (withCart ? '<button type="button" id="toast-cart">' + esc(t('viewCart')) + '</button>' : '');
+      toastEl.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 3200);
+    }
+    toastEl.addEventListener('click', function (e) {
+      if (e.target.id === 'toast-cart') { toastEl.classList.remove('show'); openDrawer(); }
+    });
+
+    /* ---------- Sepet ---------- */
+    var cart = [];
+    function validItem(it) {
+      var c = it && COLLECTIONS[it.c], p = c && c.products[it.i];
+      return !!(p && !p.soldOut && it.qty > 0);
+    }
+    try {
+      var raw = JSON.parse(localStorage.getItem('meikaiCart') || '[]');
+      if (Array.isArray(raw)) cart = raw.filter(validItem);
+    } catch (e) {}
+    function saveCart() { try { localStorage.setItem('meikaiCart', JSON.stringify(cart)); } catch (e) {} }
+
+    function addToCart(ci, i, size) {
+      var f = cart.filter(function (x) { return x.c === ci && x.i === i && x.size === (size || ''); })[0];
+      if (f) f.qty = Math.min(10, f.qty + 1); else cart.push({ c: ci, i: i, size: size || '', qty: 1 });
+      saveCart(); renderCart();
+      var b = document.getElementById('cart-btn');
+      b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump');
+    }
+    function cartTotal() {
+      var sum = 0;
+      for (var k = 0; k < cart.length; k++) {
+        var a = amountOf(COLLECTIONS[cart[k].c].products[cart[k].i]);
+        if (a === null) return null;
+        sum += a * cart[k].qty;
+      }
+      return cart.length ? sum : null;
+    }
+    function orderText() {
+      var lines = cart.map(function (it) {
+        var c = COLLECTIONS[it.c], p = c.products[it.i];
+        return '- ' + c.title + ' — ' + name(p) + (it.size ? ' (' + t('sizeWord') + ': ' + it.size + ')' : '') + ' x' + it.qty;
+      });
+      var tot = cartTotal();
+      return t('orderIntro') + '\n' + lines.join('\n') + (tot !== null ? '\n' + t('total') + ': ' + fmt(tot) : '');
+    }
+
+    var itemsEl = document.getElementById('cart-items'), footEl = document.getElementById('cart-foot');
+    function renderCart() {
+      var count = cart.reduce(function (s, x) { return s + x.qty; }, 0);
+      var badge = document.getElementById('cart-count');
+      badge.textContent = count; badge.hidden = count === 0;
+
+      if (!cart.length) {
+        itemsEl.innerHTML = '<p class="empty">' + t('cartEmpty') + '</p>';
+        footEl.innerHTML = '';
+        return;
+      }
+      itemsEl.innerHTML = '<ul>' + cart.map(function (it, n) {
+        var c = COLLECTIONS[it.c], p = c.products[it.i];
+        var meta = [it.size ? t('sizeLabel') + ': ' + it.size : '', p.price || ''].filter(Boolean).join(' · ');
+        return '<li class="ci"><div class="ci-img">' + (p.images && p.images[0] ? '<img src="' + esc(p.images[0]) + '" alt="" loading="lazy">' : '') + '</div>' +
+          '<div class="ci-info"><p class="ci-coll">' + esc(c.title) + '</p><p class="ci-name">' + esc(name(p)) + '</p>' +
+          (meta ? '<p class="ci-meta">' + esc(meta) + '</p>' : '') +
+          '<div class="qty">' +
+            '<button type="button" class="mini" data-cact="dec" data-n="' + n + '" aria-label="' + t('dec') + '">' + ICON.minus + '</button>' +
+            '<span aria-live="polite">' + it.qty + '</span>' +
+            '<button type="button" class="mini" data-cact="inc" data-n="' + n + '" aria-label="' + t('inc') + '">' + ICON.plus + '</button>' +
+            '<button type="button" class="mini rm" data-cact="rm" data-n="' + n + '" aria-label="' + t('remove') + '" title="' + t('remove') + '">' + ICON.trash + '</button>' +
+          '</div></div></li>';
+      }).join('') + '</ul>';
+
+      var tot = cartTotal();
+      footEl.innerHTML =
+        (tot !== null ? '<div class="total-row"><span>' + t('total') + '</span><strong>' + fmt(tot) + '</strong></div>' : '') +
+        (L(ORDER_NOTE) ? '<p class="foot-note">' + esc(L(ORDER_NOTE)) + '</p>' : '') +
+        (WHATSAPP ? '<button type="button" class="buy" data-cact="wa">' + t('orderWa') + ' ' + ICON.arrow + '</button>' : '') +
+        '<button type="button" class="buy' + (WHATSAPP ? ' ghost' : '') + '" data-cact="mail">' + t('orderMail') + ' ' + ICON.arrow + '</button>' +
+        '<button type="button" class="link-btn" data-cact="clear">' + t('clear') + '</button>';
+    }
+
+    document.getElementById('drawer').addEventListener('click', function (e) {
+      var el = e.target.closest('[data-cact]');
+      if (!el) return;
+      var act = el.getAttribute('data-cact'), n = +el.getAttribute('data-n');
+      if (act === 'inc') cart[n].qty = Math.min(10, cart[n].qty + 1);
+      else if (act === 'dec') { cart[n].qty -= 1; if (cart[n].qty < 1) cart.splice(n, 1); }
+      else if (act === 'rm') cart.splice(n, 1);
+      else if (act === 'clear') cart = [];
+      else if (act === 'wa') { window.open('https://wa.me/' + WHATSAPP.replace(/\D/g, '') + '?text=' + encodeURIComponent(orderText()), '_blank', 'noopener'); return; }
+      else if (act === 'mail') { window.location.href = 'mailto:' + SHOP_EMAIL + '?subject=' + encodeURIComponent(t('orderSubject')) + '&body=' + encodeURIComponent(orderText()); return; }
+      saveCart(); renderCart();
+    });
+
+    /* ---------- Çekmece ve görüntüleyici (açma/kapama, odak) ---------- */
+    var drawer = document.getElementById('drawer'), overlay = document.getElementById('overlay');
+    var lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img'), lbPh = document.getElementById('lb-ph');
+    var lbState = null, lastFocus = null;
+
+    function lock(on) { document.documentElement.classList.toggle('lock', on); }
+    function openDrawer() {
+      lastFocus = document.activeElement;
+      toastEl.classList.remove('show');
+      drawer.classList.add('open'); overlay.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); lock(true);
+      setTimeout(function () { document.getElementById('drawer-close').focus(); }, 50);
+    }
+    function closeDrawer() {
+      drawer.classList.remove('open'); overlay.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); lock(false);
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    document.getElementById('cart-btn').addEventListener('click', openDrawer);
+    document.getElementById('drawer-close').addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+
+    function lbShow() {
+      var p = COLLECTIONS[lbState.c].products[lbState.i], imgs = p.images || [];
+      lbImg.style.visibility = '';
+      lbImg.src = imgs[lbState.j];
+      lbImg.alt = imgAlt(p, lbState.j);
+      lbPh.textContent = t('imgLabel') + ' ' + (lbState.j + 1);
+      document.getElementById('lb-count').textContent = (lbState.j + 1) + ' / ' + imgs.length;
+      var multi = imgs.length > 1;
+      document.getElementById('lb-prev').hidden = !multi;
+      document.getElementById('lb-next').hidden = !multi;
+      if (lbImg.complete && lbImg.naturalWidth === 0) lbImg.style.visibility = 'hidden';
+    }
+    function openLb(ci, i, j) {
+      lastFocus = document.activeElement;
+      lbState = { c: ci, i: i, j: j };
+      lbShow(); lb.classList.add('open'); lock(true);
+      document.getElementById('lb-close').focus();
+    }
+    function closeLb() {
+      lb.classList.remove('open'); lock(false); lbState = null;
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    function lbStep(d) {
+      var n = (COLLECTIONS[lbState.c].products[lbState.i].images || []).length;
+      lbState.j = (lbState.j + d + n) % n;
+      lbShow();
+      var card = document.getElementById(cardId(COLLECTIONS[lbState.c], lbState.i));
+      if (card) setImg(card, lbState.c, lbState.i, lbState.j);
+    }
+    lbImg.addEventListener('error', function () { lbImg.style.visibility = 'hidden'; });
+    document.getElementById('lb-close').addEventListener('click', closeLb);
+    document.getElementById('lb-prev').addEventListener('click', function () { lbStep(-1); });
+    document.getElementById('lb-next').addEventListener('click', function () { lbStep(1); });
+    lb.addEventListener('click', function (e) { if (e.target.id === 'lb' || e.target.id === 'lb-stage') closeLb(); });
+
+    var lbX = null;
+    lb.addEventListener('touchstart', function (e) { lbX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', function (e) {
+      if (lbX === null || !lbState) return;
+      var dx = e.changedTouches[0].clientX - lbX; lbX = null;
+      if (Math.abs(dx) > 50) lbStep(dx < 0 ? 1 : -1);
+    }, { passive: true });
+
+    function trap(e, box) {
+      if (e.key !== 'Tab') return;
+      var f = Array.prototype.filter.call(box.querySelectorAll('button, a[href]'), function (x) { return !x.disabled && !x.hidden && x.offsetParent !== null; });
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+    document.addEventListener('keydown', function (e) {
+      if (lb.classList.contains('open')) {
+        if (e.key === 'Escape') closeLb();
+        else if (e.key === 'ArrowLeft') lbStep(-1);
+        else if (e.key === 'ArrowRight') lbStep(1);
+        else trap(e, lb);
+      } else if (drawer.classList.contains('open')) {
+        if (e.key === 'Escape') closeDrawer(); else trap(e, drawer);
+      }
+    });
+
+    /* ---------- Kartlardaki etkileşim ---------- */
     root.addEventListener('error', function (e) {
       if (e.target && e.target.tagName === 'IMG' && !e.target.classList.contains('coll-logo')) e.target.style.visibility = 'hidden';
     }, true);
 
+    var swipeX = null, swipedAt = 0;
+    root.addEventListener('touchstart', function (e) {
+      swipeX = e.target.closest('.stage') ? e.touches[0].clientX : null;
+    }, { passive: true });
+    root.addEventListener('touchend', function (e) {
+      if (swipeX === null) return;
+      var dx = e.changedTouches[0].clientX - swipeX; swipeX = null;
+      if (Math.abs(dx) < 50) return;
+      var card = e.target.closest('.card');
+      if (!card) return;
+      var ci = +card.getAttribute('data-c'), i = +card.getAttribute('data-i');
+      var n = (COLLECTIONS[ci].products[i].images || []).length;
+      if (n < 2) return;
+      setImg(card, ci, i, (state[ci][i].img + (dx < 0 ? 1 : -1) + n) % n);
+      swipedAt = Date.now();
+    }, { passive: true });
+
+    function copyText(txt) {
+      if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(txt);
+      return new Promise(function (res, rej) {
+        try {
+          var ta = document.createElement('textarea'); ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); res();
+        } catch (err) { rej(err); }
+      });
+    }
+
     root.addEventListener('click', function (e) {
       var el = e.target.closest('[data-act]');
       if (!el) return;
-      var ci = +el.getAttribute('data-c');
-      var i = +el.getAttribute('data-i');
+      var ci = +el.getAttribute('data-c'), i = +el.getAttribute('data-i');
       var act = el.getAttribute('data-act');
       var c = COLLECTIONS[ci], p = c.products[i], st = state[ci][i];
       var card = el.closest('.card');
 
       if (act === 'thumb') {
-        var j = +el.getAttribute('data-j');
-        st.img = j;
-        var main = card.querySelector('.main');
-        if (main) {
-          main.style.visibility = '';
-          main.src = p.images[j];
-          main.alt = imgAlt(p, j);
-          if (main.complete && main.naturalWidth === 0) main.style.visibility = 'hidden';
-        }
-        card.querySelector('.ph').textContent = t('imgLabel') + ' ' + (j + 1);
-        card.querySelectorAll('.thumb').forEach(function (b, k) {
-          b.classList.toggle('on', k === j);
-          b.setAttribute('aria-pressed', k === j);
-        });
+        setImg(card, ci, i, +el.getAttribute('data-j'));
+      } else if (act === 'zoom') {
+        if (Date.now() - swipedAt < 400) return;
+        openLb(ci, i, st.img);
+      } else if (act === 'copy') {
+        var url = location.href.split('#')[0] + '#' + cardId(c, i);
+        copyText(url).then(function () { toast(t('copied')); }, function () { window.prompt('', url); });
       } else if (act === 'size') {
         var sz = el.getAttribute('data-size');
         st.size = st.size === sz ? null : sz;
@@ -414,45 +936,89 @@
           b.setAttribute('aria-pressed', on);
         });
         card.querySelector('.hint').textContent = '';
-      } else if (act === 'buy') {
+      } else if (act === 'addcart' || act === 'buynow') {
         if (p.sizes && p.sizes.length && !st.size) {
           card.querySelector('.hint').textContent = t('pickSize');
           return;
         }
-        var n = c.title + ' — ' + name(p);
-        var msg = lang === 'en'
-          ? 'Hello, I would like to order ' + n + (st.size ? ' (size: ' + st.size + ')' : '') + '.'
-          : 'Merhaba, ' + n + ' ürününü' + (st.size ? ' (beden: ' + st.size + ')' : '') + ' sipariş etmek istiyorum.';
-        var url = p.link
-          ? p.link.replace('{text}', encodeURIComponent(msg))
-          : 'mailto:' + SHOP_EMAIL + '?subject=' + encodeURIComponent(t('orderSubject') + ': ' + n) + '&body=' + encodeURIComponent(msg);
-        if (/^https?:/i.test(url)) window.open(url, '_blank', 'noopener');
-        else window.location.href = url;
+        if (act === 'addcart') {
+          addToCart(ci, i, st.size);
+          toast(t('added'), true);
+        } else {
+          var n = c.title + ' — ' + name(p);
+          var msg = 'Merhaba, ' + n + ' ürününü' + (st.size ? ' (beden: ' + st.size + ')' : '') + ' sipariş etmek istiyorum.';
+          var go = p.link.replace('{text}', encodeURIComponent(msg));
+          if (/^https?:/i.test(go)) window.open(go, '_blank', 'noopener'); else window.location.href = go;
+        }
       }
     });
 
-    function apply(l) {
-      lang = l;
-      document.documentElement.lang = l;
-      document.title = t('title');
-      if (metaDesc) metaDesc.setAttribute('content', t('metaDesc'));
-      document.getElementById('brand-link').setAttribute('aria-label', t('brandAria'));
-      document.querySelectorAll('[data-i18n]').forEach(function (el) {
-        el.textContent = t(el.getAttribute('data-i18n'));
+    /* ---------- Google için ürün verisi (fiyatı olan ürünler) ---------- */
+    function updateJsonLd() {
+      var items = [];
+      if (!SHOP_OPEN) { var old = document.getElementById('ld-products'); if (old) old.remove(); return; }
+      COLLECTIONS.forEach(function (c) {
+        c.products.forEach(function (p, i) {
+          var a = amountOf(p);
+          if (a === null) return;
+          items.push({
+            '@type': 'Product',
+            name: c.title + ' — ' + L(p.name),
+            description: L(p.desc),
+            image: (p.images || []).map(function (s) { return new URL(s, location.href).href; }),
+            brand: { '@type': 'Brand', name: 'Meikai' },
+            offers: {
+              '@type': 'Offer', price: String(a), priceCurrency: CURRENCY,
+              availability: p.soldOut ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+              url: location.href.split('#')[0] + '#' + cardId(c, i)
+            }
+          });
+        });
       });
-      document.getElementById('chips').setAttribute('aria-label', t('collectionsAria'));
-      btn.textContent = l === 'en' ? 'TR' : 'EN';
-      btn.setAttribute('aria-label', t('switchLabel'));
-      render();
-      try { localStorage.setItem('lang', l); } catch (e) {}
+      var el = document.getElementById('ld-products');
+      if (!items.length) { if (el) el.remove(); return; }
+      if (!el) { el = document.createElement('script'); el.type = 'application/ld+json'; el.id = 'ld-products'; document.head.appendChild(el); }
+      el.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': items });
     }
 
-    btn.addEventListener('click', function () { apply(lang === 'en' ? 'tr' : 'en'); });
+    /* ---------- Başlatma ---------- */
+    function init() {
+      document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = t(el.getAttribute('data-i18n')); });
+      document.querySelectorAll('[data-i18n-aria]').forEach(function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria'))); });
 
-    var saved = null;
-    try { saved = localStorage.getItem('lang'); } catch (e) {}
-    var browserLang = (navigator.language || 'tr').toLowerCase();
-    apply(saved === 'en' || (saved === null && browserLang.indexOf('tr') !== 0) ? 'en' : 'tr');
+      var pn = document.getElementById('price-note'), note = L(PRICE_NOTE);
+      pn.textContent = note; pn.hidden = !note;
+
+      document.getElementById('legal').innerHTML = LEGAL_LINKS.map(function (x) {
+        return '<a href="' + esc(x.href) + '">' + esc(x.title || L(x)) + '</a>';
+      }).join('');
+
+      // Mağaza kapalıysa: üstte yapışkan bilgi bandı, sepet gizli
+      var cn = document.getElementById('closed-note');
+      cn.textContent = CLOSED_NOTE; cn.hidden = SHOP_OPEN;
+      document.documentElement.classList.toggle('closed', !SHOP_OPEN);
+      document.getElementById('cart-li').hidden = !SHOP_OPEN;
+
+      render();
+      renderCart();
+    }
+    init();
+    updateJsonLd();
+
+    // Ürün bağlantısıyla gelindiyse o ürüne kaydır ve vurgula
+    var h = decodeURIComponent((location.hash || '').slice(1));
+    if (h) {
+      var target = document.getElementById(h);
+      if (target) {
+        setTimeout(function () {
+          target.scrollIntoView();
+          if (target.classList.contains('card')) {
+            target.classList.add('flash');
+            setTimeout(function () { target.classList.remove('flash'); }, 1800);
+          }
+        }, 60);
+      }
+    }
   })();
   </script>
 </body>
