@@ -158,6 +158,35 @@
     @media (min-width: 768px) { .projects { grid-template-columns: repeat(3, 1fr); } }
     @media (min-width: 1024px) { .services { grid-template-columns: repeat(4, 1fr); } }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+    /* Yandan açılan menü kartı */
+    .hdr-right { display: flex; align-items: center; gap: .6rem; }
+    .menu-btn { display: inline-flex; align-items: center; gap: .55rem; font-family: var(--mono); font-size: .75rem; letter-spacing: .15em; color: var(--fg); background: transparent; border: 1px solid var(--border); border-radius: 999px; padding: .35rem .8rem; cursor: pointer; transition: border-color .2s, background-color .2s; }
+    .menu-btn:hover { border-color: var(--primary); background: rgb(179 33 43 / .15); }
+    .menu-btn i { display: block; width: 14px; height: 8px; border-top: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; position: relative; }
+    .menu-btn i::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 1.5px solid currentColor; transform: translateY(-50%); }
+    .drawer-ov { position: fixed; inset: 0; z-index: 300; background: rgb(0 0 0 / .6); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); opacity: 0; visibility: hidden; transition: opacity .3s, visibility 0s .3s; }
+    .drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 310; width: min(21rem, 86vw); display: flex; flex-direction: column; padding: 1.25rem 1.5rem 1.75rem; background: linear-gradient(180deg, #151515, #0b0b0b); border-left: 1px solid var(--border); box-shadow: -24px 0 60px rgb(0 0 0 / .5); transform: translateX(105%); visibility: hidden; transition: transform .45s cubic-bezier(.16,1,.3,1), visibility 0s .45s; overflow-y: auto; }
+    .drawer::before { content: ''; position: absolute; top: -120px; right: -120px; width: 280px; height: 280px; border-radius: 50%; background: rgb(179 33 43 / .18); filter: blur(80px); pointer-events: none; }
+    html.drawer-open .drawer-ov { opacity: 1; visibility: visible; transition: opacity .3s; }
+    html.drawer-open .drawer { transform: none; visibility: visible; transition: transform .45s cubic-bezier(.16,1,.3,1); }
+    html.drawer-open { overflow: hidden; }
+    .drawer-top { position: relative; display: flex; align-items: center; justify-content: space-between; }
+    .drawer-close { width: 2.25rem; height: 2.25rem; display: grid; place-items: center; color: var(--fg); background: transparent; border: 1px solid var(--border); border-radius: 50%; cursor: pointer; transition: border-color .2s, background-color .2s; }
+    .drawer-close:hover { border-color: var(--primary); background: rgb(179 33 43 / .15); }
+    .drawer-close .icon { width: 16px; height: 16px; }
+    .drawer-links { position: relative; margin-top: 2rem; display: flex; flex-direction: column; gap: .6rem; list-style: none; }
+    .drawer-links a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: .75rem; background: rgb(255 255 255 / .02); font-size: 1.05rem; font-weight: 500; letter-spacing: -0.01em; transform: translateX(24px); opacity: 0; transition: border-color .2s, background-color .2s, transform .5s cubic-bezier(.16,1,.3,1), opacity .4s; }
+    .drawer-links a small { font-family: var(--mono); font-size: .65rem; letter-spacing: .2em; color: var(--muted); }
+    .drawer-links a:hover, .drawer-links a[aria-current="page"] { border-color: var(--primary); background: rgb(179 33 43 / .12); }
+    html.drawer-open .drawer-links a { transform: none; opacity: 1; }
+    html.drawer-open .drawer-links li:nth-child(1) a { transition-delay: .08s; }
+    html.drawer-open .drawer-links li:nth-child(2) a { transition-delay: .14s; }
+    html.drawer-open .drawer-links li:nth-child(3) a { transition-delay: .2s; }
+    html.drawer-open .drawer-links li:nth-child(4) a { transition-delay: .26s; }
+    html.drawer-open .drawer-links li:nth-child(5) a { transition-delay: .32s; }
+    .drawer-foot { position: relative; margin-top: auto; padding-top: 2rem; font-size: .8rem; color: var(--muted); }
+    .drawer-foot a { color: var(--fg); }
+    @media (prefers-reduced-motion: reduce) { .drawer, .drawer-links a { transition: none !important; } }
     .lang-btn { font-family: var(--mono); font-size: .75rem; letter-spacing: .15em; color: var(--fg); background: transparent; border: 1px solid var(--border); border-radius: 999px; padding: .35rem .8rem; cursor: pointer; transition: border-color .2s, color .2s, background-color .2s; }
     .lang-btn:hover { border-color: var(--primary); color: #fff; background: rgb(179 33 43 / .15); }
     .lang-btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
@@ -240,19 +269,27 @@
         <span class="logo-mark" aria-hidden="true"></span>
         <span>MEIKAI <small>DIGITAL</small></span>
       </a>
-      <nav aria-label="Ana menü" data-i18n-attr="aria-label:navAria">
-        <ul>
-          <li class="nav-desktop"><a href="#hakkimizda" data-i18n="navAbout">Hakkımızda</a></li>
-          <li class="nav-desktop"><a href="#hizmetler" data-i18n="navServices">Hizmetler</a></li>
-          <li class="nav-desktop"><a href="#projeler" data-i18n="navProjects">Projeler</a></li>
-          <li><a href="magaza.html" data-i18n="navShop">Mağaza</a></li>
-          <li class="nav-desktop"><a href="#iletisim" data-i18n="navContact">İletişim</a></li>
-          <li class="nav-mobile"><a href="#iletisim" data-i18n="navContact">İletişim</a></li>
-          <li><button type="button" class="lang-btn" id="lang-toggle" aria-label="Switch to English">EN</button></li>
-        </ul>
+      <nav class="hdr-right" aria-label="Ana menü" data-i18n-attr="aria-label:navAria">
+        <button type="button" class="lang-btn" id="lang-toggle" aria-label="Switch to English">EN</button>
+        <button type="button" class="menu-btn" id="menu-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="drawer"><i aria-hidden="true"></i><span data-i18n="menuBtn">MENÜ</span></button>
       </nav>
     </div>
   </header>
+  <div class="drawer-ov" id="drawer-ov"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menü" data-i18n-attr="aria-label:menuLabel" aria-hidden="true">
+    <div class="drawer-top">
+      <a href="index.html" class="brand"><span class="logo-mark" aria-hidden="true"></span><span>MEIKAI <small>DIGITAL</small></span></a>
+      <button type="button" class="drawer-close" id="drawer-close" aria-label="Menüyü kapat" data-i18n-attr="aria-label:menuClose"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    </div>
+    <ul class="drawer-links">
+        <li><a href="#hakkimizda"><span data-i18n="navAbout">Hakkımızda</span><small>01</small></a></li>
+        <li><a href="#projeler"><span data-i18n="navProjects">Projeler</span><small>02</small></a></li>
+        <li><a href="magaza.html"><span data-i18n="navShop">Mağaza</span><small>03</small></a></li>
+        <li><a href="#iletisim"><span data-i18n="navContact">İletişim</span><small>04</small></a></li>
+        <li><a href="studio.html"><span>Studio</span><small>05</small></a></li>
+    </ul>
+    <p class="drawer-foot"><a href="mailto:hello@themeikai.com">hello@themeikai.com</a></p>
+  </aside>
 
   <main id="main">
     <section class="hero">
@@ -385,14 +422,16 @@
             </a>
           </li>
           <li>
-             <article class="project">
+            <a href="studio.html" class="project-link">
+            <article class="project">
               <div class="project-media"><img src="images/project-brand.png" alt="Meikai Studio projesinden görsel" data-i18n-attr="alt:p3Alt" loading="lazy" decoding="async" /></div>
               <div class="project-body">
                 <div class="project-meta"><span data-i18n="p3Meta">Reklam &amp; Marka</span><span>2026</span></div>
-                <h3>Meikai Studio</h3>
+                <h3>Meikai Studio <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></h3>
                 <p data-i18n="p3Text">Yeni nesil bir marka için uçtan uca kimlik ve dijital kampanya.</p>
               </div>
             </article>
+            </a>
           </li>
         </ul>
       </div>
@@ -430,6 +469,9 @@
       title: "Meikai Digital — App, Game, Advertising & Design Studio",
       metaDesc: "Meikai Digital is a versatile digital studio that designs and builds mobile apps, games, advertising campaigns and brand identities.",
       navAbout: "About",
+      menuBtn: "MENU",
+      menuLabel: "Menu",
+      menuClose: "Close menu",
       eyebrowAbout: "01 — About",
       aboutTitle: "One idea, six crafts.",
       aboutLead: "Meikai Digital is a digital studio that carries ideas onto screens, into pockets and into people’s memory. From design to code, from video to advertising, we produce everything a brand needs under one roof — so your logo, website, app and campaign all speak the same language.",
@@ -502,6 +544,31 @@
         var p = pair.split(':');
         TR[p[1]] = el.getAttribute(p[0]);
       });
+    });
+
+    /* Yan menü */
+    var menuBtn = document.getElementById('menu-btn'), drawer = document.getElementById('drawer'), dClose = document.getElementById('drawer-close'), dOv = document.getElementById('drawer-ov');
+    var de = document.documentElement;
+    function setDrawer(open) {
+      de.classList.toggle('drawer-open', open);
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+      if (open) { dClose.focus(); } else { menuBtn.focus(); }
+    }
+    menuBtn.addEventListener('click', function () { setDrawer(true); });
+    dClose.addEventListener('click', function () { setDrawer(false); });
+    dOv.addEventListener('click', function () { setDrawer(false); });
+    drawer.querySelectorAll('.drawer-links a').forEach(function (a) {
+      a.addEventListener('click', function () { de.classList.remove('drawer-open'); menuBtn.setAttribute('aria-expanded', 'false'); drawer.setAttribute('aria-hidden', 'true'); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!de.classList.contains('drawer-open')) return;
+      if (e.key === 'Escape') { setDrawer(false); return; }
+      if (e.key === 'Tab') {
+        var f = drawer.querySelectorAll('a[href],button'); var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
     });
 
     var btn = document.getElementById('lang-toggle');
