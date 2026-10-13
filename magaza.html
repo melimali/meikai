@@ -261,6 +261,9 @@
     footer .logo-mark { --s: 22px; }
     footer .legal { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 1.25rem; }
     footer a { transition: color .2s; }
+    .f-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .5rem 1.5rem; }
+    .f-ig { display: inline-flex; align-items: center; gap: .5rem; }
+    .f-ig .icon { width: 18px; height: 18px; color: var(--primary); }
     footer a:hover { color: var(--fg); }
 
     @media (max-width: 479px) {
@@ -355,7 +358,11 @@
         <span data-i18n="footer">© 2026 Meikai Digital. Tüm hakları saklıdır.</span>
       </div>
       <nav class="legal" id="legal" aria-label="Yasal"></nav>
-      <a href="index.html" data-i18n="back">Ana sayfaya dön</a>
+      <div class="f-links">
+        <a href="mailto:hello@themeikai.com">hello@themeikai.com</a>
+        <a href="https://instagram.com/themeikai" target="_blank" rel="noopener noreferrer" class="f-ig" aria-label="Instagram: @themeikai"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>@themeikai</a>
+        <a href="index.html" data-i18n="back">Ana sayfaya dön</a>
+      </div>
     </div>
   </footer>
 
