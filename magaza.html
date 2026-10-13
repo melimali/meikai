@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0e0e0e" />
+  <script>
+    /* Intro oturum başına bir kez oynar (ana sayfayla ortak); 'js' sınıfı animasyonların JS yokken gizlenmemesini sağlar */
+    try { if (sessionStorage.getItem('introSeen')) document.documentElement.classList.add('skip-intro'); else sessionStorage.setItem('introSeen', '1'); } catch (e) {}
+    document.documentElement.classList.add('js');
+  </script>
   <title>Mağaza — Meikai T-brand | Meikai Digital</title>
   <meta name="description" id="meta-desc" content="Meikai T-brand tişört koleksiyonu. Karanlık ve özgün, yeraltından gelen tasarımlar." />
   <link rel="icon" href="images/meikai-logo.jpeg" />
@@ -66,6 +71,33 @@
       background-position: calc(var(--s) * -330 / 364) calc(var(--s) * -202 / 364);
       flex-shrink: 0;
     }
+
+    /* Açılış animasyonu (ana sayfadakiyle aynı) */
+    .skip-intro .intro { display: none; }
+    .intro { position: fixed; inset: 0; z-index: 600; display: flex; align-items: center; justify-content: center; background: #050505; pointer-events: none; animation: intro-exit .9s cubic-bezier(.7,0,.3,1) 2.1s forwards; }
+    .intro-glow { position: absolute; width: 520px; height: 520px; max-width: 100vw; border-radius: 50%; background: rgb(179 33 43 / .22); filter: blur(120px); opacity: 0; animation: intro-glow 2.4s ease-out .3s forwards; }
+    .intro-content { position: relative; display: flex; flex-direction: column; align-items: center; }
+    .intro-mark { position: relative; overflow: hidden; border-radius: 22%; opacity: 0; animation: intro-mark 1.1s cubic-bezier(.16,1,.3,1) .2s forwards; }
+    .intro-mark .logo-mark { display: block; }
+    .intro-shine { position: absolute; inset: 0; background: linear-gradient(110deg, transparent 35%, rgb(255 255 255 / .35) 50%, transparent 65%); transform: translateX(-120%); animation: intro-shine .9s ease-in-out .9s forwards; }
+    .intro-name { margin-top: 2rem; display: flex; gap: .5em; padding-left: .5em; font-size: 1.75rem; font-weight: 500; color: #ededed; }
+    .intro-name span { opacity: 0; filter: blur(8px); transform: translateY(12px); animation: intro-letter .7s cubic-bezier(.16,1,.3,1) forwards; }
+    .intro-line { margin-top: 1.25rem; height: 1px; width: 160px; background: linear-gradient(90deg, transparent, var(--primary), transparent); transform: scaleX(0); animation: intro-line .8s cubic-bezier(.16,1,.3,1) 1.1s forwards; }
+    .intro-sub { margin-top: 1rem; padding-left: .6em; font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .6em; color: var(--muted); opacity: 0; animation: intro-fade .8s ease-out 1.3s forwards; }
+    @keyframes intro-mark { from { opacity: 0; transform: scale(.6); filter: blur(12px); } to { opacity: 1; transform: scale(1); filter: blur(0); } }
+    @keyframes intro-glow { 0% { opacity: 0; transform: scale(.6); } 60% { opacity: 1; } 100% { opacity: .7; transform: scale(1); } }
+    @keyframes intro-shine { to { transform: translateX(120%); } }
+    @keyframes intro-letter { to { opacity: 1; filter: blur(0); transform: translateY(0); } }
+    @keyframes intro-line { to { transform: scaleX(1); } }
+    @keyframes intro-fade { to { opacity: 1; } }
+    @keyframes intro-exit { 0% { opacity: 1; filter: blur(0); } 100% { opacity: 0; filter: blur(6px); visibility: hidden; } }
+    @media (min-width: 640px) { .intro-name { font-size: 2.5rem; } }
+
+    /* Kaydırınca beliren öğeler (ana sayfadakiyle aynı) */
+    .js .reveal { opacity: 0; }
+    .js .reveal.in { opacity: 1; animation: reveal .8s cubic-bezier(.16,1,.3,1) both; }
+    .js .reveal.in.flash { animation: flash 1.6s ease-out; }
+    @keyframes reveal { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
     /* Header */
     header { position: fixed; inset: 0 0 auto 0; z-index: 50; border-bottom: 1px solid var(--border); background: rgb(14 14 14 / .7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding-top: env(safe-area-inset-top, 0px); }
@@ -249,10 +281,26 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       * { transition: none !important; animation: none !important; }
+      .intro { display: none; }
+      .js .reveal { opacity: 1; }
     }
   </style>
 </head>
 <body>
+  <div class="intro" aria-hidden="true">
+    <div class="intro-glow"></div>
+    <div class="intro-content">
+      <div class="intro-mark">
+        <span class="logo-mark" style="--s:104px"></span>
+        <span class="intro-shine"></span>
+      </div>
+      <p class="intro-name">
+        <span style="animation-delay:.5s">M</span><span style="animation-delay:.57s">E</span><span style="animation-delay:.64s">I</span><span style="animation-delay:.71s">K</span><span style="animation-delay:.78s">A</span><span style="animation-delay:.85s">I</span>
+      </p>
+      <span class="intro-line"></span>
+      <p class="intro-sub">Digital</p>
+    </div>
+  </div>
   <a href="#collections" class="skip-link" data-i18n="skip">İçeriğe geç</a>
 
   <header>
@@ -669,6 +717,24 @@
         '</div></section>';
       }).join('') + infoHtml();
       observeSections();
+      observeReveal();
+    }
+
+    /* ---------- Kaydırınca beliren öğeler ---------- */
+    var rv = null;
+    function observeReveal() {
+      if (!('IntersectionObserver' in window)) return;
+      if (rv) rv.disconnect();
+      rv = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); rv.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.coll-head > *, .card, .info .eyebrow, .info h2, .acc-list').forEach(function (el, i) {
+        el.classList.add('reveal');
+        el.style.animationDelay = ((i % 3) * 0.08) + 's';
+        rv.observe(el);
+      });
     }
 
     /* ---------- Aktif koleksiyon vurgusu ---------- */
