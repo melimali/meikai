@@ -179,6 +179,8 @@
     .about-link:hover { gap: .85rem; color: var(--fg); }
     .about-link .icon { width: 18px; height: 18px; }
 
+    @media (max-width: 479px) { .brand small { display: none; } nav ul { gap: .9rem; font-size: .8rem; } }
+
     /* Hero butonları */
     .cta-row { margin-top: 2.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem; }
     .cta-row .cta { margin-top: 0; }
@@ -243,6 +245,7 @@
           <li class="nav-desktop"><a href="#hakkimizda" data-i18n="navAbout">Hakkımızda</a></li>
           <li class="nav-desktop"><a href="#hizmetler" data-i18n="navServices">Hizmetler</a></li>
           <li class="nav-desktop"><a href="#projeler" data-i18n="navProjects">Projeler</a></li>
+          <li><a href="magaza.html" data-i18n="navShop">Mağaza</a></li>
           <li class="nav-desktop"><a href="#iletisim" data-i18n="navContact">İletişim</a></li>
           <li class="nav-mobile"><a href="#iletisim" data-i18n="navContact">İletişim</a></li>
           <li><button type="button" class="lang-btn" id="lang-toggle" aria-label="Switch to English">EN</button></li>
@@ -355,14 +358,16 @@
         <h2 data-i18n="projectsTitle">Son çalışmalarımız.</h2>
         <ul class="projects">
           <li>
+            <a href="magaza.html" class="project-link">
             <article class="project">
               <div class="project-media"><img src="images/project-game.png" alt="Meikai T-brand projesinden görsel" data-i18n-attr="alt:p1Alt" loading="lazy" decoding="async" /></div>
               <div class="project-body">
                 <div class="project-meta"><span data-i18n="p1Meta">Tasarım</span><span>2026</span></div>
-                <h3>Meikai T-brand</h3>
+                <h3>Meikai T-brand <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></h3>
                 <p data-i18n="p1Text">Karanlık ve özgün, yeraltından gelen tasarımlar.</p>
               </div>
             </article>
+            </a>
           </li>
           <li>
             <a href="https://play.google.com/store/apps/details?id=com.macrophysique.app&amp;hl=tr" target="_blank" rel="noopener noreferrer" class="project-link">
@@ -446,6 +451,7 @@
       navAria: "Main menu",
       navServices: "Services",
       navProjects: "Projects",
+      navShop: "Shop",
       navContact: "Contact",
       logoAlt: "Meikai logo",
       heroTags: "App · Game · Advertising · Design",

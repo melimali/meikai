@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0e0e0e" />
+  <title>Mağaza — Meikai T-brand | Meikai Digital</title>
+  <meta name="description" id="meta-desc" content="Meikai T-brand tişört koleksiyonu. Karanlık ve özgün, yeraltından gelen tasarımlar." />
+  <link rel="icon" href="images/meikai-logo.jpeg" />
+  <link rel="apple-touch-icon" href="images/meikai-logo.jpeg" />
+  <link rel="canonical" href="https://themeikai.com/magaza.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Meikai Digital" />
+  <meta property="og:title" content="Mağaza — Meikai T-brand | Meikai Digital" />
+  <meta property="og:description" content="Meikai T-brand tişört koleksiyonu. Karanlık ve özgün, yeraltından gelen tasarımlar." />
+  <meta property="og:url" content="https://themeikai.com/magaza.html" />
+  <meta property="og:image" content="https://themeikai.com/images/meikai-logo.jpeg" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0e0e0e;
+      --fg: #ededed;
+      --card: #161616;
+      --primary: #b3212b;
+      --muted: #8f8f8f;
+      --border: rgb(255 255 255 / 0.08);
+      --sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      --mono: 'Geist Mono', ui-monospace, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--fg); font-family: var(--sans); line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; color: inherit; }
+    svg { flex-shrink: 0; }
+    .icon { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .container { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
+    .eyebrow { font-family: var(--mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .3em; color: var(--primary); }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+    .skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 200; background: var(--primary); color: #fff; padding: .6rem 1rem; border-radius: .5rem; font-size: .875rem; transition: top .2s; }
+    .skip-link:focus { top: 1rem; }
+
+    .logo-mark {
+      --s: 28px;
+      display: inline-block; width: var(--s); height: var(--s); border-radius: 22%;
+      background: url('images/meikai-logo.jpeg') no-repeat;
+      background-size: calc(var(--s) * 1024 / 364);
+      background-position: calc(var(--s) * -330 / 364) calc(var(--s) * -202 / 364);
+      flex-shrink: 0;
+    }
+
+    /* Header */
+    header { position: fixed; inset: 0 0 auto 0; z-index: 50; border-bottom: 1px solid var(--border); background: rgb(14 14 14 / .7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding-top: env(safe-area-inset-top, 0px); }
+    header .container { display: flex; height: 4rem; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: .75rem; font-size: .875rem; font-weight: 600; letter-spacing: .25em; }
+    .brand small { font-size: inherit; font-weight: 400; color: var(--muted); }
+    nav ul { display: flex; align-items: center; gap: 1.5rem; font-size: .875rem; color: var(--muted); }
+    nav a { transition: color .2s; }
+    nav a:hover, nav a[aria-current="page"] { color: var(--fg); }
+    .lang-btn { font-family: var(--mono); font-size: .75rem; letter-spacing: .15em; color: var(--fg); background: transparent; border: 1px solid var(--border); border-radius: 999px; padding: .35rem .8rem; cursor: pointer; transition: border-color .2s, background-color .2s; }
+    .lang-btn:hover { border-color: var(--primary); background: rgb(179 33 43 / .15); }
+
+    /* Üst bölüm */
+    .shop-hero { position: relative; overflow: hidden; padding: 9rem 0 3rem; text-align: center; }
+    .shop-hero .glow { position: absolute; left: 50%; top: 40%; width: 560px; height: 560px; transform: translate(-50%, -50%); border-radius: 50%; background: rgb(179 33 43 / .14); filter: blur(140px); pointer-events: none; }
+    .shop-hero .container { position: relative; display: flex; flex-direction: column; align-items: center; }
+    .shop-hero h1 { margin-top: 1rem; max-width: 40rem; font-size: 2.25rem; font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; text-wrap: balance; }
+    .shop-hero p { margin-top: 1rem; max-width: 30rem; color: var(--muted); line-height: 1.7; }
+    .shop-hero .line { margin-top: 2rem; height: 1px; width: 160px; background: linear-gradient(90deg, transparent, var(--primary), transparent); }
+
+    /* Ürünler */
+    .products { padding-bottom: 6rem; }
+    .grid { display: grid; gap: 1.5rem; }
+    .card { display: flex; flex-direction: column; overflow: hidden; border-radius: .5rem; border: 1px solid var(--border); background: var(--card); transition: border-color .25s, box-shadow .25s; animation: rise .8s cubic-bezier(.16,1,.3,1) both; }
+    .card:nth-child(2) { animation-delay: .1s; }
+    .card:nth-child(3) { animation-delay: .2s; }
+    .card:hover { border-color: rgb(179 33 43 / .45); box-shadow: 0 0 60px -20px rgb(179 33 43 / .45); }
+    @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+    .stage { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #0b0b0b; }
+    .stage .ph, .thumb .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: .7rem; letter-spacing: .35em; text-transform: uppercase; color: rgb(255 255 255 / .22); background: radial-gradient(circle at 50% 40%, rgb(179 33 43 / .14), transparent 65%), #0b0b0b; }
+    .stage .main { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+    .card:hover .stage .main { transform: scale(1.04); }
+
+    .thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; padding: .75rem .75rem 0; }
+    .thumb { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: .35rem; border: 1px solid var(--border); background: #0b0b0b; cursor: pointer; padding: 0; opacity: .55; transition: opacity .2s, border-color .2s; }
+    .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .thumb:hover { opacity: .85; }
+    .thumb.on { opacity: 1; border-color: var(--primary); }
+
+    .body { display: flex; flex: 1; flex-direction: column; padding: 1.25rem 1.5rem 1.5rem; }
+    .meta { display: flex; justify-content: space-between; font-family: var(--mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+    .price { color: var(--fg); }
+    .body h3 { margin-top: .75rem; font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; }
+    .desc { margin-top: .5rem; font-size: .875rem; line-height: 1.7; color: var(--muted); white-space: pre-line; flex: 1; }
+
+    .sizes { margin-top: 1.25rem; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+    .sizes-label { margin-right: .25rem; font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .15em; color: var(--muted); }
+    .size { min-width: 2.5rem; padding: .4rem .7rem; border-radius: .35rem; border: 1px solid var(--border); background: transparent; font-size: .8rem; cursor: pointer; transition: border-color .2s, background-color .2s; }
+    .size:hover { border-color: rgb(255 255 255 / .25); }
+    .size.on { border-color: var(--primary); background: rgb(179 33 43 / .2); }
+    .hint { min-height: 1.25rem; margin-top: .6rem; font-size: .8rem; color: #e05a63; }
+
+    .buy { margin-top: .4rem; display: inline-flex; align-items: center; justify-content: center; gap: .6rem; width: 100%; border: 0; border-radius: 999px; background: var(--primary); color: #fff; padding: .95rem 1.5rem; font-size: .95rem; font-weight: 500; cursor: pointer; box-shadow: 0 0 36px -10px rgb(179 33 43 / .7); transition: transform .2s, background-color .2s; }
+    .buy:hover { transform: scale(1.02); background: rgb(179 33 43 / .9); }
+    .buy .icon { width: 18px; height: 18px; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); }
+    footer .container { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 2rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); font-size: .875rem; color: var(--muted); }
+    footer .left { display: flex; align-items: center; gap: .75rem; }
+    footer .logo-mark { --s: 22px; }
+    footer a { transition: color .2s; }
+    footer a:hover { color: var(--fg); }
+
+    @media (max-width: 479px) {
+      .brand small { display: none; }
+      nav ul { gap: .9rem; font-size: .8rem; }
+    }
+    @media (min-width: 640px) {
+      .shop-hero h1 { font-size: 3.25rem; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      footer .container { flex-direction: row; }
+    }
+    @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+      .card { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#urunler" class="skip-link" data-i18n="skip">İçeriğe geç</a>
+
+  <header>
+    <div class="container">
+      <a href="index.html" class="brand" id="brand-link" aria-label="Meikai Digital ana sayfa">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span>MEIKAI <small>DIGITAL</small></span>
+      </a>
+      <nav aria-label="Ana menü">
+        <ul>
+          <li><a href="index.html" data-i18n="navHome">Ana Sayfa</a></li>
+          <li><a href="magaza.html" aria-current="page" data-i18n="navShop">Mağaza</a></li>
+          <li><a href="index.html#iletisim" data-i18n="navContact">İletişim</a></li>
+          <li><button type="button" class="lang-btn" id="lang-toggle" aria-label="Switch to English">EN</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="urunler">
+    <section class="shop-hero">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="container">
+        <p class="eyebrow" data-i18n="eyebrow">Mağaza — Meikai T-brand</p>
+        <h1 data-i18n="heroTitle">Karanlıkta fark edilenler.</h1>
+        <p data-i18n="heroLead">Karanlık ve özgün, yeraltından gelen tasarımlar.</p>
+        <span class="line" aria-hidden="true"></span>
+      </div>
+    </section>
+
+    <section class="products">
+      <div class="container">
+        <ul class="grid" id="grid"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="left">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span data-i18n="footer">© 2026 Meikai Digital. Tüm hakları saklıdır.</span>
+      </div>
+      <a href="index.html" data-i18n="back">Ana sayfaya dön</a>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    /* =====================================================================
+       ÜRÜNLERİ BURADAN DÜZENLE
+       - name / desc : Türkçe (tr) ve İngilizce (en) yaz.
+       - price       : örn. '₺499'. Boş bırakırsan fiyat gösterilmez.
+       - images      : ürün başına görsel yolları (istediğin kadar ekleyebilirsin).
+       - sizes       : bedenler. Beden istemiyorsan [] yaz.
+       - link        : ödeme / WhatsApp linki. Boş bırakırsan sipariş, aşağıdaki
+                       e-posta adresine mail olarak gider.
+                       WhatsApp için örnek: 'https://wa.me/90XXXXXXXXXX?text={text}'
+                       ({text} yerine ürün adı ve beden otomatik yazılır)
+       ===================================================================== */
+    var SHOP_EMAIL = 'hello@themeikai.com';
+
+    var PRODUCTS = [
+      {
+        name:  { tr: 'Ürün 1', en: 'Product 1' },
+        price: '',
+        desc:  { tr: '', en: '' },
+        images: ['images/urun1-gorsel1.jpg', 'images/urun1-gorsel2.jpg', 'images/urun1-gorsel3.jpg'],
+        sizes: ['S', 'M', 'L', 'XL'],
+        link: ''
+      },
+      {
+        name:  { tr: 'Ürün 2', en: 'Product 2' },
+        price: '',
+        desc:  { tr: '', en: '' },
+        images: ['images/urun2-gorsel1.jpg', 'images/urun2-gorsel2.jpg', 'images/urun2-gorsel3.jpg'],
+        sizes: ['S', 'M', 'L', 'XL'],
+        link: ''
+      },
+      {
+        name:  { tr: 'Ürün 3', en: 'Product 3' },
+        price: '',
+        desc:  { tr: '', en: '' },
+        images: ['images/urun3-gorsel1.jpg', 'images/urun3-gorsel2.jpg', 'images/urun3-gorsel3.jpg'],
+        sizes: ['S', 'M', 'L', 'XL'],
+        link: ''
+      }
+    ];
+
+    var DICT = {
+      tr: {
+        title: 'Mağaza — Meikai T-brand | Meikai Digital',
+        metaDesc: 'Meikai T-brand tişört koleksiyonu. Karanlık ve özgün, yeraltından gelen tasarımlar.',
+        brandAria: 'Meikai Digital ana sayfa',
+        skip: 'İçeriğe geç',
+        navHome: 'Ana Sayfa', navShop: 'Mağaza', navContact: 'İletişim',
+        eyebrow: 'Mağaza — Meikai T-brand',
+        heroTitle: 'Karanlıkta fark edilenler.',
+        heroLead: 'Karanlık ve özgün, yeraltından gelen tasarımlar.',
+        descSoon: 'Açıklama yakında.',
+        sizeLabel: 'Beden',
+        pickSize: 'Lütfen bir beden seç.',
+        buy: 'Sipariş ver',
+        imgLabel: 'GÖRSEL',
+        imgSr: 'Görsel',
+        orderSubject: 'Sipariş',
+        footer: '© 2026 Meikai Digital. Tüm hakları saklıdır.',
+        back: 'Ana sayfaya dön',
+        switchLabel: 'Switch to English'
+      },
+      en: {
+        title: 'Shop — Meikai T-brand | Meikai Digital',
+        metaDesc: 'The Meikai T-brand T-shirt collection. Dark and original designs from the underground.',
+        brandAria: 'Meikai Digital home',
+        skip: 'Skip to content',
+        navHome: 'Home', navShop: 'Shop', navContact: 'Contact',
+        eyebrow: 'Shop — Meikai T-brand',
+        heroTitle: 'Made to be seen in the dark.',
+        heroLead: 'Dark and original designs from the underground.',
+        descSoon: 'Description coming soon.',
+        sizeLabel: 'Size',
+        pickSize: 'Please choose a size.',
+        buy: 'Order now',
+        imgLabel: 'IMAGE',
+        imgSr: 'Image',
+        orderSubject: 'Order',
+        footer: '© 2026 Meikai Digital. All rights reserved.',
+        back: 'Back to home',
+        switchLabel: 'Türkçe’ye geç'
+      }
+    };
+
+    var lang = 'tr';
+    var state = PRODUCTS.map(function () { return { img: 0, size: null }; });
+    var grid = document.getElementById('grid');
+    var btn = document.getElementById('lang-toggle');
+    var metaDesc = document.getElementById('meta-desc');
+    var ARROW = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+
+    function t(k) { return DICT[lang][k]; }
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+    function name(p) { return p.name[lang] || p.name.tr || ''; }
+    function desc(p) { return (p.desc && (p.desc[lang] || p.desc.tr)) || t('descSoon'); }
+    function imgAlt(p, j) { return name(p) + ' — ' + t('imgSr') + ' ' + (j + 1); }
+
+    function render() {
+      grid.innerHTML = PRODUCTS.map(function (p, i) {
+        var st = state[i];
+        var imgs = p.images || [];
+        var thumbs = imgs.length > 1 ? '<div class="thumbs">' + imgs.map(function (src, j) {
+          return '<button type="button" class="thumb' + (j === st.img ? ' on' : '') + '" data-act="thumb" data-i="' + i + '" data-j="' + j +
+                 '" aria-label="' + t('imgSr') + ' ' + (j + 1) + '" aria-pressed="' + (j === st.img) + '">' +
+                 '<img src="' + esc(src) + '" alt="" loading="lazy" decoding="async"></button>';
+        }).join('') + '</div>' : '';
+
+        var sizes = (p.sizes && p.sizes.length) ?
+          '<div class="sizes" role="group" aria-label="' + t('sizeLabel') + '"><span class="sizes-label">' + t('sizeLabel') + '</span>' +
+          p.sizes.map(function (sz) {
+            return '<button type="button" class="size' + (sz === st.size ? ' on' : '') + '" data-act="size" data-i="' + i +
+                   '" data-size="' + esc(sz) + '" aria-pressed="' + (sz === st.size) + '">' + esc(sz) + '</button>';
+          }).join('') + '</div>' : '';
+
+        return '<li class="card" data-i="' + i + '">' +
+          '<div class="stage"><span class="ph">' + t('imgLabel') + ' ' + (st.img + 1) + '</span>' +
+          (imgs.length ? '<img class="main" src="' + esc(imgs[st.img]) + '" alt="' + esc(imgAlt(p, st.img)) + '" loading="lazy" decoding="async">' : '') +
+          '</div>' + thumbs +
+          '<div class="body">' +
+            '<div class="meta"><span>0' + (i + 1) + '</span>' + (p.price ? '<span class="price">' + esc(p.price) + '</span>' : '') + '</div>' +
+            '<h3>' + esc(name(p)) + '</h3>' +
+            '<p class="desc">' + esc(desc(p)) + '</p>' +
+            sizes +
+            '<p class="hint" aria-live="polite"></p>' +
+            '<button type="button" class="buy" data-act="buy" data-i="' + i + '">' + t('buy') + ' ' + ARROW + '</button>' +
+          '</div></li>';
+      }).join('');
+    }
+
+    // Görsel bulunamazsa gizle (arkada koyu yer tutucu kalır)
+    grid.addEventListener('error', function (e) {
+      if (e.target && e.target.tagName === 'IMG') e.target.style.visibility = 'hidden';
+    }, true);
+
+    grid.addEventListener('click', function (e) {
+      var el = e.target.closest('[data-act]');
+      if (!el) return;
+      var i = +el.getAttribute('data-i');
+      var act = el.getAttribute('data-act');
+      var p = PRODUCTS[i], st = state[i];
+      var card = el.closest('.card');
+
+      if (act === 'thumb') {
+        var j = +el.getAttribute('data-j');
+        st.img = j;
+        var main = card.querySelector('.main');
+        if (main) {
+          main.style.visibility = '';
+          main.src = p.images[j];
+          main.alt = imgAlt(p, j);
+          if (main.complete && main.naturalWidth === 0) main.style.visibility = 'hidden';
+        }
+        card.querySelector('.ph').textContent = t('imgLabel') + ' ' + (j + 1);
+        card.querySelectorAll('.thumb').forEach(function (b, k) {
+          b.classList.toggle('on', k === j);
+          b.setAttribute('aria-pressed', k === j);
+        });
+      } else if (act === 'size') {
+        var sz = el.getAttribute('data-size');
+        st.size = st.size === sz ? null : sz;
+        card.querySelectorAll('.size').forEach(function (b) {
+          var on = b.getAttribute('data-size') === st.size;
+          b.classList.toggle('on', on);
+          b.setAttribute('aria-pressed', on);
+        });
+        card.querySelector('.hint').textContent = '';
+      } else if (act === 'buy') {
+        if (p.sizes && p.sizes.length && !st.size) {
+          card.querySelector('.hint').textContent = t('pickSize');
+          return;
+        }
+        var n = name(p);
+        var msg = lang === 'en'
+          ? 'Hello, I would like to order ' + n + (st.size ? ' (size: ' + st.size + ')' : '') + '.'
+          : 'Merhaba, ' + n + ' ürününü' + (st.size ? ' (beden: ' + st.size + ')' : '') + ' sipariş etmek istiyorum.';
+        var url = p.link
+          ? p.link.replace('{text}', encodeURIComponent(msg))
+          : 'mailto:' + SHOP_EMAIL + '?subject=' + encodeURIComponent(t('orderSubject') + ': ' + n) + '&body=' + encodeURIComponent(msg);
+        if (/^https?:/i.test(url)) window.open(url, '_blank', 'noopener');
+        else window.location.href = url;
+      }
+    });
+
+    function apply(l) {
+      lang = l;
+      document.documentElement.lang = l;
+      document.title = t('title');
+      if (metaDesc) metaDesc.setAttribute('content', t('metaDesc'));
+      document.getElementById('brand-link').setAttribute('aria-label', t('brandAria'));
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        el.textContent = t(el.getAttribute('data-i18n'));
+      });
+      btn.textContent = l === 'en' ? 'TR' : 'EN';
+      btn.setAttribute('aria-label', t('switchLabel'));
+      render();
+      try { localStorage.setItem('lang', l); } catch (e) {}
+    }
+
+    btn.addEventListener('click', function () { apply(lang === 'en' ? 'tr' : 'en'); });
+
+    var saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    var browserLang = (navigator.language || 'tr').toLowerCase();
+    apply(saved === 'en' || (saved === null && browserLang.indexOf('tr') !== 0) ? 'en' : 'tr');
+  })();
+  </script>
+</body>
+</html>
