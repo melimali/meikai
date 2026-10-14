@@ -2,7 +2,7 @@
  * Tek yapman gereken: aşağıdaki GA_ID'ye Measurement ID'ni yaz (örn. 'G-ABC123XYZ9').
  * Boş bırakırsan hiçbir şey yüklenmez ve çerez bandı görünmez. */
 (function () {
-  var GA_ID = '';   // <-- G-XXXXXXXXXX
+  var GA_ID = 'G-0BJM9XQDSG';   // <-- G-XXXXXXXXXX
 
   if (!GA_ID) { window.meikaiTrack = function () {}; return; }
 
