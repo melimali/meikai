@@ -465,7 +465,12 @@
          link   : 'https://...'     ödeme linki. Doluysa sepet yerine "Satın al" butonu çıkar.
                                     WhatsApp için: 'https://wa.me/90XXXXXXXXXX?text={text}'
          images : ['images/a.jpg', 'images/b.jpg', 'images/c.jpg']   (otomatik adlar yerine)
+       Otomatik adlar .webp ister; .webp yoksa aynı adlı .jpg kullanılır.
        --------------------------------------------------------------------- */
+    document.addEventListener('error', function (e) {
+      var im = e.target;
+      if (im.tagName === 'IMG' && /-gorsel\d+\.webp$/.test(im.getAttribute('src') || '')) im.src = im.getAttribute('src').replace(/\.webp$/, '.jpg');
+    }, true);
     function product(prefix, n, extra) {
       var p = {
         name:  'Ürün ' + n,
