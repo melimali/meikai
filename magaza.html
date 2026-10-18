@@ -237,6 +237,7 @@
     .link-btn:hover { color: var(--fg); }
 
     /* Görsel görüntüleyici */
+    .lb, .lb img { touch-action: pinch-zoom; }
     .lb { position: fixed; inset: 0; z-index: 300; display: none; align-items: center; justify-content: center; background: rgb(5 5 5 / .95); }
     .lb.open { display: flex; }
     .lb-stage { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 4rem 1rem 3.5rem; }
@@ -920,14 +921,6 @@
     document.getElementById('lb-prev').addEventListener('click', function () { lbStep(-1); });
     document.getElementById('lb-next').addEventListener('click', function () { lbStep(1); });
     lb.addEventListener('click', function (e) { if (e.target.id === 'lb' || e.target.id === 'lb-stage') closeLb(); });
-
-    var lbX = null;
-    lb.addEventListener('touchstart', function (e) { lbX = e.touches[0].clientX; }, { passive: true });
-    lb.addEventListener('touchend', function (e) {
-      if (lbX === null || !lbState) return;
-      var dx = e.changedTouches[0].clientX - lbX; lbX = null;
-      if (Math.abs(dx) > 50) lbStep(dx < 0 ? 1 : -1);
-    }, { passive: true });
 
     function trap(e, box) {
       if (e.key !== 'Tab') return;
