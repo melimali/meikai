@@ -486,27 +486,27 @@
         logo: 'images/koleksiyon-signature.png',
         desc: 'Hiçbir tarza bağlı kalmayan, tamamen özgün ve yenilikçi tasarımlar. Kuralları değil, kendi imzamızı izliyoruz.',
         products: [
-          product('signature', 1, {
-            name:  'Angels May Cry',
-            price: '₺800',
-            desc:  'Unutma, melekler de ağlar.',
-            sizes: ['S', 'M', 'L', 'XL'],
-            link:  ''
-          }),
-          product('signature', 2, {
-            name:  'The Oni',
-            price: '₺800',
-            desc:  'Maskenin hiddeti.',
-            sizes: ['S', 'M', 'L', 'XL'],
-            link:  ''
-          }),
-          product('signature', 3, {
+          {
             name:  'Meöw Göd',
             price: '₺800',
-            desc:  'Şeytan lordu tahtında meowlıyor :3',
+            desc:  '',
             sizes: ['S', 'M', 'L', 'XL'],
-            link:  ''
-          })
+            images: ['images/meowgod-1.jpg', 'images/meowgod-2.jpg', 'images/meowgod-3.jpg']
+          },
+          {
+            name:  'Higanbana',
+            price: '₺800',
+            desc:  '',
+            sizes: ['S', 'M', 'L', 'XL'],
+            images: ['images/higanbana-1.jpg', 'images/higanbana-2.jpg', 'images/higanbana-3.jpg']
+          },
+          {
+            name:  'Blood Koi',
+            price: '₺800',
+            desc:  '',
+            sizes: ['S', 'M', 'L', 'XL'],
+            images: ['images/bloodkoi-1.jpg', 'images/bloodkoi-2.jpg', 'images/bloodkoi-3.jpg']
+          }
         ]
       },
       {
@@ -515,27 +515,21 @@
         logo: 'images/koleksiyon-streetwear.png',
         desc: 'Sokak kültürü için yapılan tasarımlar. Sokağın enerjisi, ritmi ve dili tişörtlerin üzerinde.',
         products: [
-          product('streetwear', 1, {
-            name:  'Urban',
+          {
+            name:  'Angel May Cry',
             price: '₺800',
-            desc:  'Duvardaki meikai yazısı mı?',
-            sizes: ['S', 'M', 'L', 'XL'],
-            link:  ''
-          }),
-          product('streetwear', 2, {
-            name:  'Streetwear Collection',
-            price: '',
             desc:  '',
             sizes: ['S', 'M', 'L', 'XL'],
-            link:  ''
-          }),
-          product('streetwear', 3, {
-            name:  'Streetwear Collection',
-            price: '',
+            images: ['images/angelmaycry-1.jpg', 'images/angelmaycry-2.jpg', 'images/angelmaycry-3.jpg']
+          },
+          {
+            name:  'Urban Oni',
+            price: '₺800',
             desc:  '',
             sizes: ['S', 'M', 'L', 'XL'],
-            link:  ''
-          })
+            images: ['images/urbanoni-1.jpg', 'images/urbanoni-2.jpg', 'images/urbanoni-3.jpg']
+          },
+          { name: 'Yakında', price: '', desc: '', images: [], sizes: [], soon: true }
         ]
       },
       {
@@ -544,27 +538,15 @@
         logo: 'images/koleksiyon-anime.png',
         desc: 'Animeseverler için tasarımlar. Sevdiğin dünyalara duyduğun tutkuyu üzerinde taşı.',
         products: [
-          product('anime', 1, {
-            name:  'Aka suki',
+          {
+            name:  'Akasuki',
             price: '₺800',
-            desc:  'Sharingan in my eyes.',
-            sizes: ['S', 'M', 'L', 'XL'],
-            link:  ''
-          }),
-          product('anime', 2, {
-            name:  'Anime Collection',
-            price: '',
             desc:  '',
             sizes: ['S', 'M', 'L', 'XL'],
-            link:  ''
-          }),
-          product('anime', 3, {
-            name:  'Anime Collection',
-            price: '',
-            desc:  '',
-            sizes: ['S', 'M', 'L', 'XL'],
-            link:  ''
-          })
+            images: ['images/akasuki-1.jpg', 'images/akasuki-2.jpg', 'images/akasuki-3.jpg']
+          },
+          { name: 'Yakında', price: '', desc: '', images: [], sizes: [], soon: true },
+          { name: 'Yakında', price: '', desc: '', images: [], sizes: [], soon: true }
         ]
       }
     ];
@@ -586,7 +568,7 @@
         collection: 'Koleksiyon', collectionsAria: 'Koleksiyonlar',
         descSoon: 'Açıklama yakında.',
         sizeLabel: 'Beden', pickSize: 'Lütfen bir beden seç.',
-        addCart: 'Sepete ekle', buyNow: 'Satın al', soldOut: 'Tükendi', newBadge: 'Yeni', closedBtn: 'Şu an kapalı',
+        addCart: 'Sepete ekle', buyNow: 'Satın al', soldOut: 'Tükendi', newBadge: 'Yeni', closedBtn: 'Şu an kapalı', soonBtn: 'Yakında',
         imgLabel: 'GÖRSEL', imgSr: 'Görsel', zoom: 'Görseli büyüt',
         copyLink: 'Ürün bağlantısını kopyala', copied: 'Bağlantı kopyalandı', added: 'Sepete eklendi', viewCart: 'Sepeti gör',
         cart: 'Sepet', cartEmpty: 'Sepetin boş.', total: 'Toplam', remove: 'Kaldır', inc: 'Artır', dec: 'Azalt', clear: 'Sepeti temizle',
@@ -623,7 +605,7 @@
     // Metin düz yazı olabilir ya da eski biçimde { tr: '...' } olabilir
     function L(o) { return typeof o === 'string' ? o : ((o && o.tr) || ''); }
     function name(p) { return L(p.name); }
-    function desc(p) { return L(p.desc) || t('descSoon'); }
+    function desc(p) { return L(p.desc) || (p.soon ? '' : t('descSoon')); }
     function imgAlt(p, j) { return name(p) + ' — ' + t('imgSr') + ' ' + (j + 1); }
     function cardId(c, i) { return c.id + '-urun' + (i + 1); }
 
@@ -663,7 +645,9 @@
       var badges = (p.isNew && !p.soldOut ? '<span class="badge">' + t('newBadge') + '</span>' : '') +
                    (p.soldOut ? '<span class="badge out">' + t('soldOut') + '</span>' : '');
 
-      var action = p.soldOut
+      var action = p.soon
+        ? '<button type="button" class="buy" disabled>' + t('soonBtn') + '</button>'
+        : p.soldOut
         ? '<button type="button" class="buy" disabled>' + t('soldOut') + '</button>'
         : !SHOP_OPEN
         ? '<button type="button" class="buy" disabled>' + t('closedBtn') + '</button>'
