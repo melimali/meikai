@@ -177,7 +177,13 @@
   if (arrived) cur.className = 'hold';
   document.body.appendChild(cur);
   if (arrived) raf(function () { raf(function () { cur.className = 'out'; }); });
+  var drawerWas = false;
   new MutationObserver(function () {
+    var open = de.classList.contains('drawer-open');
+    if (open && !drawerWas) {
+      each('.drawer-links a > span', function (el, i) { setTimeout(function () { scramble(el); }, 450 + i * 70); });
+    }
+    drawerWas = open;
     if (de.classList.contains('fx-leave')) { cur.className = ''; try { sessionStorage.setItem('fxNav', '1'); } catch (e) {} }
   }).observe(de, { attributes: true, attributeFilter: ['class'] });
   window.addEventListener('pageshow', function (e) { if (e.persisted) cur.className = 'out'; });
