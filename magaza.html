@@ -8,11 +8,13 @@
     /* Intro oturum başına bir kez oynar (ana sayfayla ortak); 'js' sınıfı animasyonların JS yokken gizlenmemesini sağlar */
     try { if (sessionStorage.getItem('introSeen')) document.documentElement.classList.add('skip-intro'); else sessionStorage.setItem('introSeen', '1'); } catch (e) {}
     document.documentElement.classList.add('js');
+    /* Küçük görsel kopyası (images/s, images/t) yoksa asıl görsele düş */
+    addEventListener('error', function (e) { var i = e.target, u; if (i.tagName === 'IMG' && /images\/[st]\//.test(u = i.currentSrc || i.src)) { i.removeAttribute('srcset'); i.src = u.replace(/images\/[st]\//, 'images/'); } }, true);
   </script>
   <title>Mağaza — Meikai T-brand | Meikai Digital</title>
   <meta name="description" id="meta-desc" content="Meikai T-brand tişört koleksiyonu. Karanlık ve özgün, yeraltından gelen tasarımlar." />
-  <link rel="icon" href="images/meikai-logo.jpeg" />
-  <link rel="apple-touch-icon" href="images/meikai-logo.jpeg" />
+  <link rel="icon" href="images/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="images/icon-180.png" />
   <link rel="canonical" href="https://themeikai.com/magaza.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Meikai Digital" />
@@ -29,7 +31,11 @@
   <meta name="twitter:image" content="https://themeikai.com/images/og-magaza.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&family=Shippori+Mincho+B1:wght@800&display=swap" rel="stylesheet" />
+  <!-- Fontlar sayfanın çizilmesini bekletmesin diye asenkron yüklenir; kanji fontu yalnızca sitede geçen karakterlerle (text=) inilir -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@800&display=swap&text=%E5%86%A5%E7%95%8C%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E4%BD%9C%E6%8A%80%E9%AD%82%E8%A1%A3%E5%86%99%E7%82%8E%E5%BD%B1%E9%AC%BC" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@800&display=swap&text=%E5%86%A5%E7%95%8C%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E4%BD%9C%E6%8A%80%E9%AD%82%E8%A1%A3%E5%86%99%E7%82%8E%E5%BD%B1%E9%AC%BC" /></noscript>
   <style>
     :root {
       color-scheme: dark;
@@ -66,9 +72,9 @@
     .logo-mark {
       --s: 28px;
       display: inline-block; width: var(--s); height: var(--s); border-radius: 22%;
-      background: url('images/meikai-logo.jpeg') no-repeat;
-      background-size: calc(var(--s) * 1024 / 364);
-      background-position: calc(var(--s) * -330 / 364) calc(var(--s) * -202 / 364);
+      background: url('images/logo-mark.webp') no-repeat;
+      background-size: cover;
+      background-position: center;
       flex-shrink: 0;
     }
 
@@ -626,6 +632,11 @@
         return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
       });
     }
+    /* Hızlı yükleme: kartlarda 840px (images/s), küçük resimlerde 240px (images/t) kopya; büyütmede asıl görsel.
+       Kopyalar scripts/kucuk-gorseller.py ile üretilir, yoksa sayfa asıl görsele düşer. */
+    var MAIN_SIZES = '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw';
+    function small(src, dir) { return /^images\/[^/]+\.webp$/.test(src) ? src.replace('images/', 'images/' + dir + '/') : src; }
+    function mainSrcset(src) { return src === small(src, 's') ? '' : small(src, 's') + ' 840w, ' + src + ' 1297w'; }
     // Metin düz yazı olabilir ya da eski biçimde { tr: '...' } olabilir
     function L(o) { return typeof o === 'string' ? o : ((o && o.tr) || ''); }
     function name(p) { return L(p.name); }
@@ -656,7 +667,7 @@
       var thumbs = imgs.length > 1 ? '<div class="thumbs">' + imgs.map(function (src, j) {
         return '<button type="button" class="thumb' + (j === st.img ? ' on' : '') + '" data-act="thumb"' + ids + ' data-j="' + j +
                '" aria-label="' + t('imgSr') + ' ' + (j + 1) + '" aria-pressed="' + (j === st.img) + '">' +
-               '<img src="' + esc(src) + '" alt="" loading="lazy" decoding="async"></button>';
+               '<img src="' + esc(small(src, 't')) + '" alt="" loading="lazy" decoding="async"></button>';
       }).join('') + '</div>' : '';
 
       var sizes = (p.sizes && p.sizes.length) ?
@@ -681,7 +692,7 @@
 
       return '<li class="card' + (p.soldOut ? ' sold' : '') + '" id="' + cardId(c, i) + '"' + ids + '>' +
         '<div class="stage"><span class="ph">' + t('imgLabel') + ' ' + (st.img + 1) + '</span>' +
-        (imgs.length ? '<img class="main" src="' + esc(imgs[st.img]) + '" alt="' + esc(imgAlt(p, st.img)) + '" loading="lazy" decoding="async">' : '') +
+        (imgs.length ? '<img class="main" src="' + esc(imgs[st.img]) + '" srcset="' + esc(mainSrcset(imgs[st.img])) + '" sizes="' + MAIN_SIZES + '" alt="' + esc(imgAlt(p, st.img)) + '" loading="lazy" decoding="async">' : '') +
         '<div class="badges">' + badges + '</div>' +
         '<button type="button" class="zoom" data-act="zoom"' + ids + ' aria-label="' + t('zoom') + ': ' + esc(name(p)) + '"></button>' +
         '<span class="zoom-ic" aria-hidden="true">' + ICON.zoom + '</span>' +
@@ -780,6 +791,7 @@
       var main = card.querySelector('.main');
       if (main) {
         main.style.visibility = '';
+        main.srcset = mainSrcset(p.images[j]);
         main.src = p.images[j];
         main.alt = imgAlt(p, j);
         if (main.complete && main.naturalWidth === 0) main.style.visibility = 'hidden';
@@ -855,7 +867,7 @@
       itemsEl.innerHTML = '<ul>' + cart.map(function (it, n) {
         var c = COLLECTIONS[it.c], p = c.products[it.i];
         var meta = [it.size ? t('sizeLabel') + ': ' + it.size : '', p.price || ''].filter(Boolean).join(' · ');
-        return '<li class="ci"><div class="ci-img">' + (p.images && p.images[0] ? '<img src="' + esc(p.images[0]) + '" alt="" loading="lazy">' : '') + '</div>' +
+        return '<li class="ci"><div class="ci-img">' + (p.images && p.images[0] ? '<img src="' + esc(small(p.images[0], 't')) + '" alt="" loading="lazy">' : '') + '</div>' +
           '<div class="ci-info"><p class="ci-coll">' + esc(c.title) + '</p><p class="ci-name">' + esc(name(p)) + '</p>' +
           (meta ? '<p class="ci-meta">' + esc(meta) + '</p>' : '') +
           '<div class="qty">' +

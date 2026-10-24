@@ -8,11 +8,13 @@
     /* Intro oturum başına bir kez oynar; 'js' sınıfı animasyonların JS yokken gizlenmemesini sağlar */
     try { if (sessionStorage.getItem('introSeen')) document.documentElement.classList.add('skip-intro'); else sessionStorage.setItem('introSeen', '1'); } catch (e) {}
     document.documentElement.classList.add('js');
+    /* Küçük görsel kopyası (images/s, images/t) yoksa asıl görsele düş */
+    addEventListener('error', function (e) { var i = e.target, u; if (i.tagName === 'IMG' && /images\/[st]\//.test(u = i.currentSrc || i.src)) { i.removeAttribute('srcset'); i.src = u.replace(/images\/[st]\//, 'images/'); } }, true);
   </script>
   <title>Meikai Digital — Uygulama, Oyun, Reklam ve Tasarım Stüdyosu</title>
   <meta name="description" id="meta-desc" content="Meikai Digital; mobil uygulamalar, oyunlar, reklam kampanyaları ve marka kimlikleri tasarlayıp geliştiren çok yönlü bir dijital stüdyodur." />
-  <link rel="icon" href="images/meikai-logo.jpeg" />
-  <link rel="apple-touch-icon" href="images/meikai-logo.jpeg" />
+  <link rel="icon" href="images/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="images/icon-180.png" />
   <link rel="canonical" href="https://themeikai.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Meikai Digital" />
@@ -39,7 +41,11 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&family=Shippori+Mincho+B1:wght@800&display=swap" rel="stylesheet" />
+  <!-- Fontlar sayfanın çizilmesini bekletmesin diye asenkron yüklenir; kanji fontu yalnızca sitede geçen karakterlerle (text=) inilir -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@800&display=swap&text=%E5%86%A5%E7%95%8C%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E4%BD%9C%E6%8A%80%E9%AD%82%E8%A1%A3%E5%86%99%E7%82%8E%E5%BD%B1%E9%AC%BC" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@800&display=swap&text=%E5%86%A5%E7%95%8C%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E4%BD%9C%E6%8A%80%E9%AD%82%E8%A1%A3%E5%86%99%E7%82%8E%E5%BD%B1%E9%AC%BC" /></noscript>
   <style>
     :root {
       color-scheme: dark;
@@ -75,9 +81,9 @@
     .logo-mark {
       --s: 28px;
       display: inline-block; width: var(--s); height: var(--s);
-      background: url('images/meikai-logo.jpeg') no-repeat;
-      background-size: calc(var(--s) * 1024 / 364);
-      background-position: calc(var(--s) * -330 / 364) calc(var(--s) * -202 / 364);
+      background: url('images/logo-mark.webp') no-repeat;
+      background-size: cover;
+      background-position: center;
       flex-shrink: 0;
     }
 
@@ -463,7 +469,7 @@
           <li>
             <a href="magaza.html" class="project-link">
             <article class="project">
-              <div class="project-media"><img src="images/project-game.webp" alt="Meikai T-brand projesinden görsel" data-i18n-attr="alt:p1Alt" loading="lazy" decoding="async" /><span class="project-n" aria-hidden="true">01</span></div>
+              <div class="project-media"><img src="images/project-game.webp" srcset="images/s/project-game.webp 840w, images/project-game.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw" alt="Meikai T-brand projesinden görsel" data-i18n-attr="alt:p1Alt" loading="lazy" decoding="async" /><span class="project-n" aria-hidden="true">01</span></div>
               <div class="project-body">
                 <div class="project-meta"><span data-i18n="p1Meta">Tasarım</span><span>2026</span></div>
                 <h3 lang="en">Meikai T-brand <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></h3>
@@ -475,7 +481,7 @@
           <li>
             <a href="https://play.google.com/store/apps/details?id=com.macrophysique.app&amp;hl=tr" target="_blank" rel="noopener noreferrer" class="project-link">
               <article class="project">
-                <div class="project-media"><img src="images/project-app.webp" alt="MEIKAI x MACROPHYSIQUE uygulamasından görsel" data-i18n-attr="alt:p2Alt" loading="lazy" decoding="async" /><span class="project-n" aria-hidden="true">02</span></div>
+                <div class="project-media"><img src="images/project-app.webp" srcset="images/s/project-app.webp 840w, images/project-app.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw" alt="MEIKAI x MACROPHYSIQUE uygulamasından görsel" data-i18n-attr="alt:p2Alt" loading="lazy" decoding="async" /><span class="project-n" aria-hidden="true">02</span></div>
                 <div class="project-body">
                   <div class="project-meta"><span data-i18n="p2Meta">Mobil Uygulama</span><span>2026</span></div>
                   <h3 lang="en">MEIKAI x MACROPHYSIQUE <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></h3>
@@ -490,7 +496,7 @@
           <li>
             <a href="studio.html" class="project-link">
             <article class="project">
-              <div class="project-media"><img src="images/project-brand.webp" alt="Meikai Studio projesinden görsel" data-i18n-attr="alt:p3Alt" loading="lazy" decoding="async" /><span class="project-n" aria-hidden="true">03</span></div>
+              <div class="project-media"><img src="images/project-brand.webp" srcset="images/s/project-brand.webp 840w, images/project-brand.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw" alt="Meikai Studio projesinden görsel" data-i18n-attr="alt:p3Alt" loading="lazy" decoding="async" /><span class="project-n" aria-hidden="true">03</span></div>
               <div class="project-body">
                 <div class="project-meta"><span data-i18n="p3Meta">Reklam &amp; Marka</span><span>2026</span></div>
                 <h3 lang="en">Meikai Studio <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></h3>

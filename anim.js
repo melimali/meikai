@@ -11,6 +11,19 @@
   var isEn = function () { return (de.lang || 'tr').slice(0, 2) === 'en'; };
   function each(sel, fn) { Array.prototype.forEach.call(document.querySelectorAll(sel), fn); }
 
+  /* 0) Intro: dokunma, tıklama, kaydırma ya da tuşla hemen geçilir */
+  if (introPlaying) {
+    var skipEvents = ['pointerdown', 'keydown', 'wheel', 'touchmove'];
+    var skipIntro = function () {
+      skipEvents.forEach(function (n) { removeEventListener(n, skipIntro, true); });
+      if (de.classList.contains('skip-intro')) return;
+      de.classList.add('intro-out');
+      setTimeout(function () { de.classList.add('skip-intro'); de.classList.remove('intro-out'); }, 350);
+    };
+    skipEvents.forEach(function (n) { addEventListener(n, skipIntro, { capture: true, passive: true }); });
+    setTimeout(function () { skipEvents.forEach(function (n) { removeEventListener(n, skipIntro, true); }); }, 3400);
+  }
+
   /* 1) Yazı karıştırma (katakana → gerçek metin) */
   var GLYPHS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロ冥界魂技作';
   function scramble(el) {
