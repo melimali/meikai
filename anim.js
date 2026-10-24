@@ -13,7 +13,7 @@
 
   /* 0) Intro: dokunma, tıklama ya da tuşla hemen geçilir (kaydırma geçirmez, mobilde yanlışlıkla atlanmasın) */
   if (introPlaying) {
-    var skipEvents = ['pointerdown', 'keydown'];
+    var skipEvents = ['click', 'keydown'];
     var skipIntro = function () {
       skipEvents.forEach(function (n) { removeEventListener(n, skipIntro, true); });
       if (de.classList.contains('skip-intro')) return;
