@@ -291,22 +291,19 @@
   </style>
   <link rel="stylesheet" href="fx.css" />
   <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="anim.css" />
 </head>
 <body class="pg-shop">
   <div class="intro" aria-hidden="true">
+    <span class="intro-half top"></span><span class="intro-half bot"></span>
     <div class="intro-glow"></div>
-    <p class="intro-kanji">冥界</p>
-    <div class="intro-content">
-      <div class="intro-mark">
-        <span class="logo-mark" style="--s:104px"></span>
-        <span class="intro-shine"></span>
-      </div>
-      <p class="intro-name">
-        <span style="animation-delay:.5s">M</span><span style="animation-delay:.57s">E</span><span style="animation-delay:.64s">I</span><span style="animation-delay:.71s">K</span><span style="animation-delay:.78s">A</span><span style="animation-delay:.85s">I</span>
-      </p>
-      <span class="intro-line"></span>
+    <svg class="intro-enso" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80"/><circle cx="100" cy="100" r="88"/></svg>
+    <div class="intro-stage">
+      <p class="intro-kanji"><span>冥</span><span>界</span></p>
+      <p class="intro-name"><span style="--i:0">M</span><span style="--i:1">E</span><span style="--i:2">I</span><span style="--i:3">K</span><span style="--i:4">A</span><span style="--i:5">I</span></p>
       <p class="intro-sub" lang="en">Digital</p>
     </div>
+    <span class="intro-slash"></span>
   </div>
   <a href="#collections" class="skip-link" data-i18n="skip">İçeriğe geç</a>
 
@@ -1110,6 +1107,7 @@
   })();
   </script>
   <script src="fx.js" defer></script>
+  <script src="anim.js" defer></script>
   <script src="analytics.js" defer></script>
 </body>
 </html>

@@ -63,7 +63,7 @@
     .container { max-width: 76rem; margin: 0 auto; padding: 0 1.5rem; }
     .eyebrow { font-family: var(--mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .3em; color: var(--primary); }
     .section { position: relative; scroll-margin-top: 4rem; }
-    .section-inner { padding: 7rem 0; }
+    .section-inner { padding-block: 7rem; }
     .section h2 { margin-top: 1rem; font-size: clamp(2.6rem, 7vw, 5.5rem); text-wrap: balance; }
     .muted { color: var(--muted); }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
@@ -204,7 +204,7 @@
     /* ---------- İletişim ---------- */
     .contact-sec { overflow: hidden; }
     .torii { position: absolute; left: 50%; top: 52%; width: min(46rem, 120vw); transform: translate(-50%, -50%); color: var(--primary); opacity: .16; pointer-events: none; filter: drop-shadow(0 0 40px rgb(179 33 43 / .8)); }
-    .contact { position: relative; display: flex; flex-direction: column; align-items: center; padding: 9rem 0; text-align: center; }
+    .contact { position: relative; display: flex; flex-direction: column; align-items: center; padding-block: 9rem; text-align: center; }
     .contact .eyebrow::after { content: ''; width: 1.75rem; height: 1px; background: currentColor; }
     .contact h2 { max-width: 52rem; }
     .email { margin-top: 3rem; display: inline-flex; align-items: center; gap: .9rem; font-family: var(--display); font-size: clamp(1.7rem, 6vw, 4.4rem); line-height: 1; letter-spacing: .01em; word-break: break-all; background: linear-gradient(var(--primary), var(--primary)) 0 100% / 0 3px no-repeat; padding-bottom: .4rem; transition: background-size .5s cubic-bezier(.16,1,.3,1), color .2s; }
@@ -295,23 +295,20 @@
   </style>
   <link rel="stylesheet" href="fx.css" />
   <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="anim.css" />
 </head>
 <body class="pg-home">
 <a href="#main" class="skip-link" data-i18n="skip">İçeriğe geç</a>
 <div class="intro" aria-hidden="true">
+    <span class="intro-half top"></span><span class="intro-half bot"></span>
     <div class="intro-glow"></div>
-    <p class="intro-kanji">冥界</p>
-    <div class="intro-content">
-      <div class="intro-mark">
-        <span class="logo-mark" style="--s:88px"></span>
-        <span class="intro-shine"></span>
-      </div>
-      <p class="intro-name">
-        <span style="animation-delay:.5s">M</span><span style="animation-delay:.57s">E</span><span style="animation-delay:.64s">I</span><span style="animation-delay:.71s">K</span><span style="animation-delay:.78s">A</span><span style="animation-delay:.85s">I</span>
-      </p>
-      <span class="intro-line"></span>
+    <svg class="intro-enso" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80"/><circle cx="100" cy="100" r="88"/></svg>
+    <div class="intro-stage">
+      <p class="intro-kanji"><span>冥</span><span>界</span></p>
+      <p class="intro-name"><span style="--i:0">M</span><span style="--i:1">E</span><span style="--i:2">I</span><span style="--i:3">K</span><span style="--i:4">A</span><span style="--i:5">I</span></p>
       <p class="intro-sub" lang="en">Digital</p>
     </div>
+    <span class="intro-slash"></span>
   </div>
   <header>
     <div class="container">
@@ -695,6 +692,7 @@
   })();
   </script>
   <script src="fx.js" defer></script>
+  <script src="anim.js" defer></script>
   <script src="analytics.js" defer></script>
 </body>
 </html>
