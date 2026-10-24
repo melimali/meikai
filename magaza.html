@@ -29,7 +29,7 @@
   <meta name="twitter:image" content="https://themeikai.com/images/og-magaza.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&family=Shippori+Mincho+B1:wght@800&display=swap" rel="stylesheet" />
   <style>
     :root {
       color-scheme: dark;
@@ -290,10 +290,12 @@
     }
   </style>
   <link rel="stylesheet" href="fx.css" />
+  <link rel="stylesheet" href="theme.css" />
 </head>
-<body>
+<body class="pg-shop">
   <div class="intro" aria-hidden="true">
     <div class="intro-glow"></div>
+    <p class="intro-kanji">冥界</p>
     <div class="intro-content">
       <div class="intro-mark">
         <span class="logo-mark" style="--s:104px"></span>
@@ -313,6 +315,7 @@
       <a href="index.html" class="brand" id="brand-link" aria-label="Meikai Digital ana sayfa">
         <span class="logo-mark" aria-hidden="true"></span>
         <span>MEIKAI <small>DIGITAL</small></span>
+        <span class="brand-jp" aria-hidden="true">冥界</span>
       </a>
       <nav aria-label="Ana menü">
         <ul>
@@ -332,6 +335,7 @@
 
   <main>
     <section class="shop-hero">
+      <span class="page-kanji" data-k="衣" aria-hidden="true">衣</span>
       <div class="glow" aria-hidden="true"></div>
       <div class="container">
         <p class="eyebrow" data-i18n="eyebrow">Mağaza — Meikai T-brand</p>
@@ -341,14 +345,14 @@
       </div>
     </section>
 
-    <div class="fx-marquee" aria-hidden="true"><div class="fx-track"><span class="tr">Meikai T-Brand</span><span class="tr">Signature</span><span class="tr">Streetwear</span><span class="tr">Anime Collection</span><span class="tr">Karanlıkta Fark Edilenler</span><span class="en">Meikai T-Brand</span><span class="en">Signature</span><span class="en">Streetwear</span><span class="en">Anime Collection</span><span class="en">Noticed in the Dark</span><span class="tr">Meikai T-Brand</span><span class="tr">Signature</span><span class="tr">Streetwear</span><span class="tr">Anime Collection</span><span class="tr">Karanlıkta Fark Edilenler</span><span class="en">Meikai T-Brand</span><span class="en">Signature</span><span class="en">Streetwear</span><span class="en">Anime Collection</span><span class="en">Noticed in the Dark</span></div></div>
+    <div class="fx-marquee" aria-hidden="true"><div class="fx-track"><span class="tr" lang="en">Meikai T-Brand</span><span class="tr" lang="en">Signature</span><span class="tr" lang="en">Streetwear</span><span class="tr" lang="en">Anime Collection</span><span class="tr">Karanlıkta Fark Edilenler</span><span class="en">Meikai T-Brand</span><span class="en">Signature</span><span class="en">Streetwear</span><span class="en">Anime Collection</span><span class="en">Noticed in the Dark</span><span class="tr" lang="en">Meikai T-Brand</span><span class="tr" lang="en">Signature</span><span class="tr" lang="en">Streetwear</span><span class="tr" lang="en">Anime Collection</span><span class="tr">Karanlıkta Fark Edilenler</span><span class="en">Meikai T-Brand</span><span class="en">Signature</span><span class="en">Streetwear</span><span class="en">Anime Collection</span><span class="en">Noticed in the Dark</span></div></div>
 
     <div class="collbar" id="collbar">
       <p class="closed-note" id="closed-note" hidden></p>
       <nav class="container chips" aria-label="Koleksiyonlar" id="chips">
-        <a class="chip" href="#signature" data-sec="signature">Signature</a>
-        <a class="chip" href="#streetwear" data-sec="streetwear">Streetwear</a>
-        <a class="chip" href="#anime" data-sec="anime">Anime Collection</a>
+        <a class="chip" lang="en" href="#signature" data-sec="signature">Signature</a>
+        <a class="chip" lang="en" href="#streetwear" data-sec="streetwear">Streetwear</a>
+        <a class="chip" lang="en" href="#anime" data-sec="anime">Anime Collection</a>
       </nav>
     </div>
 
@@ -356,6 +360,7 @@
   </main>
 
   <footer>
+    <p class="foot-word" aria-hidden="true">MEIKAI<span>冥界</span></p>
     <div class="container">
       <div class="left">
         <span class="logo-mark" aria-hidden="true"></span>
@@ -687,7 +692,7 @@
         '<div class="body">' +
           '<div class="meta"><span>0' + (i + 1) + '</span><span class="meta-r">' + (p.price ? '<span class="price">' + esc(p.price) + '</span>' : '') +
           '<button type="button" class="mini" data-act="copy"' + ids + ' aria-label="' + t('copyLink') + '" title="' + t('copyLink') + '">' + ICON.link + '</button></span></div>' +
-          '<h3>' + esc(name(p)) + '</h3>' +
+          '<h3 lang="en">' + esc(name(p)) + '</h3>' +
           '<p class="desc">' + esc(desc(p)) + '</p>' +
           sizes +
           '<p class="hint" aria-live="polite"></p>' +

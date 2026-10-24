@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&family=Shippori+Mincho+B1:wght@800&display=swap" rel="stylesheet" />
   <style>
     :root { color-scheme: dark; --bg:#0e0e0e; --fg:#ededed; --card:#161616; --primary:#b3212b; --muted:#8f8f8f; --border:rgb(255 255 255 / .08); --sans:'Inter',ui-sans-serif,system-ui,sans-serif; --mono:'Geist Mono',ui-monospace,monospace; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -160,11 +160,13 @@
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .intro { display: none; } .js .reveal { opacity: 1; } .js .reveal.in { animation: none; } * { transition: none !important; } }
   </style>
   <link rel="stylesheet" href="fx.css" />
+  <link rel="stylesheet" href="theme.css" />
 </head>
-<body>
+<body class="pg-studio">
   <a href="#main" class="skip-link" data-i18n="skip">İçeriğe geç</a>
   <div class="intro" aria-hidden="true">
     <div class="intro-glow"></div>
+    <p class="intro-kanji">冥界</p>
     <div class="intro-content">
       <div class="intro-mark">
         <span class="logo-mark" style="--s:104px"></span>
@@ -182,6 +184,7 @@
       <a href="index.html" class="brand" aria-label="Meikai Digital ana sayfa" data-i18n-attr="aria-label:brandAria">
         <span class="logo-mark" aria-hidden="true"></span>
         <span>MEIKAI <small>DIGITAL</small></span>
+        <span class="brand-jp" aria-hidden="true">冥界</span>
       </a>
       <nav class="hdr-right" aria-label="Ana menü" data-i18n-attr="aria-label:navAria">
         <button type="button" class="lang-btn" id="lang-toggle" aria-label="Switch to English">EN</button>
@@ -207,6 +210,7 @@
 
   <main id="main">
     <section class="s-hero">
+      <span class="page-kanji" data-k="写" aria-hidden="true">写</span>
       <div class="container">
         <p class="eyebrow reveal" data-i18n="eyebrow">Meikai Studio</p>
         <h1 class="reveal" data-i18n="h1">AI Photoshoot &amp; tasarım çalışmaları.</h1>
@@ -262,6 +266,7 @@
     </section>
   </main>
   <footer>
+    <p class="foot-word" aria-hidden="true">MEIKAI<span>冥界</span></p>
     <div class="container">
       <div class="left"><span class="logo-mark" aria-hidden="true"></span><span data-i18n="footer">© 2026 Meikai Digital. Tüm hakları saklıdır.</span></div>
       <div class="f-links">

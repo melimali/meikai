@@ -1,0 +1,167 @@
+/* Meikai — 冥界 (yeraltı) teması. Üç sayfanın ortak görünümü; sayfa içi stillerden sonra yüklenir ve onları ezer. */
+
+:root {
+  --bg: #0a0908;
+  --bg-2: #100e0d;
+  --fg: #ece6dc;
+  --card: #131110;
+  --primary: #b3212b;
+  --blood: #e2323e;
+  --muted: #8d857b;
+  --border: rgb(236 230 220 / .09);
+  --display: 'Anton', 'Impact', 'Arial Narrow', sans-serif;
+  --jp: 'Shippori Mincho B1', 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  --notch: 14px;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgb(179 33 43 / .10), transparent 60%),
+    var(--bg);
+}
+::selection { background: var(--primary); color: #fff; }
+html, body { overflow-x: hidden; }
+body { overflow-x: clip; }
+
+/* Shoji çizgileri: arka planda ince dikey kılavuz */
+body > main { position: relative; }
+body > main::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: linear-gradient(90deg, rgb(236 230 220 / .028) 1px, transparent 1px);
+  background-size: calc(100% / 6) 100%;
+  mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+}
+body > main > * { position: relative; z-index: 1; }
+
+/* ---------- Tipografi ---------- */
+.eyebrow { display: inline-flex; align-items: center; gap: .75rem; letter-spacing: .32em; color: var(--blood); }
+.eyebrow::before { content: ''; width: 1.75rem; height: 1px; background: currentColor; }
+.section h2, .s-hero h1, .shop-hero h1, .info h2, .cta-band h2 {
+  font-family: var(--display); font-weight: 400; text-transform: uppercase; letter-spacing: .005em; line-height: .98;
+}
+
+/* ---------- Header ---------- */
+header { background: linear-gradient(180deg, rgb(10 9 8 / .92), rgb(10 9 8 / .62)); border-bottom-color: rgb(179 33 43 / .22); }
+header::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: linear-gradient(90deg, transparent, rgb(226 50 62 / .7) 50%, transparent); opacity: .5; pointer-events: none; }
+.brand { font-family: var(--display); font-weight: 400; font-size: 1.05rem; letter-spacing: .18em; }
+.brand small { font-family: var(--mono); font-size: .62rem; letter-spacing: .32em; vertical-align: .2em; }
+.brand-jp { font-family: var(--jp); font-weight: 800; font-size: .8rem; letter-spacing: .1em; color: var(--blood); margin-left: .15rem; }
+.logo-mark { border-radius: 3px; box-shadow: 0 0 0 1px rgb(226 50 62 / .35), 0 0 18px -4px rgb(179 33 43 / .7); }
+.lang-btn, .menu-btn, .cart-btn { border-radius: 0; border-color: rgb(236 230 220 / .16); }
+.menu-btn { clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); background: rgb(179 33 43 / .14); border-color: rgb(179 33 43 / .5); }
+nav ul a { font-family: var(--mono); font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; }
+
+/* ---------- Yan menü ---------- */
+.drawer { background: linear-gradient(180deg, #120f0e, #070606); border-left: 1px solid rgb(179 33 43 / .35); }
+.drawer:has(.drawer-links)::after { content: '冥界'; position: absolute; right: -.4rem; bottom: 4.5rem; writing-mode: vertical-rl; font-family: var(--jp); font-weight: 800; font-size: 7.5rem; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgb(179 33 43 / .35); pointer-events: none; }
+.drawer-links { gap: 0; margin-top: 2.5rem; }
+.drawer-links a { border: 0; border-bottom: 1px solid var(--border); border-radius: 0; background: transparent; padding: 1rem .25rem; font-family: var(--display); font-weight: 400; font-size: 2rem; text-transform: uppercase; letter-spacing: .02em; line-height: 1; }
+.drawer-links a small { order: -1; color: var(--blood); }
+.drawer-links a:hover, .drawer-links a[aria-current="page"] { background: transparent; color: var(--blood); padding-left: .75rem; border-color: rgb(179 33 43 / .5); }
+.drawer-close { border-radius: 0; }
+
+/* ---------- Butonlar ---------- */
+.cta, .btn, .buy {
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - var(--notch)) 0, 100% var(--notch), 100% 100%, var(--notch) 100%, 0 calc(100% - var(--notch)));
+  font-family: var(--mono); font-size: .8rem !important; letter-spacing: .2em; text-transform: uppercase;
+  background: linear-gradient(135deg, #c5242f, #8e1820);
+  box-shadow: none;
+}
+.cta:hover, .btn:hover, .buy:hover:not(:disabled) { background: linear-gradient(135deg, #e2323e, #a51c25); }
+.cta-ghost, .btn-ghost, .buy.ghost { background: transparent; box-shadow: inset 0 0 0 1px rgb(236 230 220 / .2); border: 0; }
+.cta-ghost:hover, .btn-ghost:hover, .buy.ghost:hover { background: rgb(179 33 43 / .14); box-shadow: inset 0 0 0 1px var(--blood); }
+.buy:disabled { background: #1e1b1a; }
+
+/* ---------- Kayan bant ---------- */
+.fx-marquee { background: var(--primary); border-color: transparent; transform: rotate(-1.2deg) scale(1.02); margin: 1.5rem 0; box-shadow: 0 0 60px -10px rgb(179 33 43 / .6); z-index: 2; }
+.fx-marquee::before { background: linear-gradient(90deg, var(--primary), transparent); }
+.fx-marquee::after { background: linear-gradient(-90deg, var(--primary), transparent); }
+.fx-track span { font-family: var(--display); font-weight: 400; letter-spacing: .03em; color: #0a0908; -webkit-text-stroke: 0; }
+.fx-track span::after { content: '冥'; font-family: var(--jp); font-weight: 800; color: rgb(10 9 8 / .55); margin: 0 1.4rem; font-size: .6em; }
+.fx-track span:nth-child(3n) { color: transparent; -webkit-text-stroke: 1px #0a0908; text-shadow: none; }
+
+/* ---------- Kartlar (keskin köşe) ---------- */
+.card, .project, .shot, .thumb, .acc-list, .ci-img, .size, .chip, .badge, .lb-stage img, .lb img, .lb-btn, .mini, .zoom-ic, .toast { border-radius: 0 !important; }
+.card, .project { background: linear-gradient(180deg, #141110, #0d0b0a); }
+
+/* ---------- Footer ---------- */
+footer { position: relative; overflow: hidden; border-top: 1px solid rgb(179 33 43 / .3); }
+.foot-word {
+  display: flex; align-items: flex-end; justify-content: center; gap: .04em; padding-top: 3rem;
+  font-family: var(--display); font-size: clamp(5rem, 22vw, 20rem); line-height: .78; letter-spacing: .01em;
+  color: transparent; -webkit-text-stroke: 1px rgb(236 230 220 / .14); user-select: none; pointer-events: none;
+  background: linear-gradient(180deg, transparent 40%, rgb(179 33 43 / .18)); -webkit-background-clip: text; background-clip: text;
+}
+.foot-word span { font-family: var(--jp); font-weight: 800; font-size: .32em; line-height: 1; margin-bottom: .2em; -webkit-text-stroke: 0; color: var(--primary); writing-mode: vertical-rl; letter-spacing: .1em; }
+footer .container { border-top: 1px solid var(--border); font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; }
+
+/* ---------- Açılış ---------- */
+.intro { background: radial-gradient(circle at 50% 45%, #1a0b0c, #050404 60%); }
+.intro-kanji { position: absolute; font-family: var(--jp); font-weight: 800; font-size: min(62vh, 80vw); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgb(179 33 43 / .35); opacity: 0; animation: intro-kanji 2.2s cubic-bezier(.16,1,.3,1) .1s forwards; }
+@keyframes intro-kanji { from { opacity: 0; transform: scale(1.25); filter: blur(10px); } to { opacity: 1; transform: none; filter: none; } }
+.intro-name { font-family: var(--display); font-weight: 400; letter-spacing: .1em; font-size: 2.6rem; }
+@media (min-width: 640px) { .intro-name { font-size: 4rem; } }
+
+/* =====================================================================
+   STUDIO
+   ===================================================================== */
+.s-hero { padding: 10rem 0 4rem; }
+.s-hero h1 { font-size: clamp(2.8rem, 8vw, 6.5rem); max-width: 54rem; }
+.s-hero h1 { text-shadow: 0 0 60px rgb(179 33 43 / .25); }
+.s-hero .lead { color: #b5ada2 !important; }
+.tags span { border-radius: 0 !important; border-color: rgb(179 33 43 / .4) !important; color: var(--fg) !important; }
+.page-kanji {
+  position: absolute; right: max(1rem, 4vw); top: 50%; transform: translateY(-46%); z-index: 0;
+  writing-mode: vertical-rl; font-family: var(--jp); font-weight: 800; font-size: clamp(9rem, 26vw, 22rem); line-height: 1;
+  color: transparent; -webkit-text-stroke: 1px rgb(179 33 43 / .5); pointer-events: none; user-select: none;
+}
+.page-kanji::after { content: attr(data-k); position: absolute; inset: 0; color: var(--primary); -webkit-text-stroke: 0; opacity: .14; filter: blur(18px); }
+.gallery .eyebrow { font-family: var(--display); font-size: clamp(1.5rem, 3.4vw, 2.4rem); letter-spacing: .02em; color: var(--fg); text-transform: uppercase; }
+.gallery .eyebrow::before { width: 2.5rem; height: 3px; background: var(--primary); }
+.shot { border-color: rgb(236 230 220 / .07); }
+.shot::before { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; box-shadow: inset 0 0 0 0 var(--primary); transition: box-shadow .35s; }
+.shot:hover::before { box-shadow: inset 0 0 0 2px var(--primary); }
+.shot img { filter: contrast(1.05) saturate(.9); }
+.shot:hover img { filter: contrast(1.08) saturate(1.05); }
+.shot-n { font-family: var(--display) !important; font-size: 1.6rem !important; letter-spacing: .04em !important; color: var(--blood) !important; }
+.cta-band { position: relative; overflow: hidden; background: linear-gradient(120deg, rgb(179 33 43 / .18), transparent 60%); border-top: 1px solid rgb(179 33 43 / .35) !important; }
+.cta-band h2 { font-size: clamp(2rem, 5vw, 3.6rem) !important; max-width: 40rem !important; }
+
+/* =====================================================================
+   MAĞAZA
+   ===================================================================== */
+.shop-hero { padding: 10rem 0 4rem; }
+.shop-hero .glow { background: rgb(179 33 43 / .22); }
+.shop-hero h1 { font-size: clamp(3rem, 9vw, 7rem); max-width: 60rem; text-shadow: 0 0 70px rgb(179 33 43 / .3); }
+.shop-hero .page-kanji { right: auto; left: 50%; top: 52%; transform: translate(-50%, -50%); writing-mode: horizontal-tb; font-size: clamp(14rem, 40vw, 30rem); -webkit-text-stroke-color: rgb(179 33 43 / .28); }
+.collbar { background: rgb(10 9 8 / .9); }
+.chip { font-family: var(--mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; }
+.chip.on { background: var(--primary); color: #fff; }
+.collection { padding: 6rem 0; }
+.coll-head .eyebrow { font-size: .8rem; }
+.coll-logo { filter: drop-shadow(0 0 50px rgb(179 33 43 / .4)); }
+.card { border-color: rgb(236 230 220 / .07); }
+.card:hover { border-color: rgb(226 50 62 / .55); box-shadow: 0 30px 80px -30px rgb(179 33 43 / .55); }
+.body h3 { font-family: var(--display); font-weight: 400; font-size: 1.7rem; text-transform: uppercase; letter-spacing: .02em; line-height: 1.05; }
+.price { font-family: var(--display); font-size: 1.1rem; letter-spacing: .04em; color: var(--blood) !important; }
+.badge { font-family: var(--mono); }
+.size.on { background: var(--primary); border-color: var(--primary); color: #fff; }
+.info h2 { font-size: clamp(2rem, 5vw, 3rem); }
+.acc { background: #0f0d0c; }
+.drawer-head h2 { font-family: var(--display); font-weight: 400; font-size: 1.5rem; text-transform: uppercase; letter-spacing: .04em; }
+.closed-note { background: rgb(179 33 43 / .28); }
+
+@media (max-width: 639px) {
+  .page-kanji { opacity: .55; }
+  .fx-marquee { transform: rotate(-1.5deg) scale(1.04); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-kanji { animation: none; opacity: 1; }
+}
+@media (max-width: 479px) { .brand-jp { display: none; } }
+
+/* Çerez bandı (analytics.js) temaya uyum */
+.ck.ck { border-radius: 0; border-color: rgb(179 33 43 / .35); background: rgb(12 10 9 / .96); }
+.ck.ck button { border-radius: 0; font-family: 'Geist Mono', ui-monospace, monospace; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; }
