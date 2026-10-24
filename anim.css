@@ -49,6 +49,7 @@
 @keyframes slash { to { transform: scaleX(1); } }
 @keyframes slash-off { to { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .intro { display: none !important; } }
+.intro-out .intro { opacity: 0; transition: opacity .35s ease-out; }
 
 /* Ana sayfa hero girişi intro perdesi açılırken başlar */
 html:not(.skip-intro) .pg-home .hero-word span, html:not(.skip-intro) .pg-home .hero-kanji span { animation-delay: calc(var(--d, 0s) + 2.55s) !important; }
