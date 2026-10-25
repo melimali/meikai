@@ -24,6 +24,8 @@
         requestAnimationFrame(function () { requestAnimationFrame(start); });
       }
       addEventListener('load', function () { loaded = true; go(); });
+      /* Görsel çok olan sayfalarda (studio) load geç gelebilir: sayfa çözüldükten en geç 2 sn sonra başla */
+      document.addEventListener('DOMContentLoaded', function () { setTimeout(function () { loaded = true; go(); }, 2000); });
       addEventListener('pageshow', go);
       document.addEventListener('visibilitychange', go);
       document.addEventListener('prerenderingchange', go);
@@ -202,6 +204,7 @@
           <linearGradient id="ki-gleam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
           <clipPath id="ki-blade-clip"><path d="M172,18 C330,17 480,13 600,7 L636,9 C622,15 604,20 590,21.5 C470,25.5 330,29 172,30 Z"/></clipPath>
         </defs>
+        <g class="ki-sword">
         <g class="ki-hilt">
           <rect x="4" y="15" width="148" height="18" rx="5" fill="#0d0b0b" stroke="#2a2020"/>
           <g fill="#d9cfbf"><path d="M18,24 l6,-5.5 6,5.5 -6,5.5z"/><path d="M33,24 l6,-5.5 6,5.5 -6,5.5z"/><path d="M48,24 l6,-5.5 6,5.5 -6,5.5z"/><path d="M63,24 l6,-5.5 6,5.5 -6,5.5z"/><path d="M78,24 l6,-5.5 6,5.5 -6,5.5z"/><path d="M93,24 l6,-5.5 6,5.5 -6,5.5z"/><path d="M108,24 l6,-5.5 6,5.5 -6,5.5z"/><path d="M123,24 l6,-5.5 6,5.5 -6,5.5z"/><path d="M138,24 l6,-5.5 6,5.5 -6,5.5z"/></g>
@@ -214,6 +217,7 @@
           <path d="M172,22.5 C330,21.5 480,17.5 600,11" fill="none" stroke="#5d636a" stroke-opacity=".55" stroke-width=".8"/>
           <path d="M176,27.2 Q180.5,24.9 185,27.1 Q189.5,26.4 194,27.0 Q198.5,24.7 203,26.9 Q207.5,26.2 212,26.8 Q216.5,24.5 221,26.7 Q225.5,26.0 230,26.6 Q234.5,24.3 239,26.5 Q243.5,25.8 248,26.4 Q252.5,24.1 257,26.3 Q261.5,25.6 266,26.2 Q270.5,23.9 275,26.1 Q279.5,25.4 284,26.0 Q288.5,23.7 293,25.9 Q297.5,25.2 302,25.8 Q306.5,23.5 311,25.7 Q315.5,25.0 320,25.6 Q324.5,23.3 329,25.5 Q333.5,24.8 338,25.4 Q342.5,23.1 347,25.3 Q351.5,24.6 356,25.2 Q360.5,22.9 365,25.1 Q369.5,24.4 374,25.0 Q378.5,22.7 383,24.9 Q387.5,24.2 392,24.8 Q396.5,22.5 401,24.7 Q405.5,24.0 410,24.6 Q414.5,22.3 419,24.5 Q423.5,23.8 428,24.4 Q432.5,22.1 437,24.3 Q441.5,23.6 446,24.2 Q450.5,21.9 455,24.1 Q459.5,23.4 464,24.0 Q468.5,21.7 473,23.9 Q477.5,23.2 482,23.8 Q486.5,21.5 491,23.7 Q495.5,23.0 500,23.6 Q504.5,21.3 509,23.5 Q513.5,22.8 518,23.4 Q522.5,21.1 527,23.3 Q531.5,22.6 536,23.2 Q540.5,20.9 545,23.1 Q549.5,22.4 554,23.0 Q558.5,20.7 563,22.9 Q567.5,22.2 572,22.8 Q576.5,20.5 581,22.7" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width=".9"/>
           <rect class="ki-gleam" x="100" y="0" width="90" height="48" fill="url(#ki-gleam)"/>
+        </g>
         </g>
         <g class="ki-saya">
           <path d="M168,15.5 C330,14.5 480,10.5 604,4 L640,6.5 C628,15 608,22 592,24 C470,28 330,32 168,32.5 Z" fill="#0c0a0a" stroke="#3a1517" stroke-width="1.2"/>
@@ -269,7 +273,7 @@
       <div class="container">
         <p class="eyebrow reveal" style="margin-bottom:1.25rem" data-i18n="series">Seri 01 — Harabe</p>
         <ul class="grid feat">
-        <li class="reveal-i"><button type="button" class="shot" data-i="0" aria-label="Görseli büyüt: Siyah acid-wash Meikai tişörtü giyen model, graffitili beton duvara yaslanıyor" data-i18n-attr="aria-label:zoom0"><img src="images/studio-01.webp" srcset="images/s/studio-01.webp 840w, images/studio-01.webp 1400w" sizes="(min-width: 768px) 50vw, 100vw" alt="Siyah acid-wash Meikai tişörtü giyen model, graffitili beton duvara yaslanıyor" data-i18n-attr="alt:alt0" loading="eager" decoding="async" width="1400" height="1738" /><span class="shot-n">01</span></button></li>
+        <li class="reveal-i"><button type="button" class="shot" data-i="0" aria-label="Görseli büyüt: Siyah acid-wash Meikai tişörtü giyen model, graffitili beton duvara yaslanıyor" data-i18n-attr="aria-label:zoom0"><img src="images/studio-01.webp" srcset="images/s/studio-01.webp 840w, images/studio-01.webp 1400w" sizes="(min-width: 768px) 50vw, 70vw" alt="Siyah acid-wash Meikai tişörtü giyen model, graffitili beton duvara yaslanıyor" data-i18n-attr="alt:alt0" loading="eager" decoding="async" width="1400" height="1738" /><span class="shot-n">01</span></button></li>
         <li class="reveal-i"><button type="button" class="shot" data-i="1" aria-label="Görseli büyüt: Meikai tişörtlü kadın model, elini saçına götürmüş poz veriyor" data-i18n-attr="aria-label:zoom1"><img src="images/studio-02.webp" srcset="images/s/studio-02.webp 840w, images/studio-02.webp 1400w" sizes="(min-width: 768px) 25vw, 50vw" alt="Meikai tişörtlü kadın model, elini saçına götürmüş poz veriyor" data-i18n-attr="alt:alt1" loading="eager" decoding="async" width="1400" height="1738" /><span class="shot-n">02</span></button></li>
         <li class="reveal-i"><button type="button" class="shot" data-i="2" aria-label="Görseli büyüt: Kargo pantolon ve Meikai tişörtüyle kameraya bakan kadın model" data-i18n-attr="aria-label:zoom2"><img src="images/studio-03.webp" srcset="images/s/studio-03.webp 840w, images/studio-03.webp 1400w" sizes="(min-width: 768px) 25vw, 50vw" alt="Kargo pantolon ve Meikai tişörtüyle kameraya bakan kadın model" data-i18n-attr="alt:alt2" loading="lazy" decoding="async" width="1400" height="1738" /><span class="shot-n">03</span></button></li>
         <li class="reveal-i"><button type="button" class="shot" data-i="3" aria-label="Görseli büyüt: Kameranın önüne elini tutan model, göğsünde kırmızı Meikai logosu" data-i18n-attr="aria-label:zoom3"><img src="images/studio-04.webp" srcset="images/s/studio-04.webp 840w, images/studio-04.webp 1400w" sizes="(min-width: 768px) 25vw, 50vw" alt="Kameranın önüne elini tutan model, göğsünde kırmızı Meikai logosu" data-i18n-attr="alt:alt3" loading="lazy" decoding="async" width="1400" height="1738" /><span class="shot-n">04</span></button></li>
