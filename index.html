@@ -267,7 +267,7 @@
     html:not(.skip-intro) .hero-word span, html:not(.skip-intro) .hero-kanji span { animation-delay: calc(var(--d, 0s) + 2.3s); }
     html:not(.skip-intro) .hero-moon { animation-delay: 2.1s; }
 
-    @media (max-width: 479px) { .brand small, .brand-jp { display: none; } }
+    @media (max-width: 479px) { .brand small { display: none; } }
     @media (max-width: 767px) {
       .hero { padding-top: 6rem; justify-content: flex-end; }
       .hero-moon { right: -34vw; top: 24%; width: 88vw; opacity: .7; }
@@ -369,7 +369,6 @@
       <a href="#" class="brand" aria-label="Meikai Digital ana sayfa" data-i18n-attr="aria-label:brandAria">
         <span class="logo-mark" aria-hidden="true"></span>
         <span>MEIKAI <small>DIGITAL</small></span>
-        <span class="brand-jp" aria-hidden="true">冥界</span>
       </a>
       <nav class="hdr-right" aria-label="Ana menü" data-i18n-attr="aria-label:navAria">
         <button type="button" class="lang-btn" id="lang-toggle" aria-label="Switch to English">EN</button>

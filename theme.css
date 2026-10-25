@@ -38,16 +38,18 @@ body > main > * { position: relative; z-index: 1; }
 .eyebrow { display: inline-flex; align-items: center; gap: .75rem; letter-spacing: .32em; color: var(--blood); }
 .eyebrow::before { content: ''; width: 1.75rem; height: 1px; background: currentColor; }
 .section h2, .s-hero h1, .shop-hero h1, .info h2, .cta-band h2 {
-  font-family: var(--display); font-weight: 400; text-transform: uppercase; letter-spacing: .005em; line-height: .98;
+  font-family: var(--display); font-weight: 400; text-transform: uppercase; letter-spacing: .005em;
+  /* İ/Ü noktaları üst satırın J, Q, virgül kuyruklarına değmesin */
+  line-height: 1.12; max-width: 100%; overflow-wrap: break-word;
 }
 
 /* ---------- Header ---------- */
 header { background: linear-gradient(180deg, rgb(10 9 8 / .92), rgb(10 9 8 / .62)); border-bottom-color: rgb(179 33 43 / .22); }
 header::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: linear-gradient(90deg, transparent, rgb(226 50 62 / .7) 50%, transparent); opacity: .5; pointer-events: none; }
-.brand { font-family: var(--display); font-weight: 400; font-size: 1.05rem; letter-spacing: .18em; }
-.brand small { font-family: var(--mono); font-size: .62rem; letter-spacing: .32em; vertical-align: .2em; }
-.brand-jp { font-family: var(--jp); font-weight: 800; font-size: .8rem; letter-spacing: .1em; color: var(--blood); margin-left: .15rem; }
-.logo-mark { border-radius: 3px; box-shadow: 0 0 0 1px rgb(226 50 62 / .35), 0 0 18px -4px rgb(179 33 43 / .7); }
+/* Sol üstteki MEIKAI DIGITAL: yeniden tasarımdan önceki haliyle (Inter, yuvarlak amblem) */
+.brand { font-family: var(--sans); font-size: .875rem; font-weight: 600; letter-spacing: .25em; }
+.brand small { font-size: inherit; font-weight: 400; color: var(--muted); }
+.logo-mark { border-radius: 22%; }
 .lang-btn, .menu-btn, .cart-btn { border-radius: 0; border-color: rgb(236 230 220 / .16); }
 .menu-btn { clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); background: rgb(179 33 43 / .14); border-color: rgb(179 33 43 / .5); }
 nav ul a { font-family: var(--mono); font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; }
@@ -153,7 +155,22 @@ footer .container { border-top: 1px solid var(--border); font-family: var(--mono
   .page-kanji { opacity: .55; }
   .fx-marquee { transform: rotate(-1.5deg) scale(1.04); }
 }
-@media (max-width: 479px) { .brand-jp { display: none; } }
+
+/* Telefonda büyük başlıklar ekrandan taşmasın (fx.js taşanı ayrıca küçültür) */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+@media (max-width: 639px) {
+  .section h2 { font-size: min(2.6rem, 10.5vw); }
+  .disc h3 { line-height: 1.08; }
+  .contact .email { font-size: min(2.2rem, 7.4vw); white-space: nowrap; word-break: normal; gap: .6rem; }
+}
+/* Uzun proje adları (MACROPHYSIQUE) kart sütununu genişletmesin */
+.projects > li { min-width: 0; }
+.projects h3 { overflow-wrap: anywhere; }
+@media (max-width: 359px) {
+  .brand { gap: .5rem; letter-spacing: .16em; }
+  .hdr-right { gap: .4rem; }
+  .lang-btn, .menu-btn { padding-inline: .6rem; }
+}
 
 /* Çerez bandı (analytics.js) temaya uyum */
 .ck.ck { border-radius: 0; border-color: rgb(179 33 43 / .35); background: rgb(12 10 9 / .96); }

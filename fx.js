@@ -200,4 +200,32 @@
     });
     window.addEventListener('pageshow', function () { de.classList.remove('fx-leave'); });
   })();
+  /* 7) Büyük başlıklar ekrana sığsın: telefonda yazı boyutu büyütülünce (erişilebilirlik / sayfa yakınlaştırma)
+        uzun kelimeler kenardan taşıyordu. Taşan başlığın yazısı sığana kadar küçültülür. */
+  (function () {
+    var SEL = '.section h2, .s-hero h1, .shop-hero h1, .info h2, .cta-band h2, .disc h3, .hero h1, .about-foot, .contact .email';
+    function fit() {
+      var els = document.querySelectorAll(SEL);
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i], box = el.parentElement;
+        el.style.fontSize = '';
+        for (var n = 0; n < 3; n++) {
+          var cs = getComputedStyle(box);
+          var avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+          var need = Math.max(el.scrollWidth, el.getBoundingClientRect().width);
+          if (!avail || need <= avail + 1) break;
+          el.style.fontSize = (parseFloat(getComputedStyle(el).fontSize) * avail / need * 0.98) + 'px';
+        }
+      }
+    }
+    var t;
+    function later() { clearTimeout(t); t = setTimeout(fit, 120); }
+    fit();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    window.addEventListener('load', fit);
+    window.addEventListener('resize', later);
+    window.addEventListener('orientationchange', later);
+    var lb = document.getElementById('lang-toggle'); /* dil değişince metin uzunluğu değişir */
+    if (lb) lb.addEventListener('click', later);
+  })();
 })();
