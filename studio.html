@@ -11,6 +11,22 @@
       if (document.referrer && new URL(document.referrer).origin === location.origin && !(nav && nav.type === 'reload')) document.documentElement.classList.add('skip-intro');
     } catch (e) {}
     document.documentElement.classList.add('js');
+    /* Intro, sayfa ekranda gerçekten çizilene kadar bekler (mobil tarayıcılar ilk çizimi geciktirebilir,
+       uygulama içi tarayıcılar sayfayı arka planda açabilir); introyu izleyen satır window.introGo()'yu çağırır */
+    (function (de) {
+      if (de.classList.contains('skip-intro') || !window.requestAnimationFrame) { window.introGo = function () {}; return; }
+      de.classList.add('intro-wait');
+      var started = false;
+      function go() {
+        if (started || document.visibilityState === 'hidden') return;
+        started = true;
+        requestAnimationFrame(function () { requestAnimationFrame(function () { de.classList.remove('intro-wait'); }); });
+      }
+      window.introGo = go;
+      document.addEventListener('visibilitychange', go);
+      document.addEventListener('DOMContentLoaded', go);
+      setTimeout(function () { if (!started && document.visibilityState !== 'hidden') { started = true; de.classList.remove('intro-wait'); } }, 4000);
+    })(document.documentElement);
     /* Küçük görsel kopyası (images/s, images/t) yoksa asıl görsele düş */
     addEventListener('error', function (e) { var i = e.target, u; if (i.tagName === 'IMG' && /images\/[st]\//.test(u = i.currentSrc || i.src)) { i.removeAttribute('srcset'); i.src = u.replace(/images\/[st]\//, 'images/'); } }, true);
   </script>
@@ -207,6 +223,7 @@
     <div class="ki-sparks"><i style="--x:18%;--y:58.15%;--a:-70deg;--d:0s"></i><i style="--x:30%;--y:55.09%;--a:110deg;--d:0.03s"></i><i style="--x:42%;--y:52.04%;--a:-95deg;--d:0.05s"></i><i style="--x:50%;--y:50.00%;--a:80deg;--d:0.02s"></i><i style="--x:58%;--y:47.96%;--a:-60deg;--d:0.06s"></i><i style="--x:66%;--y:45.93%;--a:120deg;--d:0.04s"></i><i style="--x:74%;--y:43.89%;--a:-110deg;--d:0.07s"></i><i style="--x:84%;--y:41.35%;--a:70deg;--d:0.05s"></i><i style="--x:38%;--y:53.05%;--a:60deg;--d:0.08s"></i><i style="--x:62%;--y:46.95%;--a:-120deg;--d:0.09s"></i></div>
     <span class="ki-flash"></span>
   </div>
+  <script>window.introGo();</script>
   <header>
     <div class="container">
       <a href="index.html" class="brand" aria-label="Meikai Digital ana sayfa" data-i18n-attr="aria-label:brandAria">
