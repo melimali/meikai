@@ -12,23 +12,23 @@
       if (document.referrer && new URL(document.referrer).origin === location.origin && !(nav && nav.type === 'reload')) document.documentElement.classList.add('skip-intro');
     } catch (e) {}
     document.documentElement.classList.add('js');
-    /* Intro, sayfa ekranda gerçekten çizilene kadar bekler (mobil tarayıcılar ilk çizimi geciktirebilir,
-       Chrome ve Safari adres çubuğundan sayfayı arka planda önceden yükleyebilir); introyu izleyen satır window.introGo()'yu çağırır */
+    /* Intro, sayfa tamamen yüklenip ekranda görünür olana kadar ilk karesinde bekler: iPhone'da Chrome sayfayı
+       yükleme bitene kadar beyaz ekranla örter, Chrome/Safari adres çubuğundan sayfayı arka planda önceden yükleyebilir */
     (function (de) {
-      if (de.classList.contains('skip-intro') || !window.requestAnimationFrame) { window.introGo = function () {}; return; }
+      if (de.classList.contains('skip-intro') || !window.requestAnimationFrame) return;
       de.classList.add('intro-wait');
-      var started = false;
+      var loaded = false, started = false;
+      function start() { started = true; de.classList.remove('intro-wait'); }
       function go() {
-        if (started || document.visibilityState === 'hidden' || document.prerendering) return;
+        if (started || !loaded || document.visibilityState === 'hidden' || document.prerendering) return;
         started = true;
-        requestAnimationFrame(function () { requestAnimationFrame(function () { de.classList.remove('intro-wait'); }); });
+        requestAnimationFrame(function () { requestAnimationFrame(start); });
       }
-      window.introGo = go;
+      addEventListener('load', function () { loaded = true; go(); });
+      addEventListener('pageshow', go);
       document.addEventListener('visibilitychange', go);
       document.addEventListener('prerenderingchange', go);
-      addEventListener('pageshow', go);
-      document.addEventListener('DOMContentLoaded', go);
-      setTimeout(function () { if (!started && document.visibilityState !== 'hidden' && !document.prerendering) { started = true; de.classList.remove('intro-wait'); } }, 4000);
+      setTimeout(function () { loaded = true; go(); }, 6000);
     })(document.documentElement);
     /* Küçük görsel kopyası (images/s, images/t) yoksa asıl görsele düş */
     addEventListener('error', function (e) { var i = e.target, u; if (i.tagName === 'IMG' && /images\/[st]\//.test(u = i.currentSrc || i.src)) { i.removeAttribute('srcset'); i.src = u.replace(/images\/[st]\//, 'images/'); } }, true);
@@ -354,7 +354,6 @@
     <div class="ki-sparks"><i style="--x:18%;--y:58.15%;--a:-70deg;--d:0s"></i><i style="--x:30%;--y:55.09%;--a:110deg;--d:0.03s"></i><i style="--x:42%;--y:52.04%;--a:-95deg;--d:0.05s"></i><i style="--x:50%;--y:50.00%;--a:80deg;--d:0.02s"></i><i style="--x:58%;--y:47.96%;--a:-60deg;--d:0.06s"></i><i style="--x:66%;--y:45.93%;--a:120deg;--d:0.04s"></i><i style="--x:74%;--y:43.89%;--a:-110deg;--d:0.07s"></i><i style="--x:84%;--y:41.35%;--a:70deg;--d:0.05s"></i><i style="--x:38%;--y:53.05%;--a:60deg;--d:0.08s"></i><i style="--x:62%;--y:46.95%;--a:-120deg;--d:0.09s"></i></div>
     <span class="ki-flash"></span>
   </div>
-  <script>window.introGo();</script>
   <a href="#collections" class="skip-link" data-i18n="skip">İçeriğe geç</a>
 
   <header>
