@@ -5,13 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0e0e0e" />
   <script>
-    /* Intro ilk ziyarette oynar, sonra 24 saat boyunca (yenileme dahil) ve site içi geçişlerde atlanır; 'js' sınıfı animasyonların JS yokken gizlenmemesini sağlar */
-    try {
-      var last = +localStorage.getItem('introAt') || 0, now = Date.now();
-      var internal = document.referrer && new URL(document.referrer).origin === location.origin;
-      if (internal || now - last < 864e5) document.documentElement.classList.add('skip-intro');
-      else localStorage.setItem('introAt', now);
-    } catch (e) {}
+    /* Intro oturum başına bir kez oynar; 'js' sınıfı animasyonların JS yokken gizlenmemesini sağlar */
+    try { if (sessionStorage.getItem('introSeen')) document.documentElement.classList.add('skip-intro'); else sessionStorage.setItem('introSeen', '1'); } catch (e) {}
     document.documentElement.classList.add('js');
     /* Küçük görsel kopyası (images/s, images/t) yoksa asıl görsele düş */
     addEventListener('error', function (e) { var i = e.target, u; if (i.tagName === 'IMG' && /images\/[st]\//.test(u = i.currentSrc || i.src)) { i.removeAttribute('srcset'); i.src = u.replace(/images\/[st]\//, 'images/'); } }, true);
