@@ -62,6 +62,8 @@
 .ki-sparks i { position: absolute; z-index: 3; left: var(--x); top: var(--y); width: 2px; height: 16px; margin: -8px 0 0 -1px; border-radius: 2px; background: linear-gradient(#fff, #e2323e); box-shadow: 0 0 8px #e2323e; opacity: 0; rotate: var(--a); animation: ki-spark .6s cubic-bezier(.16,1,.3,1) calc(1.88s + var(--d)) forwards; }
 @keyframes ki-spark { 0% { opacity: 1; transform: translateY(0) scaleY(.4); } 100% { opacity: 0; transform: translateY(-70px) scaleY(1.4); } }
 @media (prefers-reduced-motion: reduce) { .intro { display: none !important; } }
+/* Sayfa çizilene kadar her şey ilk karesinde bekler (bkz. sayfa başındaki introGo) */
+html.intro-wait *, html.intro-wait *::before, html.intro-wait *::after { animation-play-state: paused !important; }
 .intro-out .intro { opacity: 0; transition: opacity .35s ease-out; }
 
 /* Ana sayfa hero girişi intro perdesi açılırken başlar */
