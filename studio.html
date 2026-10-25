@@ -6,8 +6,10 @@
   <meta name="theme-color" content="#0e0e0e" />
   <script>
     try {
-      var nav = performance.getEntriesByType('navigation')[0];
-      if (document.referrer && new URL(document.referrer).origin === location.origin && !(nav && nav.type === 'reload')) document.documentElement.classList.add('skip-intro');
+      var last = +localStorage.getItem('introAt') || 0, now = Date.now();
+      var internal = document.referrer && new URL(document.referrer).origin === location.origin;
+      if (internal || now - last < 864e5) document.documentElement.classList.add('skip-intro');
+      else localStorage.setItem('introAt', now);
     } catch (e) {}
     document.documentElement.classList.add('js');
     /* Küçük görsel kopyası (images/s, images/t) yoksa asıl görsele düş */
