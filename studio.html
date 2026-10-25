@@ -24,6 +24,8 @@
         requestAnimationFrame(function () { requestAnimationFrame(start); });
       }
       addEventListener('load', function () { loaded = true; go(); });
+      /* Görsel çok olan sayfalarda (studio) load geç gelebilir: sayfa çözüldükten en geç 2 sn sonra başla */
+      document.addEventListener('DOMContentLoaded', function () { setTimeout(function () { loaded = true; go(); }, 2000); });
       addEventListener('pageshow', go);
       document.addEventListener('visibilitychange', go);
       document.addEventListener('prerenderingchange', go);
@@ -269,7 +271,7 @@
       <div class="container">
         <p class="eyebrow reveal" style="margin-bottom:1.25rem" data-i18n="series">Seri 01 — Harabe</p>
         <ul class="grid feat">
-        <li class="reveal-i"><button type="button" class="shot" data-i="0" aria-label="Görseli büyüt: Siyah acid-wash Meikai tişörtü giyen model, graffitili beton duvara yaslanıyor" data-i18n-attr="aria-label:zoom0"><img src="images/studio-01.webp" srcset="images/s/studio-01.webp 840w, images/studio-01.webp 1400w" sizes="(min-width: 768px) 50vw, 100vw" alt="Siyah acid-wash Meikai tişörtü giyen model, graffitili beton duvara yaslanıyor" data-i18n-attr="alt:alt0" loading="eager" decoding="async" width="1400" height="1738" /><span class="shot-n">01</span></button></li>
+        <li class="reveal-i"><button type="button" class="shot" data-i="0" aria-label="Görseli büyüt: Siyah acid-wash Meikai tişörtü giyen model, graffitili beton duvara yaslanıyor" data-i18n-attr="aria-label:zoom0"><img src="images/studio-01.webp" srcset="images/s/studio-01.webp 840w, images/studio-01.webp 1400w" sizes="(min-width: 768px) 50vw, 70vw" alt="Siyah acid-wash Meikai tişörtü giyen model, graffitili beton duvara yaslanıyor" data-i18n-attr="alt:alt0" loading="eager" decoding="async" width="1400" height="1738" /><span class="shot-n">01</span></button></li>
         <li class="reveal-i"><button type="button" class="shot" data-i="1" aria-label="Görseli büyüt: Meikai tişörtlü kadın model, elini saçına götürmüş poz veriyor" data-i18n-attr="aria-label:zoom1"><img src="images/studio-02.webp" srcset="images/s/studio-02.webp 840w, images/studio-02.webp 1400w" sizes="(min-width: 768px) 25vw, 50vw" alt="Meikai tişörtlü kadın model, elini saçına götürmüş poz veriyor" data-i18n-attr="alt:alt1" loading="eager" decoding="async" width="1400" height="1738" /><span class="shot-n">02</span></button></li>
         <li class="reveal-i"><button type="button" class="shot" data-i="2" aria-label="Görseli büyüt: Kargo pantolon ve Meikai tişörtüyle kameraya bakan kadın model" data-i18n-attr="aria-label:zoom2"><img src="images/studio-03.webp" srcset="images/s/studio-03.webp 840w, images/studio-03.webp 1400w" sizes="(min-width: 768px) 25vw, 50vw" alt="Kargo pantolon ve Meikai tişörtüyle kameraya bakan kadın model" data-i18n-attr="alt:alt2" loading="lazy" decoding="async" width="1400" height="1738" /><span class="shot-n">03</span></button></li>
         <li class="reveal-i"><button type="button" class="shot" data-i="3" aria-label="Görseli büyüt: Kameranın önüne elini tutan model, göğsünde kırmızı Meikai logosu" data-i18n-attr="aria-label:zoom3"><img src="images/studio-04.webp" srcset="images/s/studio-04.webp 840w, images/studio-04.webp 1400w" sizes="(min-width: 768px) 25vw, 50vw" alt="Kameranın önüne elini tutan model, göğsünde kırmızı Meikai logosu" data-i18n-attr="alt:alt3" loading="lazy" decoding="async" width="1400" height="1738" /><span class="shot-n">04</span></button></li>

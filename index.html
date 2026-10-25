@@ -25,6 +25,8 @@
         requestAnimationFrame(function () { requestAnimationFrame(start); });
       }
       addEventListener('load', function () { loaded = true; go(); });
+      /* Görsel çok olan sayfalarda (studio) load geç gelebilir: sayfa çözüldükten en geç 2 sn sonra başla */
+      document.addEventListener('DOMContentLoaded', function () { setTimeout(function () { loaded = true; go(); }, 2000); });
       addEventListener('pageshow', go);
       document.addEventListener('visibilitychange', go);
       document.addEventListener('prerenderingchange', go);

@@ -25,6 +25,8 @@
         requestAnimationFrame(function () { requestAnimationFrame(start); });
       }
       addEventListener('load', function () { loaded = true; go(); });
+      /* Görsel çok olan sayfalarda (studio) load geç gelebilir: sayfa çözüldükten en geç 2 sn sonra başla */
+      document.addEventListener('DOMContentLoaded', function () { setTimeout(function () { loaded = true; go(); }, 2000); });
       addEventListener('pageshow', go);
       document.addEventListener('visibilitychange', go);
       document.addEventListener('prerenderingchange', go);
@@ -677,7 +679,7 @@
     }
     /* Hızlı yükleme: kartlarda 840px (images/s), küçük resimlerde 240px (images/t) kopya; büyütmede asıl görsel.
        Kopyalar scripts/kucuk-gorseller.py ile üretilir, yoksa sayfa asıl görsele düşer. */
-    var MAIN_SIZES = '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw';
+    var MAIN_SIZES = '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 70vw'; // telefonda 840px kopya yeterli (3x ekranda da)
     function small(src, dir) { return /^images\/[^/]+\.webp$/.test(src) ? src.replace('images/', 'images/' + dir + '/') : src; }
     function mainSrcset(src) { return src === small(src, 's') ? '' : small(src, 's') + ' 840w, ' + src + ' 1297w'; }
     // Metin düz yazı olabilir ya da eski biçimde { tr: '...' } olabilir
