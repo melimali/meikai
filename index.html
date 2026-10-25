@@ -13,20 +13,22 @@
     } catch (e) {}
     document.documentElement.classList.add('js');
     /* Intro, sayfa ekranda gerçekten çizilene kadar bekler (mobil tarayıcılar ilk çizimi geciktirebilir,
-       uygulama içi tarayıcılar sayfayı arka planda açabilir); introyu izleyen satır window.introGo()'yu çağırır */
+       Chrome ve Safari adres çubuğundan sayfayı arka planda önceden yükleyebilir); introyu izleyen satır window.introGo()'yu çağırır */
     (function (de) {
       if (de.classList.contains('skip-intro') || !window.requestAnimationFrame) { window.introGo = function () {}; return; }
       de.classList.add('intro-wait');
       var started = false;
       function go() {
-        if (started || document.visibilityState === 'hidden') return;
+        if (started || document.visibilityState === 'hidden' || document.prerendering) return;
         started = true;
         requestAnimationFrame(function () { requestAnimationFrame(function () { de.classList.remove('intro-wait'); }); });
       }
       window.introGo = go;
       document.addEventListener('visibilitychange', go);
+      document.addEventListener('prerenderingchange', go);
+      addEventListener('pageshow', go);
       document.addEventListener('DOMContentLoaded', go);
-      setTimeout(function () { if (!started && document.visibilityState !== 'hidden') { started = true; de.classList.remove('intro-wait'); } }, 4000);
+      setTimeout(function () { if (!started && document.visibilityState !== 'hidden' && !document.prerendering) { started = true; de.classList.remove('intro-wait'); } }, 4000);
     })(document.documentElement);
     /* Küçük görsel kopyası (images/s, images/t) yoksa asıl görsele düş */
     addEventListener('error', function (e) { var i = e.target, u; if (i.tagName === 'IMG' && /images\/[st]\//.test(u = i.currentSrc || i.src)) { i.removeAttribute('srcset'); i.src = u.replace(/images\/[st]\//, 'images/'); } }, true);
