@@ -10,7 +10,7 @@
 /* İki yarım: aynı sahne, kesik çizgisiyle kırpılmış */
 .ki-half { position: absolute; inset: 0; will-change: transform; }
 .ki-a { clip-path: polygon(0 0, 100% 0, 100% 37.27%, 0 62.73%); animation: ki-split-a .85s cubic-bezier(.7,0,.2,1) 2.1s forwards; }
-.ki-b { clip-path: polygon(0 62.73%, 100% 37.27%, 100% 100%, 0 100%); animation: ki-split-b .85s cubic-bezier(.7,0,.2,1) 2.1s forwards; }
+.ki-b { clip-path: polygon(0 62.1%, 100% 36.6%, 100% 100%, 0 100%); /* üstteki yarımla hafif örtüşür: kesik çizgisinde ince ışık sızıntısı (yırtık) olmasın */ animation: ki-split-b .85s cubic-bezier(.7,0,.2,1) 2.1s forwards; }
 @keyframes ki-split-a { 0% { transform: none; } 22% { transform: translate(-2.5%, .6%); } 100% { transform: translate(-9%, -108%) rotate(-3deg); } }
 @keyframes ki-split-b { 0% { transform: none; } 22% { transform: translate(2.5%, -.6%); } 100% { transform: translate(9%, 108%) rotate(3deg); } }
 .ki-scene { position: absolute; inset: 0; background: radial-gradient(90% 70% at 50% 50%, #1d0b0c, #050404 72%); }
@@ -45,7 +45,7 @@
 @keyframes ki-swing { from { opacity: 1; transform: none; filter: none; } to { opacity: 0; transform: rotate(-16deg) scaleX(1.35); filter: blur(6px) brightness(2); } }
 .ki-saya { animation: ki-unsheathe .55s cubic-bezier(.65,0,.25,1) .75s forwards; }
 @keyframes ki-unsheathe { 60% { opacity: 1; } to { transform: translateX(62%); opacity: 0; } }
-.ki-hilt { animation: ki-pull .55s cubic-bezier(.65,0,.25,1) .75s; }
+.ki-sword { animation: ki-pull .55s cubic-bezier(.65,0,.25,1) .75s; }
 @keyframes ki-pull { 50% { transform: translateX(-10px); } }
 .ki-gleam { transform: translateX(0); animation: ki-gleam .5s ease-in-out 1.15s forwards; }
 @keyframes ki-gleam { to { transform: translateX(560px); } }
