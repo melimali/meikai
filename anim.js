@@ -173,10 +173,12 @@
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('lit'); io.unobserve(e.target); }
+        if (e.isIntersecting) { (e.target.litTarget || e.target).classList.add('lit'); io.unobserve(e.target); }
       });
     }, { threshold: .2 });
-    each('.sec-kanji, .project-media, .torii', function (el) { io.observe(el); });
+    each('.sec-kanji, .torii', function (el) { io.observe(el); });
+    /* Görsel clip-path ile tamamen kırpılı; Chrome bunu "görünmüyor" sayar, o yüzden kapsayıcısını izle */
+    each('.project-media', function (el) { var box = el.parentElement; box.litTarget = el; io.observe(box); });
   } else {
     each('.sec-kanji, .project-media, .torii', function (el) { el.classList.add('lit'); });
   }
