@@ -292,6 +292,9 @@
       .projects > li:first-child .project-media { flex: 1; aspect-ratio: auto; min-height: 22rem; }
       .projects > li:first-child .project-body { flex: 0 0 auto; }
       .projects > li:first-child h3 { font-size: 2.6rem; }
+      .projects > li:nth-child(4) { grid-column: 1 / -1; }
+      .projects > li:nth-child(4) .project { flex-direction: row; }
+      .projects > li:nth-child(4) .project-media { flex: 0 0 50%; aspect-ratio: auto; min-height: 20rem; }
       .about-bottom { flex-direction: row; align-items: flex-end; justify-content: space-between; }
       .about-link { align-self: auto; flex-shrink: 0; }
       footer .container { flex-direction: row; }
@@ -526,16 +529,13 @@
             </a>
           </li>
           <li>
-            <a href="https://play.google.com/store/apps/details?id=com.macrophysique.app&amp;hl=tr" target="_blank" rel="noopener noreferrer" class="project-link">
+            <a href="/homezy/" class="project-link">
               <article class="project">
-                <div class="project-media"><img src="images/project-app.webp" srcset="images/s/project-app.webp 840w, images/project-app.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw" alt="MEIKAI x MACROPHYSIQUE uygulamasından görsel" data-i18n-attr="alt:p2Alt" loading="lazy" decoding="async" /><span class="project-n" aria-hidden="true">02</span></div>
+                <div class="project-media"><img src="images/project-homezy.webp" srcset="images/s/project-homezy.webp 840w, images/project-homezy.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw" alt="Homezy uygulaması ve maskotu Moka" data-i18n-attr="alt:pHAlt" loading="lazy" decoding="async" /><span class="project-n" aria-hidden="true">02</span></div>
                 <div class="project-body">
-                  <div class="project-meta"><span data-i18n="p2Meta">Mobil Uygulama</span><span>2026</span></div>
-                  <h3 lang="en">MEIKAI x MACROPHYSIQUE <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></h3>
-                  <p data-i18n-html="p2Text">Her büyük dönüşüm karanlıkta, gözlerden uzak bir kararlılıkla başlar. Meikai’nin derin, sarsılmaz felsefesi; MacroPhysique’in milimetrik spor ve diyet takibiyle buluşuyor.<br /><br />
-                  <br /><br />
-                  Planla. Takip et. Dönüş.<br />
-                  Kendi efsaneni yarat.</p>
+                  <div class="project-meta"><span data-i18n="pHMeta">Mobil Uygulama · Kapalı beta</span><span>2026</span></div>
+                  <h3 lang="en">MEIKAI x HOMEZY <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></h3>
+                  <p data-i18n="pHText">Bütün ev hayatın tek uygulamada. Kahve sever kakapo Moka seni her gün biraz daha tanır: sana özel rutinler, ev işleri, yemek önerileri, 3B ev ve bahçe.</p>
                 </div>
               </article>
             </a>
@@ -550,6 +550,21 @@
                 <p data-i18n="p3Text">Yeni nesil bir marka için uçtan uca kimlik ve dijital kampanya.</p>
               </div>
             </article>
+            </a>
+          </li>
+          <li>
+            <a href="https://play.google.com/store/apps/details?id=com.macrophysique.app&amp;hl=tr" target="_blank" rel="noopener noreferrer" class="project-link">
+              <article class="project">
+                <div class="project-media"><img src="images/project-app.webp" srcset="images/s/project-app.webp 840w, images/project-app.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw" alt="MEIKAI x MACROPHYSIQUE uygulamasından görsel" data-i18n-attr="alt:p2Alt" loading="lazy" decoding="async" /><span class="project-n" aria-hidden="true">04</span></div>
+                <div class="project-body">
+                  <div class="project-meta"><span data-i18n="p2Meta">Mobil Uygulama</span><span>2026</span></div>
+                  <h3 lang="en">MEIKAI x MACROPHYSIQUE <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></h3>
+                  <p data-i18n-html="p2Text">Her büyük dönüşüm karanlıkta, gözlerden uzak bir kararlılıkla başlar. Meikai’nin derin, sarsılmaz felsefesi; MacroPhysique’in milimetrik spor ve diyet takibiyle buluşuyor.<br /><br />
+                  <br /><br />
+                  Planla. Takip et. Dönüş.<br />
+                  Kendi efsaneni yarat.</p>
+                </div>
+              </article>
             </a>
           </li>
         </ul>
@@ -641,6 +656,9 @@
       p1Alt: "Image from the Meikai T-brand project",
       p1Meta: "Design",
       p1Text: "Dark and original designs from the underground.",
+      pHAlt: "The Homezy app and its mascot Moka",
+      pHMeta: "Mobile App · Closed beta",
+      pHText: "Your whole home life in one app. Moka, a coffee-loving kakapo, gets to know you a little more every day: personal routines, chores, meal ideas, a 3D home and a garden.",
       p2Alt: "Image from the MEIKAI x MACROPHYSIQUE app",
       p2Meta: "Mobile App",
       p2Text: "Every great transformation begins in the dark, with a resolve hidden from view. Meikai’s deep, unshakable philosophy meets MacroPhysique’s meticulous workout and diet tracking.<br /><br />This isn’t just about losing weight or building muscle; it’s a full Glow Up manifesto. Unleash the raw power within and become livelier, fitter and more radiant every day.<br /><br />Plan. Track. Transform.<br />Create your own legend.",
