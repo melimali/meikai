@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Homezy – Rutin ve Ev İşleri | Meikai</title>
-<meta name="description" content="Homezy: kahve sever kakapo Moka seni tanır; rutinlerini, ev işlerini, yemeğini, 3B evini ve bahçeni tek uygulamada toplar. Şu an kapalı betada.">
+<meta name="description" content="Homezy: kahve sever kakapo Moka seni tanır; rutinlerini, ev işlerini, yemeğini, 3B evini ve bahçeni tek uygulamada toplar. App Store’da yayında, Google Play’de çok yakında.">
 <meta name="theme-color" content="#16151d">
 <link rel="canonical" href="https://themeikai.com/homezy/">
 <meta property="og:type" content="website">
@@ -76,6 +76,7 @@ p { margin: 0; }
 .hero .lead { margin-top: 18px; max-width: 34rem; font-size: clamp(16px, 1.6vw, 19px); color: var(--muted); }
 .stores { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .store { position: relative; display: inline-flex; align-items: center; gap: 12px; padding: 11px 20px 11px 16px; border-radius: 16px; background: rgb(251 244 234 / .06); border: 1px solid var(--line); color: var(--ink); text-decoration: none; cursor: default; overflow: hidden; transition: border-color .3s, transform .3s var(--ease); }
+a.store { cursor: pointer; }
 .store:hover { border-color: rgb(247 201 176 / .45); transform: translateY(-2px); }
 .store svg { width: 26px; height: 26px; flex: none; }
 .store small { display: block; font: 800 10px/1.2 var(--body); letter-spacing: .16em; text-transform: uppercase; color: var(--peach); }
@@ -238,7 +239,7 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--line); margin-top: 11
       <span class="mk" lang="en">Meikai</span><span class="x">×</span><span lang="en">Homezy</span>
     </a>
     <div class="top-r">
-      <span class="pill"><i></i><span data-t="beta">Kapalı beta</span></span>
+      <span class="pill"><i></i><span data-t="beta">App Store’da</span></span>
       <button class="lang" id="lang" type="button" aria-label="Switch to English">EN</button>
     </div>
   </div>
@@ -256,16 +257,16 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--line); margin-top: 11
         <h1 class="rv" style="--dl:.16s" data-t="heroH">Ev hayatın, Moka ile <em>daha kolay.</em></h1>
         <p class="lead rv" style="--dl:.24s" data-t="heroP">Rutinler, ev işleri, yemek önerileri, 3B ev ve bahçe. Kahve sever kakapo Moka seni her gün biraz daha tanır ve sana sadece bugün ne yapman gerektiğini söyler.</p>
         <div class="stores rv" style="--dl:.32s">
-          <span class="store" aria-disabled="true">
+          <a class="store" href="https://play.google.com/store/apps/details?id=com.meikai.homezy" target="_blank" rel="noopener" aria-label="Homezy'yi Google Play'de aç">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#bfd8c4" d="M3.6 2.2 13.3 12l-9.7 9.8c-.3-.2-.6-.6-.6-1.1V3.3c0-.5.3-.9.6-1.1Z"/><path fill="#f7c9b0" d="m16.7 8.6-3.4 3.4-9.7-9.8c.4-.2.9-.2 1.3 0l11.8 6.4Z"/><path fill="#9bb5c9" d="m16.7 15.4-11.8 6.4c-.4.2-.9.2-1.3 0l9.7-9.8 3.4 3.4Z"/><path fill="#f6d9b0" d="m20.3 10.6-3.6-2-3.4 3.4 3.4 3.4 3.6-2c1-.6 1-2.2 0-2.8Z"/></svg>
-            <span><small data-t="beta">Kapalı beta</small><b>Google Play</b></span>
-          </span>
-          <span class="store" aria-disabled="true">
+            <span><small data-t="soon">Yakında</small><b>Google Play</b></span>
+          </a>
+          <a class="store" href="https://apps.apple.com/tr/app/homezy-g%C3%BCnl%C3%BCk-rutin-ve-i-%C5%9Fler/id6830728019?l=tr" target="_blank" rel="noopener" aria-label="Homezy'yi App Store'dan indir">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fbf4ea" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.6 1.3-.1 1.7-.8 3.3-.8 1.5 0 1.9.8 3.3.8 1.4 0 2.2-1.3 3-2.5 1-1.4 1.4-2.8 1.4-2.8s-2.7-1.1-2.7-4.2ZM13.9 5c.7-.9 1.2-2 1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5Z"/></svg>
-            <span><small data-t="beta">Kapalı beta</small><b>App Store</b></span>
-          </span>
+            <span><small data-t="iosS">Hemen indir</small><b>App Store</b></span>
+          </a>
         </div>
-        <p class="platforms rv" style="--dl:.4s"><span data-t="plat">Android ve iOS için. Betaya katılmak ister misin?</span> <a href="mailto:info@themeikai.com?subject=Homezy%20beta" data-t="platA">Bize yaz</a></p>
+        <p class="platforms rv" style="--dl:.4s"><span data-t="plat">iOS’ta yayında, Android çok yakında. Sorun ya da önerin mi var?</span> <a href="mailto:info@themeikai.com?subject=Homezy" data-t="platA">Bize yaz</a></p>
       </div>
       <div class="hero-art rv" style="--dl:.2s">
         <div class="glow" aria-hidden="true"></div>
@@ -336,14 +337,14 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--line); margin-top: 11
       <div class="ring" style="width:520px;height:520px" aria-hidden="true"></div>
       <div class="ring" style="width:820px;height:820px;animation-direction:reverse" aria-hidden="true"></div>
       <img class="moka-wink" src="/homezy/img/moka-wink.webp" alt="" width="440" height="440" loading="lazy">
-      <div class="pill" style="margin-bottom:16px"><i></i><span data-t="beta">Kapalı beta</span></div>
-      <h2 data-t="ctaH">Çok yakında mağazalarda.</h2>
-      <p data-t="ctaP">Homezy şu an Google Play ve App Store'da kapalı beta aşamasında. İlk deneyenlerden olmak istersen bize bir e-posta at, seni listeye ekleyelim.</p>
+      <div class="pill" style="margin-bottom:16px"><i></i><span data-t="beta">App Store’da</span></div>
+      <h2 data-t="ctaH">Moka, App Store’da seni bekliyor.</h2>
+      <p data-t="ctaP">Homezy artık App Store’da. Google Play sürümü de çok yakında geliyor; Android’de çıktığında haber almak istersen bize bir e-posta at.</p>
       <div class="stores">
-        <span class="store" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#bfd8c4" d="M3.6 2.2 13.3 12l-9.7 9.8c-.3-.2-.6-.6-.6-1.1V3.3c0-.5.3-.9.6-1.1Z"/><path fill="#f7c9b0" d="m16.7 8.6-3.4 3.4-9.7-9.8c.4-.2.9-.2 1.3 0l11.8 6.4Z"/><path fill="#9bb5c9" d="m16.7 15.4-11.8 6.4c-.4.2-.9.2-1.3 0l9.7-9.8 3.4 3.4Z"/><path fill="#f6d9b0" d="m20.3 10.6-3.6-2-3.4 3.4 3.4 3.4 3.6-2c1-.6 1-2.2 0-2.8Z"/></svg><span><small data-t="beta">Kapalı beta</small><b>Google Play</b></span></span>
-        <span class="store" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fbf4ea" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.6 1.3-.1 1.7-.8 3.3-.8 1.5 0 1.9.8 3.3.8 1.4 0 2.2-1.3 3-2.5 1-1.4 1.4-2.8 1.4-2.8s-2.7-1.1-2.7-4.2ZM13.9 5c.7-.9 1.2-2 1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5Z"/></svg><span><small data-t="beta">Kapalı beta</small><b>App Store</b></span></span>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.meikai.homezy" target="_blank" rel="noopener" aria-label="Homezy'yi Google Play'de aç"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#bfd8c4" d="M3.6 2.2 13.3 12l-9.7 9.8c-.3-.2-.6-.6-.6-1.1V3.3c0-.5.3-.9.6-1.1Z"/><path fill="#f7c9b0" d="m16.7 8.6-3.4 3.4-9.7-9.8c.4-.2.9-.2 1.3 0l11.8 6.4Z"/><path fill="#9bb5c9" d="m16.7 15.4-11.8 6.4c-.4.2-.9.2-1.3 0l9.7-9.8 3.4 3.4Z"/><path fill="#f6d9b0" d="m20.3 10.6-3.6-2-3.4 3.4 3.4 3.4 3.6-2c1-.6 1-2.2 0-2.8Z"/></svg><span><small data-t="soon">Yakında</small><b>Google Play</b></span></a>
+        <a class="store" href="https://apps.apple.com/tr/app/homezy-g%C3%BCnl%C3%BCk-rutin-ve-i-%C5%9Fler/id6830728019?l=tr" target="_blank" rel="noopener" aria-label="Homezy'yi App Store'dan indir"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fbf4ea" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.6 1.3-.1 1.7-.8 3.3-.8 1.5 0 1.9.8 3.3.8 1.4 0 2.2-1.3 3-2.5 1-1.4 1.4-2.8 1.4-2.8s-2.7-1.1-2.7-4.2ZM13.9 5c.7-.9 1.2-2 1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5Z"/></svg><span><small data-t="iosS">Hemen indir</small><b>App Store</b></span></a>
       </div>
-      <a class="btn" href="mailto:info@themeikai.com?subject=Homezy%20beta"><span data-t="ctaBtn">Betaya katıl</span> <span aria-hidden="true">→</span></a>
+      <a class="btn" href="mailto:info@themeikai.com?subject=Homezy%20Android"><span data-t="ctaBtn">Android için haber ver</span> <span aria-hidden="true">→</span></a>
     </div>
   </section>
 </main>
@@ -399,16 +400,16 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--line); margin-top: 11
     { c: 'var(--gold)', ic: '🏆', cls: 'half', m: 'moka-nap', tr: ['Seri, puan ve rozet', 'Her gün küçük bir iş, büyüyen bir seri. Puanlarını evine ve bahçene harca.'], en: ['Streaks, points & badges', 'One small task a day, one growing streak. Spend your points on your home and garden.'] }
   ];
   var T = {
-    tr: { heroEye: 'Meikai Digital sunar', beta: 'Kapalı beta', heroH: 'Ev hayatın, Moka ile <em>daha kolay.</em>', heroP: 'Rutinler, ev işleri, yemek önerileri, 3B ev ve bahçe. Kahve sever kakapo Moka seni her gün biraz daha tanır ve sana sadece bugün ne yapman gerektiğini söyler.', plat: 'Android ve iOS için. Betaya katılmak ister misin?', platA: 'Bize yaz', heroAlt: 'Homezy ana ekranı ve Moka', b1: 'Sıradaki iş:', b1b: 'Fırın temizliği', b2: 'Seri:', b2b: '12 gün',
+    tr: { heroEye: 'Meikai Digital sunar', beta: 'App Store’da', iosS: 'Hemen indir', soon: 'Yakında', heroH: 'Ev hayatın, Moka ile <em>daha kolay.</em>', heroP: 'Rutinler, ev işleri, yemek önerileri, 3B ev ve bahçe. Kahve sever kakapo Moka seni her gün biraz daha tanır ve sana sadece bugün ne yapman gerektiğini söyler.', plat: 'iOS’ta yayında, Android çok yakında. Sorun ya da önerin mi var?', platA: 'Bize yaz', heroAlt: 'Homezy ana ekranı ve Moka', b1: 'Sıradaki iş:', b1b: 'Fırın temizliği', b2: 'Seri:', b2b: '12 gün',
       fEye: 'Neler yapabilir', fH: 'Bütün ev hayatın, <span>tek uygulamada.</span>', fP: 'Homezy bir yapılacaklar listesi değil. Evini, alışkanlıklarını ve günün ritmini öğrenen sıcak bir ev arkadaşı.',
       bEye: 'Dahası da var', bH: 'Küçük dertler, <span>Moka’ya emanet.</span>', gEye: 'Ekranlar', gH: 'Bir göz at, <span>Moka bekliyor.</span>',
-      ctaH: 'Çok yakında mağazalarda.', ctaP: 'Homezy şu an Google Play ve App Store’da kapalı beta aşamasında. İlk deneyenlerden olmak istersen bize bir e-posta at, seni listeye ekleyelim.', ctaBtn: 'Betaya katıl',
+      ctaH: 'Moka, App Store’da seni bekliyor.', ctaP: 'Homezy artık App Store’da. Google Play sürümü de çok yakında geliyor; Android’de çıktığında haber almak istersen bize bir e-posta at.', ctaBtn: 'Android için haber ver',
       footP: 'Homezy, Meikai Digital tarafından sevgiyle ve bolca kahveyle yapıldı.', legalH: 'Yasal', lPriv: 'Gizlilik Politikası', lTerms: 'Kullanım Koşulları', lDel: 'Hesap silme', contactH: 'İletişim',
       band: ['Rutin', 'Ev işleri', 'Yemek', '3B ev', 'Bahçe', 'Gardırop', 'Moka'], lang: 'EN', langL: 'Switch to English', title: 'Homezy – Rutin ve Ev İşleri | Meikai' },
-    en: { heroEye: 'Meikai Digital presents', beta: 'Closed beta', heroH: 'Home life, <em>easier with Moka.</em>', heroP: 'Routines, chores, meal ideas, a 3D home and a garden. Moka, a coffee-loving kakapo, gets to know you a little more every day and tells you just what to do today.', plat: 'For Android and iOS. Want to join the beta?', platA: 'Write to us', heroAlt: 'Homezy home screen with Moka', b1: 'Next up:', b1b: 'Clean the oven', b2: 'Streak:', b2b: '12 days',
+    en: { heroEye: 'Meikai Digital presents', beta: 'On the App Store', iosS: 'Download now', soon: 'Coming soon', heroH: 'Home life, <em>easier with Moka.</em>', heroP: 'Routines, chores, meal ideas, a 3D home and a garden. Moka, a coffee-loving kakapo, gets to know you a little more every day and tells you just what to do today.', plat: 'Out now on iOS, Android coming soon. Questions or ideas?', platA: 'Write to us', heroAlt: 'Homezy home screen with Moka', b1: 'Next up:', b1b: 'Clean the oven', b2: 'Streak:', b2b: '12 days',
       fEye: 'What it does', fH: 'Your whole home life, <span>in one app.</span>', fP: 'Homezy isn’t just a to-do list. It’s a warm housemate that learns your home, your habits and the rhythm of your day.',
       bEye: 'And there’s more', bH: 'Little worries, <span>leave them to Moka.</span>', gEye: 'Screens', gH: 'Take a look, <span>Moka’s waiting.</span>',
-      ctaH: 'Coming soon to the stores.', ctaP: 'Homezy is currently in closed beta on Google Play and the App Store. Want to be one of the first to try it? Send us an email and we’ll add you to the list.', ctaBtn: 'Join the beta',
+      ctaH: 'Moka is waiting for you on the App Store.', ctaP: 'Homezy is now on the App Store. The Google Play version is coming very soon; send us an email if you’d like to hear when it lands on Android.', ctaBtn: 'Notify me for Android',
       footP: 'Homezy is made with love and plenty of coffee by Meikai Digital.', legalH: 'Legal', lPriv: 'Privacy Policy', lTerms: 'Terms of Use', lDel: 'Delete account', contactH: 'Contact',
       band: ['Routine', 'Chores', 'Meals', '3D home', 'Garden', 'Wardrobe', 'Moka'], lang: 'TR', langL: 'Türkçeye geç', title: 'Homezy – Routine & Chores | Meikai' }
   };
